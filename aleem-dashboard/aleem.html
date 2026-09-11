@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Easy Ride</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/image/logo">
+    <link rel="icon" href="/image/al-aleem-icon.jpeg">
+
+    <link rel="stylesheet" href="aleem.css">
+</head>
+
+<body>
+
+    <div class="al-aleem-dashboard-container">
+
+        <!-- ================= SIDEBAR ================= -->
+        <div class="side-bar">
+
+            <div class="school-logo">
+                <div class="logo-circle">
+                    <img src="/image/al-aleem-icon.jpeg" alt="Al-Aleem Logo">
+                </div>
+
+                <h2>AL-ALEEM</h2>
+                <p>GROUP OF SCHOOLS</p>
+            </div>
+
+            <div class="sidebar-menu">
+
+                <a href="#" class="menu-item active">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span>Teachers</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Students</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Courses</span>
+                </a>
+
+                
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Attendance</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Results</span>
+                </a>
+
+
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>message-box</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <a href="#" class="menu-item logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= HEADER ================= -->
+        <div class="header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h3>Dashboard</h3>
+                    <span>Admin Portal</span>
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+
+                <button class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>3</span>
+                </button>
+
+                <div class="admin-profile">
+
+                    <div class="admin-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="admin-details">
+                        <strong>Admin, Al-Aleem</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down profile-arrow"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <div class="main-content">
+
+
+            <!-- ================= STATISTICS ================= -->
+            <section class="stats-container">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+
+                    <div class="stat-information">
+                        <span>Total Students</span>
+                        <h2>1,248</h2>
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            12% this term
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+
+                    <div class="stat-information">
+                        <span>Total Teachers</span>
+                        <h2>86</h2>
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            4 new this term
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <div class="stat-information">
+                        <span>Courses</span>
+                        <h2>42</h2>
+                        <small class="purple-text">
+                            Active courses
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <div class="stat-information">
+                        <span>Examinations</span>
+                        <h2>8</h2>
+                        <small class="orange-text">
+                            This term
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div class="stat-information">
+                        <span>Attendance</span>
+                        <h2>92%</h2>
+                        <small class="positive">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            3.5% this month
+                        </small>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= FIRST CONTENT ROW ================= -->
+            <section class="content-grid">
+
+                <!-- Recent Results -->
+                <div class="dashboard-card results-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h3>Recent Results</h3>
+                            <p>Latest academic results</p>
+                        </div>
+
+                        <a href="#">View All Results</a>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Subject</th>
+                                    <th>Score</th>
+                                    <th>Grade</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <div class="student-name">
+                                            <div class="mini-avatar">AM</div>
+                                            <span>Abdul Malik</span>
+                                        </div>
+                                    </td>
+
+                                    <td>SS 3</td>
+                                    <td>Mathematics</td>
+                                    <td>92/100</td>
+                                    <td>
+                                        <span class="grade excellent">A+</span>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="student-name">
+                                            <div class="mini-avatar">FA</div>
+                                            <span>Fatima Ahmed</span>
+                                        </div>
+                                    </td>
+
+                                    <td>SS 2</td>
+                                    <td>English</td>
+                                    <td>88/100</td>
+                                    <td>
+                                        <span class="grade good">A</span>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="student-name">
+                                            <div class="mini-avatar">YA</div>
+                                            <span>Yusuf Abdullahi</span>
+                                        </div>
+                                    </td>
+
+                                    <td>JSS 3</td>
+                                    <td>Basic Science</td>
+                                    <td>84/100</td>
+                                    <td>
+                                        <span class="grade good">A</span>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="student-name">
+                                            <div class="mini-avatar">SA</div>
+                                            <span>Sadiq Ahmed</span>
+                                        </div>
+                                    </td>
+
+                                    <td>SS 1</td>
+                                    <td>Physics</td>
+                                    <td>79/100</td>
+                                    <td>
+                                        <span class="grade good">B+</span>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <div class="student-name">
+                                            <div class="mini-avatar">ZA</div>
+                                            <span>Zainab Ali</span>
+                                        </div>
+                                    </td>
+
+                                    <td>JSS 2</td>
+                                    <td>Computer Studies</td>
+                                    <td>91/100</td>
+                                    <td>
+                                        <span class="grade excellent">A+</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Notice Board -->
+                <div class="dashboard-card notice-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h3>Notice Board</h3>
+                            <p>Latest announcements</p>
+                        </div>
+
+                        <a href="#">View All</a>
+
+                    </div>
+
+
+                    <div class="notice-list">
+
+                        <div class="notice-item">
+
+                            <div class="notice-icon blue-notice">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+
+                            <div>
+                                <h4>End of Term Examination</h4>
+                                <p>
+                                    The examination timetable has been released.
+                                </p>
+                                <small>15 May 2024</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice-item">
+
+                            <div class="notice-icon red-notice">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </div>
+
+                            <div>
+                                <h4>Result Submission Deadline</h4>
+                                <p>
+                                    Teachers should submit all results before Friday.
+                                </p>
+                                <small>12 May 2024</small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="notice-item">
+
+                            <div class="notice-icon orange-notice">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+
+                            <div>
+                                <h4>Parent-Teacher Meeting</h4>
+                                <p>
+                                    PTA meeting scheduled for all classes.
+                                </p>
+                                <small>10 May 2024</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SECOND CONTENT ROW ================= -->
+            <section class="bottom-grid">
+
+                <!-- Academic Calendar -->
+                <div class="dashboard-card calendar-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h3>Academic Calendar</h3>
+                            <p>May 2024</p>
+                        </div>
+
+                        <a href="#">View Calendar</a>
+
+                    </div>
+
+
+                    <div class="calendar">
+
+                        <div class="calendar-header">
+
+                            <button id="previousMonth">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+
+                            <strong id="calendarMonth">
+                                May 2024
+                            </strong>
+
+                            <button id="nextMonth">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="calendar-days">
+
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+
+                        </div>
+
+
+                        <div class="calendar-dates">
+
+                            <span>29</span>
+                            <span>30</span>
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span class="holiday">5</span>
+
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>10</span>
+                            <span>11</span>
+                            <span class="holiday">12</span>
+
+                            <span>13</span>
+                            <span>14</span>
+                            <span class="today">15</span>
+                            <span>16</span>
+                            <span>17</span>
+                            <span>18</span>
+                            <span class="holiday">19</span>
+
+                            <span>20</span>
+                            <span>21</span>
+                            <span>22</span>
+                            <span>23</span>
+                            <span>24</span>
+                            <span>25</span>
+                            <span class="holiday">26</span>
+
+                            <span>27</span>
+                            <span>28</span>
+                            <span>29</span>
+                            <span>30</span>
+                            <span>31</span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Performance Overview -->
+                <div class="dashboard-card performance-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <h3>Performance Overview</h3>
+                            <p>Overall school performance</p>
+                        </div>
+
+                        <a href="#">View Details</a>
+
+                    </div>
+
+
+                    <div class="performance-content">
+
+                        <div class="donut-chart">
+
+                            <div class="donut-inner">
+                                <strong>84%</strong>
+                                <span>Overall<br>Performance</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="performance-list">
+
+                            <div>
+                                <span class="performance-dot excellent-dot"></span>
+                                <p>Excellent</p>
+                                <strong>60%</strong>
+                            </div>
+
+                            <div>
+                                <span class="performance-dot good-dot"></span>
+                                <p>Good</p>
+                                <strong>20%</strong>
+                            </div>
+
+                            <div>
+                                <span class="performance-dot average-dot"></span>
+                                <p>Average</p>
+                                <strong>12%</strong>
+                            </div>
+
+                            <div>
+                                <span class="performance-dot poor-dot"></span>
+                                <p>Needs Improvement</p>
+                                <strong>8%</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer>
+
+                <span>
+                    © 2024 Al-Aleem Group of Schools. All rights reserved.
+                </span>
+
+                <span>
+                    Made with <i class="fa-solid fa-heart"></i> for Education
+                </span>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <script src="aleem.js"></script>
+
+</body>
+
+</html>

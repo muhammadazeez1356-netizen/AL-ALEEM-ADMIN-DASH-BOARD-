@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Ride</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/image/logo">
+    <link rel="icon" href="/image/al-aleem-icon.jpeg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SPLASH SCREEN ================= -->
+
+    <div class="splash-screen" id="splashScreen">
+
+        <div class="splash-content">
+
+            <div class="splash-logo">
+                <img src="image/al-aleem_logo__2_-removebg-preview.png"
+                    alt="Al-Aleem Model College Logo">
+            </div>
+
+            <h1>Al-Aleem Group of School College</h1>
+
+            <p>Learning to Serve</p>
+
+            <div class="loader"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN PAGE ================= -->
+
+    <main class="main-page" id="mainPage">
+
+        <div class="auth-container">
+
+            <!-- LEFT SIDE -->
+
+            <div class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <img src="image/al-aleem_logo__2_-removebg-preview.png"
+                        alt="Al-Aleem Model College Logo"
+                        class="school-logo">
+
+                    <h1>Al-Aleem<br>Groupof school</h1>
+
+                    <p class="motto">
+                        Learning to Serve
+                    </p>
+
+                    <p class="welcome-text">
+                        Welcome to Al-Aleem group of school.
+                        Create your account as an Admin to continue.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE / SIGNUP -->
+
+            <div class="form-section">
+
+                <div class="form-box">
+
+                    <div class="form-title">
+
+                        <h2>Create Account</h2>
+
+                        <p>
+                            Sign up to get started
+                        </p>
+
+                    </div>
+
+
+                    <!-- SIGNUP FORM -->
+
+                    <form id="signupForm">
+
+                        <div class="input-group">
+
+                            <label for="signupName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="signupName"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="signupEmail">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="signupPhone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="signupPhone"
+                                placeholder="Enter your phone number"
+                                autocomplete="tel"
+                                required>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="signupPassword">
+                                Password
+                            </label>
+
+                            <div class="password-box">
+
+                                <input
+                                    type="password"
+                                    id="signupPassword"
+                                    placeholder="Create a password"
+                                    autocomplete="new-password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="signupPassword">
+                                  <i class="fa-solid fa-eye-slash eye"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <div class="password-box">
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm your password"
+                                    autocomplete="new-password"
+                                    required>
+
+                                <button
+                                    type="button"
+                                    class="password-toggle"
+                                    data-target="confirmPassword">
+                                    <i class="fa-solid fa-eye-slash eye"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn">
+
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- LOGIN LINK -->
+
+                    <div class="switch-form">
+
+                        <p>
+                            Already have an account?
+
+                            <button
+                                type="button"
+                                id="openLoginBtn">
+                                Login
+                            </button>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= LOGIN POPOVER ================= -->
+
+    <div
+        class="login-overlay"
+        id="loginOverlay">
+
+        <div
+            class="login-popover"
+            id="loginPopover">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                type="button"
+                class="close-login"
+                id="closeLoginBtn">
+
+                &times;
+
+            </button>
+
+
+            <!-- LOGIN LOGO -->
+
+            <div class="login-logo">
+
+                <img
+                    src="image/al-aleem_logo__2_-removebg-preview.png"
+                    alt="Al-Aleem Model College Logo">
+
+            </div>
+
+
+            <!-- LOGIN TITLE -->
+
+            <div class="login-title">
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Login to your Al-Aleem account
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="loginPassword">
+
+                            <span>👁</span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <button
+                        type="button"
+                        class="forgot-password"
+                        id="forgotPasswordBtn">
+
+                        Forgot password?
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn login-btn">
+
+                    Login
+
+                </button>
+
+            </form>
+
+
+            <!-- SWITCH TO SIGNUP -->
+
+            <div class="switch-form login-switch">
+
+                <p>
+                    Don't have an account?
+
+                    <button
+                        type="button"
+                        id="backToSignupBtn">
+
+                        Sign Up
+
+                    </button>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MESSAGE ================= -->
+
+    <div
+        class="message-box"
+        id="messageBox">
+
+        <div class="message-icon" id="messageIcon">
+            ✓
+        </div>
+
+        <p id="messageText"></p>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1310 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* =====================================================
+   YOUR ORIGINAL CSS
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat Alternates", sans-serif;
+    text-decoration: none;
+}
+
+
+.al-aleem-dashboard-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 80px 1fr;
+    min-height: 100vh;
+    background: #f5f7fb;
+}
+
+
+.side-bar {
+    height: 100vh;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.header {
+    height: 80px;
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+
+.main-content {
+    height: auto;
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.side-bar {
+    background: #ffffff;
+    border-right: 1px solid #e8ebf2;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+
+.school-logo {
+    height: 155px;
+    background: linear-gradient(145deg, #034522, #075b35);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 18px;
+}
+
+
+.logo-circle {
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 11px;
+}
+
+
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.school-logo h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+.school-logo p {
+    font-size: 11px;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    opacity: .9;
+}
+
+
+.sidebar-menu {
+    padding: 23px 14px;
+    flex: 1;
+}
+
+
+.menu-item {
+    height: 52px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 16px;
+    border-radius: 8px;
+    color: #697386;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 7px;
+    transition: .25s ease;
+}
+
+
+.menu-item i {
+    width: 21px;
+    text-align: center;
+    font-size: 17px;
+}
+
+
+.menu-item:hover {
+    background: #edf7f2;
+    color: #075b35;
+}
+
+
+.menu-item.active {
+    background: #075b35;
+    color: #ffffff;
+    box-shadow: 0 5px 13px rgba(7, 91, 53, .22);
+}
+
+
+.sidebar-bottom {
+    padding: 13px 14px 21px;
+    border-top: 1px solid #eef0f5;
+}
+
+
+.menu-item.logout {
+    color: #0a7142;
+}
+
+
+.menu-item.logout:hover {
+    background: #edf7f2;
+    color: #034522;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    background: #ffffff;
+    border-bottom: 1px solid #e8ebf2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+
+.header-left h3 {
+    color: #1d2939;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.header-left span {
+    font-size: 13px;
+    color: #98a1b2;
+    display: block;
+    margin-top: 4px;
+}
+
+
+.menu-toggle {
+    border: 0;
+    background: transparent;
+    color: #566274;
+    cursor: pointer;
+    font-size: 21px;
+}
+
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.search-box {
+    height: 44px;
+    width: 260px;
+    background: #f7f8fb;
+    border: 1px solid #e6e9ef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+}
+
+
+.search-box i {
+    color: #929bab;
+    font-size: 15px;
+}
+
+
+.search-box input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    color: #344054;
+}
+
+
+.search-box input::placeholder {
+    font-size: 14px;
+    color: #98a1b2;
+}
+
+
+.notification {
+    position: relative;
+    border: 0;
+    background: transparent;
+    color: #566274;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+.notification span {
+    position: absolute;
+    right: -6px;
+    top: -8px;
+    background: #1677dc;
+    color: white;
+    border-radius: 50%;
+    width: 19px;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+
+.admin-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e6f1ff;
+    color: #1570d5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+
+.admin-details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.admin-details strong {
+    color: #263446;
+    font-size: 14px;
+}
+
+
+.admin-details small {
+    color: #8d96a5;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+.profile-arrow {
+    font-size: 12px;
+    color: #7e8795;
+    margin-left: 4px;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.main-content {
+    padding: 32px 35px;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome-banner {
+    min-height: 155px;
+    background: linear-gradient(110deg, #eef6ff, #e4efff);
+    border-radius: 13px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 38px;
+    margin-bottom: 24px;
+}
+
+
+.welcome-text {
+    position: relative;
+    z-index: 2;
+}
+
+
+.welcome-text p {
+    font-size: 17px;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+
+.welcome-text h1 {
+    font-size: 33px;
+    color: #0865c6;
+    margin-bottom: 10px;
+}
+
+
+.welcome-text span {
+    color: #738094;
+    font-size: 14px;
+}
+
+
+.welcome-decoration {
+    width: 310px;
+    height: 100%;
+    position: relative;
+}
+
+
+.school-building {
+    position: absolute;
+    right: 36px;
+    bottom: 19px;
+    width: 78px;
+    height: 78px;
+    background: white;
+    border-radius: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1571d2;
+    font-size: 41px;
+    box-shadow: 0 5px 15px rgba(40, 85, 150, .12);
+}
+
+
+.book {
+    position: absolute;
+    width: 125px;
+    height: 18px;
+    border-radius: 4px;
+    right: 82px;
+    transform: rotate(5deg);
+}
+
+
+.book-one {
+    bottom: 21px;
+    background: #176bd1;
+}
+
+
+.book-two {
+    bottom: 40px;
+    right: 92px;
+    background: #f0a32d;
+}
+
+
+.book-three {
+    bottom: 59px;
+    right: 100px;
+    background: #ffffff;
+    border: 1px solid #dbe2ee;
+}
+
+
+/* =====================================================
+   STAT CARDS
+===================================================== */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #edf0f5;
+    border-radius: 12px;
+    min-height: 135px;
+    padding: 22px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 8px rgba(35, 55, 85, .025);
+}
+
+
+.stat-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+
+.stat-icon.blue,
+.quick-icon.blue {
+    color: #1572d4;
+    background: #e9f4ff;
+}
+
+
+.stat-icon.green,
+.quick-icon.green {
+    color: #36a36d;
+    background: #eaf9f1;
+}
+
+
+.stat-icon.purple,
+.quick-icon.purple {
+    color: #8359d7;
+    background: #f3edff;
+}
+
+
+.stat-icon.orange,
+.quick-icon.orange {
+    color: #ed9a24;
+    background: #fff5e5;
+}
+
+
+.stat-icon.red {
+    color: #e15b6c;
+    background: #fff0f2;
+}
+
+
+.stat-information span {
+    font-size: 13px;
+    color: #858e9c;
+}
+
+
+.stat-information h2 {
+    color: #243447;
+    font-size: 28px;
+    margin: 6px 0;
+}
+
+
+.stat-information small {
+    font-size: 12px;
+}
+
+
+.positive {
+    color: #35a56e;
+}
+
+
+.purple-text {
+    color: #875bd5;
+}
+
+
+.orange-text {
+    color: #ed9b2c;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.dashboard-card {
+    background: #ffffff;
+    border: 1px solid #e9edf3;
+    border-radius: 12px;
+    padding: 23px;
+    box-shadow: 0 2px 8px rgba(35, 55, 85, .025);
+}
+
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 19px;
+}
+
+
+.card-heading h3 {
+    font-size: 18px;
+    color: #283548;
+    font-weight: 700;
+}
+
+
+.card-heading p {
+    font-size: 12px;
+    color: #9aa2af;
+    margin-top: 6px;
+}
+
+
+.card-heading a {
+    color: #1772d4;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   FIRST GRID
+===================================================== */
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: 21px;
+    margin-bottom: 21px;
+}
+
+
+/* =====================================================
+   RESULTS TABLE
+===================================================== */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th {
+    text-align: left;
+    font-size: 12px;
+    color: #929aa7;
+    font-weight: 600;
+    padding: 13px 9px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+
+td {
+    font-size: 13px;
+    color: #556274;
+    padding: 14px 9px;
+    border-bottom: 1px solid #f1f3f6;
+}
+
+
+.student-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #39475a;
+    font-weight: 500;
+}
+
+
+.mini-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e9f3ff;
+    color: #1770d1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.grade {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.grade.excellent {
+    color: #249363;
+    background: #e7f8ef;
+}
+
+
+.grade.good {
+    color: #4e82cb;
+    background: #e9f2ff;
+}
+
+
+/* =====================================================
+   NOTICE BOARD
+===================================================== */
+
+.notice-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.notice-item {
+    display: flex;
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+
+.notice-item:last-child {
+    border-bottom: 0;
+}
+
+
+.notice-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+
+.blue-notice {
+    background: #eaf4ff;
+    color: #1672d5;
+}
+
+
+.red-notice {
+    background: #fff0f1;
+    color: #dc596a;
+}
+
+
+.orange-notice {
+    background: #fff5e6;
+    color: #eb9c2d;
+}
+
+
+.notice-item h4 {
+    font-size: 13px;
+    color: #344054;
+    margin-bottom: 6px;
+}
+
+
+.notice-item p {
+    font-size: 12px;
+    color: #87909e;
+    line-height: 1.6;
+}
+
+
+.notice-item small {
+    color: #1770d1;
+    font-size: 11px;
+    display: block;
+    margin-top: 6px;
+}
+
+
+/* =====================================================
+   BOTTOM GRID
+===================================================== */
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr 1fr;
+    gap: 21px;
+}
+
+
+/* =====================================================
+   CALENDAR
+===================================================== */
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+
+.calendar-header button {
+    border: 0;
+    background: transparent;
+    color: #8892a0;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 6px;
+}
+
+
+.calendar-header strong {
+    font-size: 14px;
+    color: #455264;
+}
+
+
+.calendar-days,
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+
+.calendar-days span {
+    color: #9ba3af;
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+
+
+.calendar-dates span {
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #596577;
+    border-radius: 5px;
+}
+
+
+.calendar-dates span:hover {
+    background: #f0f6ff;
+    cursor: pointer;
+}
+
+
+.calendar-dates .today {
+    color: white;
+    background: #1671d2;
+    font-weight: 700;
+}
+
+
+.calendar-dates .holiday {
+    color: #e15e6c;
+}
+
+
+/* =====================================================
+   QUICK ACCESS
+===================================================== */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+
+.quick-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 4px;
+    border-radius: 8px;
+    transition: .2s;
+}
+
+
+.quick-item:hover {
+    background: #f7f9fc;
+}
+
+
+.quick-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+
+.quick-item span {
+    font-size: 11px;
+    color: #667085;
+    text-align: center;
+}
+
+
+.quick-icon.cyan {
+    background: #e7f8fa;
+    color: #22a2ae;
+}
+
+
+.quick-icon.pink {
+    background: #fff0f5;
+    color: #dd658c;
+}
+
+
+/* =====================================================
+   PERFORMANCE
+===================================================== */
+
+.performance-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 18px;
+}
+
+
+.donut-chart {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #176fd2 0deg 216deg,
+        #43a36e 216deg 288deg,
+        #f0a333 288deg 331deg,
+        #df6573 331deg 360deg
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.donut-chart::before {
+    content: "";
+    width: 95px;
+    height: 95px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+
+.donut-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.donut-inner strong {
+    color: #273649;
+    font-size: 23px;
+}
+
+
+.donut-inner span {
+    color: #9aa2ae;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 3px;
+}
+
+
+.performance-list {
+    flex: 1;
+}
+
+
+.performance-list > div {
+    display: grid;
+    grid-template-columns: 9px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 13px;
+}
+
+
+.performance-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+
+.excellent-dot {
+    background: #176fd2;
+}
+
+
+.good-dot {
+    background: #43a36e;
+}
+
+
+.average-dot {
+    background: #f0a333;
+}
+
+
+.poor-dot {
+    background: #df6573;
+}
+
+
+.performance-list p {
+    font-size: 11px;
+    color: #707b8b;
+}
+
+
+.performance-list strong {
+    font-size: 12px;
+    color: #455264;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 19px 4px 4px;
+    color: #9ba3af;
+    font-size: 12px;
+}
+
+
+footer i {
+    color: #e05e6c;
+    margin: 0 3px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1200px) {
+
+    .al-aleem-dashboard-container {
+        grid-template-columns: 260px 1fr;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .performance-card {
+        grid-column: 1 / -1;
+    }
+
+    .main-content {
+        padding: 28px 30px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .al-aleem-dashboard-container {
+        grid-template-columns: 0 1fr;
+    }
+
+    .side-bar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        width: 280px;
+        height: 100vh;
+        transition: .3s ease;
+        z-index: 1001;
+    }
+
+    .side-bar.show {
+        left: 0;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        grid-column: 2;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    .main-content {
+        grid-column: 2;
+        padding: 26px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+        height: 74px;
+        padding: 0 16px;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    .header-right {
+        gap: 13px;
+    }
+
+    .header-left h3 {
+        font-size: 17px;
+    }
+
+    .header-left span {
+        font-size: 11px;
+    }
+
+    .search-box {
+        width: 175px;
+        height: 41px;
+    }
+
+    .search-box input {
+        font-size: 13px;
+    }
+
+    .notification {
+        font-size: 21px;
+    }
+
+    .admin-details,
+    .profile-arrow {
+        display: none;
+    }
+
+    .admin-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+
+
+    /* MAIN CONTENT ONLY */
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+        padding: 18px 15px;
+    }
+
+    .stat-information span {
+        font-size: 12px;
+    }
+
+    .stat-information h2 {
+        font-size: 25px;
+    }
+
+    .stat-information small {
+        font-size: 11px;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .performance-card {
+        grid-column: auto;
+    }
+
+    .welcome-decoration {
+        display: none;
+    }
+
+    .welcome-banner {
+        min-height: 135px;
+        padding: 25px 28px;
+    }
+
+    .welcome-text h1 {
+        font-size: 28px;
+    }
+
+    .welcome-text p {
+        font-size: 15px;
+    }
+
+    .welcome-text span {
+        font-size: 13px;
+    }
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .header {
+        height: 70px;
+    }
+
+    .header-left h3 {
+        font-size: 15px;
+    }
+
+    .header-left span {
+        font-size: 10px;
+    }
+
+
+    /* MAIN CONTENT ONLY */
+
+    .main-content {
+        padding: 17px;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .welcome-banner {
+        padding: 23px;
+        min-height: 130px;
+    }
+
+    .welcome-text p {
+        font-size: 14px;
+    }
+
+    .welcome-text h1 {
+        font-size: 25px;
+    }
+
+    .welcome-text span {
+        font-size: 12px;
+    }
+
+    .dashboard-card {
+        padding: 18px;
+    }
+
+    .card-heading h3 {
+        font-size: 16px;
+    }
+
+    .card-heading p {
+        font-size: 11px;
+    }
+
+    .card-heading a {
+        font-size: 11px;
+    }
+
+    th {
+        font-size: 11px;
+    }
+
+    td {
+        font-size: 12px;
+    }
+
+    .notice-item h4 {
+        font-size: 12px;
+    }
+
+    .notice-item p {
+        font-size: 11px;
+    }
+
+    .notice-item small {
+        font-size: 10px;
+    }
+
+    .quick-item span {
+        font-size: 11px;
+    }
+
+    .performance-list p {
+        font-size: 11px;
+    }
+
+    .performance-list strong {
+        font-size: 11px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 7px;
+        font-size: 11px;
+    }
+
+}
