@@ -6,11 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const CURRENT_USER_KEY = "alAleemCurrentUser";
     const LOGIN_STATUS_KEY = "alAleemLoggedIn";
-
-
-    /* =====================================================
-       LOGIN PAGE
-    ===================================================== */
+    const CURRENT_PAGE_KEY = "alAleemCurrentPage";
 
     const LOGIN_PAGE = "../index.html";
 
@@ -23,38 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
 
-            const savedUser =
-                localStorage.getItem(CURRENT_USER_KEY);
-
-
-            if (!savedUser) {
-                return null;
-            }
-
-
-            const currentUser =
-                JSON.parse(savedUser);
-
-
-            if (
-                !currentUser ||
-                typeof currentUser !== "object"
-            ) {
-                return null;
-            }
-
-
-            return currentUser;
+            return JSON.parse(
+                localStorage.getItem(
+                    CURRENT_USER_KEY
+                )
+            );
 
         } catch (error) {
 
-            console.error(
-                "Unable to read current user:",
-                error
-            );
-
             return null;
+
         }
+
     }
 
 
@@ -64,22 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function isLoggedIn() {
 
-        const loginStatus =
-            localStorage.getItem(LOGIN_STATUS_KEY);
+        return (
+            localStorage.getItem(
+                LOGIN_STATUS_KEY
+            ) === "true" &&
+            getCurrentUser()
+        );
 
-        const currentUser =
-            getCurrentUser();
-
-
-        if (
-            loginStatus === "true" &&
-            currentUser
-        ) {
-            return true;
-        }
-
-
-        return false;
     }
 
 
@@ -94,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         return;
+
     }
 
 
@@ -105,184 +73,455 @@ document.addEventListener("DOMContentLoaded", function () {
         getCurrentUser();
 
 
-    console.log(
-        "Logged in user:",
-        currentUser
-    );
-
-
     /* =====================================================
-       SIDEBAR MOBILE TOGGLE
+       MAIN ELEMENTS
     ===================================================== */
 
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const sidebar =
-        document.querySelector(".side-bar");
-
-
-    if (menuToggle && sidebar) {
-
-        menuToggle.addEventListener("click", function () {
-
-            sidebar.classList.toggle("show");
-
-        });
-    }
-
-
-    /* =====================================================
-       SIDEBAR MENU ACTIVE STATE
-    ===================================================== */
+    const mainContent =
+        document.getElementById("mainContent");
 
     const menuItems =
         document.querySelectorAll(
             ".sidebar-menu .menu-item"
         );
 
+    const headerTitle =
+        document.getElementById("headerTitle");
 
-    menuItems.forEach(function (item) {
+    const menuToggle =
+        document.getElementById("menuToggle");
 
-        item.addEventListener("click", function () {
-
-            if (
-                item.classList.contains("logout")
-            ) {
-                return;
-            }
-
-
-            menuItems.forEach(function (menu) {
-
-                menu.classList.remove("active");
-
-            });
-
-
-            item.classList.add("active");
-
-
-            if (sidebar) {
-
-                sidebar.classList.remove("show");
-
-            }
-
-        });
-
-    });
+    const sideBar =
+        document.querySelector(".side-bar");
 
 
     /* =====================================================
-       DISPLAY USER INFORMATION
+       PAGE TITLES
     ===================================================== */
 
-    function displayUserInformation() {
+    const pageTitles = {
 
-        if (!currentUser) {
-            return;
-        }
+        dashboard: "Dashboard",
+        teachers: "Teachers",
+        students: "Students",
+        courses: "Courses",
+        attendance: "Attendance",
+        results: "Results",
+        messages: "Messages",
+        settings: "Settings"
 
+    };
+
+
+    /* =====================================================
+       DISPLAY USER
+    ===================================================== */
+
+    if (currentUser) {
+
+        const userName =
+            currentUser.fullname ||
+            currentUser.name ||
+            "Administrator";
+
+        const userEmail =
+            currentUser.email ||
+            "";
+
+        const sidebarName =
+            document.getElementById(
+                "sidebarName"
+            );
+
+        const driverName =
+            document.getElementById(
+                "driverName"
+            );
 
         const adminDetails =
             document.querySelector(
                 ".admin-details"
             );
 
+        if (sidebarName) {
 
-        if (adminDetails) {
-
-            const nameElement =
-                adminDetails.querySelector("strong");
-
-            const roleElement =
-                adminDetails.querySelector("small");
-
-
-            if (nameElement) {
-
-                nameElement.textContent =
-                    currentUser.name ||
-                    "Administrator";
-
-            }
-
-
-            if (roleElement) {
-
-                roleElement.textContent =
-                    currentUser.role ||
-                    "Administrator";
-
-            }
+            sidebarName.textContent =
+                userName;
 
         }
 
+        if (driverName) {
 
-        const nameElements =
-            document.querySelectorAll(
-                "[data-user-name]"
+            driverName.textContent =
+                userName;
+
+        }
+
+        if (adminDetails) {
+
+            adminDetails.setAttribute(
+                "data-name",
+                userName
             );
 
-
-        nameElements.forEach(function (element) {
-
-            element.textContent =
-                currentUser.name ||
-                "Administrator";
-
-        });
-
-
-        const emailElements =
-            document.querySelectorAll(
-                "[data-user-email]"
+            adminDetails.setAttribute(
+                "data-email",
+                userEmail
             );
 
-
-        emailElements.forEach(function (element) {
-
-            element.textContent =
-                currentUser.email ||
-                "";
-
-        });
-
-
-        const phoneElements =
-            document.querySelectorAll(
-                "[data-user-phone]"
-            );
-
-
-        phoneElements.forEach(function (element) {
-
-            element.textContent =
-                currentUser.phone ||
-                "";
-
-        });
-
-
-        const roleElements =
-            document.querySelectorAll(
-                "[data-user-role]"
-            );
-
-
-        roleElements.forEach(function (element) {
-
-            element.textContent =
-                currentUser.role ||
-                "Administrator";
-
-        });
+        }
 
     }
 
 
-    displayUserInformation();
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    if (menuToggle && sideBar) {
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                sideBar.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR MENU
+    ===================================================== */
+
+    menuItems.forEach(function (item) {
+
+        item.addEventListener(
+            "click",
+            function (event) {
+
+                const page =
+                    item.getAttribute(
+                        "data-page"
+                    );
+
+
+                /* ===============================
+                   LOGOUT
+                =============================== */
+
+                if (
+                    item.classList.contains("logout")
+                ) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    openLogoutModal();
+
+                    return;
+                }
+
+
+                /* ===============================
+                   NORMAL MENU ITEM
+                =============================== */
+
+                if (!page) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                /* ===============================
+                   REMEMBER CURRENT PAGE
+                =============================== */
+
+                localStorage.setItem(
+                    CURRENT_PAGE_KEY,
+                    page
+                );
+
+
+                /* Remove active */
+
+                menuItems.forEach(
+                    function (menu) {
+
+                        menu.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* Add active */
+
+                item.classList.add("active");
+
+
+                /* Change header */
+
+                if (
+                    headerTitle &&
+                    pageTitles[page]
+                ) {
+
+                    headerTitle.textContent =
+                        pageTitles[page];
+
+                }
+
+
+                /* ===============================
+                   LOAD PAGE
+                =============================== */
+
+                if (page === "dashboard") {
+
+                    loadDashboard();
+
+                } else {
+
+                    loadPage(page);
+
+                }
+
+
+                /* ===============================
+                   CLOSE MOBILE SIDEBAR
+                =============================== */
+
+                if (
+                    sideBar &&
+                    window.innerWidth <= 900
+                ) {
+
+                    sideBar.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       LOAD DASHBOARD
+    ===================================================== */
+
+    function loadDashboard() {
+
+        window.location.href =
+            "aleem.html";
+
+    }
+
+
+    /* =====================================================
+       LOAD PAGE
+    ===================================================== */
+
+    function loadPage(page) {
+
+        if (!mainContent) {
+            return;
+        }
+
+        const file =
+            page + ".html";
+
+        mainContent.innerHTML = `
+
+            <div class="page-loading">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                <p>
+                    Loading ${pageTitles[page] || page}...
+                </p>
+
+            </div>
+
+        `;
+
+        fetch(file)
+
+            .then(function (response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Could not load " + file
+                    );
+
+                }
+
+                return response.text();
+
+            })
+
+            .then(function (html) {
+
+                const parser =
+                    new DOMParser();
+
+                const pageDocument =
+                    parser.parseFromString(
+                        html,
+                        "text/html"
+                    );
+
+                let pageContent =
+                    pageDocument.querySelector(
+                        "#mainContent"
+                    );
+
+                if (!pageContent) {
+
+                    pageContent =
+                        pageDocument.querySelector(
+                            ".main-content"
+                        );
+
+                }
+
+                if (!pageContent) {
+
+                    pageContent =
+                        pageDocument.querySelector(
+                            ".page-content"
+                        );
+
+                }
+
+                if (!pageContent) {
+
+                    pageContent =
+                        pageDocument.body;
+
+                }
+
+                if (!pageContent) {
+
+                    throw new Error(
+                        "No page content found in " +
+                        file
+                    );
+
+                }
+
+                mainContent.innerHTML =
+                    pageContent.innerHTML;
+
+                loadPageScript(page);
+
+            })
+
+            .catch(function (error) {
+
+                console.error(error);
+
+                mainContent.innerHTML = `
+
+                    <div class="page-error">
+
+                        <div class="page-error-icon">
+
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        </div>
+
+                        <h2>
+                            Unable to Load Page
+                        </h2>
+
+                        <p>
+                            We could not load the
+                            ${pageTitles[page] || page}
+                            page.
+                        </p>
+
+                        <small>
+                            File: ${file}
+                        </small>
+
+                    </div>
+
+                `;
+
+            });
+
+    }
+
+
+    /* =====================================================
+       LOAD PAGE SCRIPT
+    ===================================================== */
+
+    function loadPageScript(page) {
+
+        const oldScript =
+            document.querySelector(
+                "script[data-page-script]"
+            );
+
+        if (oldScript) {
+            oldScript.remove();
+        }
+
+        if (page === "dashboard") {
+            return;
+        }
+
+        const script =
+            document.createElement(
+                "script"
+            );
+
+        script.src =
+            page + ".js";
+
+        script.setAttribute(
+            "data-page-script",
+            page
+        );
+
+        script.onload =
+            function () {
+
+                console.log(
+                    page +
+                    ".js loaded successfully."
+                );
+
+            };
+
+        script.onerror =
+            function () {
+
+                console.log(
+                    page +
+                    ".js was not found or could not be loaded."
+                );
+
+            };
+
+        document.body.appendChild(
+            script
+        );
+
+    }
 
 
     /* =====================================================
@@ -290,48 +529,51 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const searchInput =
-        document.querySelector(
-            ".search-box input"
+        document.getElementById(
+            "searchInput"
         );
-
 
     if (searchInput) {
 
         searchInput.addEventListener(
-            "keyup",
+            "input",
             function () {
 
                 const searchValue =
-                    this.value
+                    searchInput.value
                         .toLowerCase()
                         .trim();
-
 
                 const rows =
                     document.querySelectorAll(
                         "tbody tr"
                     );
 
+                rows.forEach(
+                    function (row) {
 
-                rows.forEach(function (row) {
+                        const rowText =
+                            row.textContent
+                                .toLowerCase();
 
-                    const rowText =
-                        row.textContent.toLowerCase();
+                        if (
+                            rowText.includes(
+                                searchValue
+                            )
+                        ) {
 
+                            row.style.display =
+                                "";
 
-                    if (
-                        rowText.includes(searchValue)
-                    ) {
+                        } else {
 
-                        row.style.display = "";
+                            row.style.display =
+                                "none";
 
-                    } else {
-
-                        row.style.display = "none";
+                        }
 
                     }
-
-                });
+                );
 
             }
         );
@@ -343,6 +585,16 @@ document.addEventListener("DOMContentLoaded", function () {
        CALENDAR
     ===================================================== */
 
+    const calendarMonth =
+        document.getElementById(
+            "calendarMonth"
+        );
+
+    const calendarYear =
+        document.getElementById(
+            "calendarYear"
+        );
+
     const previousMonth =
         document.getElementById(
             "previousMonth"
@@ -353,52 +605,48 @@ document.addEventListener("DOMContentLoaded", function () {
             "nextMonth"
         );
 
-    const calendarMonth =
-        document.getElementById(
-            "calendarMonth"
-        );
+
+    let calendarDate =
+        new Date();
 
 
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
+    function updateCalendar() {
 
+        if (
+            !calendarMonth ||
+            !calendarYear
+        ) {
 
-    const today = new Date();
-
-
-    let currentMonth =
-        today.getMonth();
-
-    let currentYear =
-        today.getFullYear();
-
-
-    function updateCalendarTitle() {
-
-        if (!calendarMonth) {
             return;
+
         }
 
+        const months = [
+
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+
+        ];
 
         calendarMonth.textContent =
-            `${months[currentMonth]} ${currentYear}`;
+            months[
+                calendarDate.getMonth()
+            ];
+
+        calendarYear.textContent =
+            calendarDate.getFullYear();
 
     }
-
-
-    updateCalendarTitle();
 
 
     if (previousMonth) {
@@ -407,18 +655,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                currentMonth--;
+                calendarDate.setMonth(
+                    calendarDate.getMonth() - 1
+                );
 
-
-                if (currentMonth < 0) {
-
-                    currentMonth = 11;
-                    currentYear--;
-
-                }
-
-
-                updateCalendarTitle();
+                updateCalendar();
 
             }
         );
@@ -432,18 +673,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                currentMonth++;
+                calendarDate.setMonth(
+                    calendarDate.getMonth() + 1
+                );
 
-
-                if (currentMonth > 11) {
-
-                    currentMonth = 0;
-                    currentYear++;
-
-                }
-
-
-                updateCalendarTitle();
+                updateCalendar();
 
             }
         );
@@ -451,27 +685,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    updateCalendar();
+
+
     /* =====================================================
-       NOTIFICATION
+       NOTIFICATIONS
     ===================================================== */
 
-    const notification =
-        document.querySelector(
-            ".notification"
+    const notificationBtn =
+        document.getElementById(
+            "notificationBtn"
         );
 
+    if (notificationBtn) {
 
-    if (notification) {
-
-        notification.addEventListener(
+        notificationBtn.addEventListener(
             "click",
             function () {
 
                 alert(
-                    "You have 3 new notifications.\n\n" +
-                    "• Examination timetable released\n" +
-                    "• Result submission deadline\n" +
-                    "• Parent-teacher meeting scheduled"
+                    "You have 3 new notifications."
                 );
 
             }
@@ -484,36 +717,27 @@ document.addEventListener("DOMContentLoaded", function () {
        QUICK ACCESS
     ===================================================== */
 
-    const quickItems =
+    const quickAccess =
         document.querySelectorAll(
-            ".quick-item"
+            ".quick-access"
         );
 
+    quickAccess.forEach(
+        function (item) {
 
-    quickItems.forEach(function (item) {
+            item.addEventListener(
+                "click",
+                function () {
 
-        item.addEventListener(
-            "click",
-            function () {
+                    console.log(
+                        "Quick access clicked."
+                    );
 
-                const actionNameElement =
-                    this.querySelector("span");
+                }
+            );
 
-
-                const actionName =
-                    actionNameElement
-                        ? actionNameElement.textContent.trim()
-                        : "Quick Action";
-
-
-                console.log(
-                    `Opening: ${actionName}`
-                );
-
-            }
-        );
-
-    });
+        }
+    );
 
 
     /* =====================================================
@@ -525,46 +749,14 @@ document.addEventListener("DOMContentLoaded", function () {
             ".admin-profile"
         );
 
-
     if (adminProfile) {
 
         adminProfile.addEventListener(
             "click",
             function () {
 
-                if (!currentUser) {
-                    return;
-                }
-
-
-                const name =
-                    currentUser.name ||
-                    "Administrator";
-
-                const email =
-                    currentUser.email ||
-                    "Not available";
-
-                const phone =
-                    currentUser.phone ||
-                    "Not available";
-
-                const role =
-                    currentUser.role ||
-                    "Administrator";
-
-                const school =
-                    currentUser.school ||
-                    "Al-Aleem Group of Schools";
-
-
                 alert(
-                    "ADMINISTRATOR PROFILE\n\n" +
-                    "Name: " + name + "\n" +
-                    "Email: " + email + "\n" +
-                    "Phone: " + phone + "\n" +
-                    "Role: " + role + "\n" +
-                    "School: " + school
+                    "Administrator Profile"
                 );
 
             }
@@ -577,501 +769,325 @@ document.addEventListener("DOMContentLoaded", function () {
        LOGOUT MODAL
     ===================================================== */
 
-    const logout =
-        document.querySelector(
-            ".menu-item.logout"
-        );
+    function openLogoutModal() {
+
+        let logoutModal =
+            document.getElementById(
+                "logoutModal"
+            );
 
 
-    let logoutModal =
-        document.getElementById(
-            "logoutModal"
-        );
+        if (!logoutModal) {
 
+            logoutModal =
+                document.createElement(
+                    "div"
+                );
 
-    if (!logoutModal) {
+            logoutModal.id =
+                "logoutModal";
 
-        logoutModal =
-            document.createElement("div");
+            logoutModal.innerHTML = `
 
-        logoutModal.id =
-            "logoutModal";
+                <div class="logout-overlay">
 
+                    <div class="logout-box">
 
-        logoutModal.innerHTML = `
+                        <div class="logout-icon">
 
-            <div class="logout-modal-overlay">
+                            <i class="fa-solid fa-right-from-bracket"></i>
 
-                <div class="logout-modal-box">
+                        </div>
 
-                    <button
-                        type="button"
-                        class="logout-modal-close"
-                        id="logoutModalClose"
-                        aria-label="Close"
-                    >
-                        &times;
-                    </button>
-
-                    <div class="logout-modal-icon">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </div>
-
-                    <h2>Logout</h2>
-
-                    <p>
-                        Are you sure you want to logout
-                        from your administrator account?
-                    </p>
-
-                    <div class="logout-modal-actions">
-
-                        <button
-                            type="button"
-                            class="logout-cancel-btn"
-                            id="logoutCancelBtn"
-                        >
-                            Cancel
-                        </button>
-
-                        <button
-                            type="button"
-                            class="logout-confirm-btn"
-                            id="logoutConfirmBtn"
-                        >
+                        <h2>
                             Logout
-                        </button>
+                        </h2>
+
+                        <p>
+                            Are you sure you want to logout?
+                        </p>
+
+                        <div class="logout-buttons">
+
+                            <button
+                                type="button"
+                                id="cancelLogout"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                type="button"
+                                id="confirmLogout"
+                            >
+                                Logout
+                            </button>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
-
-        `;
+            `;
 
 
-        document.body.appendChild(
-            logoutModal
-        );
+            const style =
+                document.createElement(
+                    "style"
+                );
 
-    }
+            style.textContent = `
 
+                #logoutModal {
 
-    /* =====================================================
-       LOGOUT MODAL ELEMENTS
-    ===================================================== */
-
-    const logoutOverlay =
-        logoutModal.querySelector(
-            ".logout-modal-overlay"
-        );
-
-
-    const logoutModalClose =
-        document.getElementById(
-            "logoutModalClose"
-        );
-
-
-    const logoutCancelBtn =
-        document.getElementById(
-            "logoutCancelBtn"
-        );
-
-
-    const logoutConfirmBtn =
-        document.getElementById(
-            "logoutConfirmBtn"
-        );
-
-
-    /* =====================================================
-       OPEN LOGOUT MODAL
-    ===================================================== */
-
-    function openLogoutModal() {
-
-        if (!logoutModal) {
-            return;
-        }
-
-
-        logoutModal.classList.add("show");
-
-
-        document.body.classList.add(
-            "logout-modal-open"
-        );
-
-    }
-
-
-    /* =====================================================
-       CLOSE LOGOUT MODAL
-    ===================================================== */
-
-    function closeLogoutModal() {
-
-        if (!logoutModal) {
-            return;
-        }
-
-
-        logoutModal.classList.remove("show");
-
-
-        document.body.classList.remove(
-            "logout-modal-open"
-        );
-
-    }
-
-
-    /* =====================================================
-       LOGOUT BUTTON
-    ===================================================== */
-
-    if (logout) {
-
-        logout.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                openLogoutModal();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CLOSE MODAL - X BUTTON
-    ===================================================== */
-
-    if (logoutModalClose) {
-
-        logoutModalClose.addEventListener(
-            "click",
-            function () {
-
-                closeLogoutModal();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CLOSE MODAL - CANCEL
-    ===================================================== */
-
-    if (logoutCancelBtn) {
-
-        logoutCancelBtn.addEventListener(
-            "click",
-            function () {
-
-                closeLogoutModal();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CLOSE MODAL - OUTSIDE
-    ===================================================== */
-
-    if (logoutOverlay) {
-
-        logoutOverlay.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target === logoutOverlay
-                ) {
-
-                    closeLogoutModal();
+                    position: fixed;
+                    inset: 0;
+                    z-index: 99999;
 
                 }
 
-            }
-        );
+                .logout-overlay {
+
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.6);
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding: 20px;
+
+                }
+
+                .logout-box {
+
+                    width: 100%;
+                    max-width: 420px;
+
+                    background: white;
+                    border-radius: 18px;
+
+                    padding: 35px 25px;
+
+                    text-align: center;
+
+                    box-shadow:
+                        0 20px 50px rgba(0,0,0,0.25);
+
+                    animation:
+                        logoutPopup 0.25s ease;
+
+                }
+
+                .logout-icon {
+
+                    width: 70px;
+                    height: 70px;
+
+                    margin: 0 auto 15px;
+
+                    border-radius: 50%;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    background: #e8f5ee;
+
+                    color: #075b35;
+
+                    font-size: 28px;
+
+                }
+
+                .logout-box h2 {
+
+                    margin: 0 0 10px;
+
+                    color: #222;
+
+                }
+
+                .logout-box p {
+
+                    margin-bottom: 25px;
+
+                    color: #666;
+
+                }
+
+                .logout-buttons {
+
+                    display: flex;
+                    gap: 12px;
+
+                }
+
+                .logout-buttons button {
+
+                    flex: 1;
+
+                    border: none;
+
+                    padding: 12px;
+
+                    border-radius: 8px;
+
+                    cursor: pointer;
+
+                    font-size: 15px;
+
+                    font-weight: 600;
+
+                }
+
+                #cancelLogout {
+
+                    background: #eee;
+                    color: #333;
+
+                }
+
+                #confirmLogout {
+
+                    background: #075b35;
+                    color: white;
+
+                }
+
+                @keyframes logoutPopup {
+
+                    from {
+
+                        opacity: 0;
+                        transform: scale(0.9);
+
+                    }
+
+                    to {
+
+                        opacity: 1;
+                        transform: scale(1);
+
+                    }
+
+                }
+
+            `;
+
+            document.head.appendChild(
+                style
+            );
+
+            document.body.appendChild(
+                logoutModal
+            );
+
+        }
+
+
+        logoutModal.style.display =
+            "block";
+
+
+        const cancelLogout =
+            document.getElementById(
+                "cancelLogout"
+            );
+
+        const confirmLogout =
+            document.getElementById(
+                "confirmLogout"
+            );
+
+
+        if (cancelLogout) {
+
+            cancelLogout.onclick =
+                function () {
+
+                    logoutModal.style.display =
+                        "none";
+
+                };
+
+        }
+
+
+        if (confirmLogout) {
+
+            confirmLogout.onclick =
+                function () {
+
+                    localStorage.removeItem(
+                        CURRENT_USER_KEY
+                    );
+
+                    localStorage.removeItem(
+                        LOGIN_STATUS_KEY
+                    );
+
+                    window.location.replace(
+                        LOGIN_PAGE
+                    );
+
+                };
+
+        }
 
     }
 
 
     /* =====================================================
-       ESCAPE KEY
+       RESTORE LAST OPENED PAGE AFTER REFRESH
     ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        function (event) {
+    const savedPage =
+        localStorage.getItem(
+            CURRENT_PAGE_KEY
+        );
+
+    if (
+        savedPage &&
+        savedPage !== "dashboard" &&
+        pageTitles[savedPage]
+    ) {
+
+        menuItems.forEach(function (item) {
 
             if (
-                event.key === "Escape" &&
-                logoutModal &&
-                logoutModal.classList.contains("show")
+                item.getAttribute(
+                    "data-page"
+                ) === savedPage
             ) {
 
-                closeLogoutModal();
+                item.classList.add(
+                    "active"
+                );
+
+            } else {
+
+                item.classList.remove(
+                    "active"
+                );
 
             }
+
+        });
+
+
+        if (headerTitle) {
+
+            headerTitle.textContent =
+                pageTitles[savedPage];
 
         }
-    );
 
 
-    /* =====================================================
-       CONFIRM LOGOUT
-    ===================================================== */
-
-    if (logoutConfirmBtn) {
-
-        logoutConfirmBtn.addEventListener(
-            "click",
-            function () {
-
-                localStorage.removeItem(
-                    CURRENT_USER_KEY
-                );
-
-
-                localStorage.removeItem(
-                    LOGIN_STATUS_KEY
-                );
-
-
-                closeLogoutModal();
-
-
-                window.location.replace(
-                    LOGIN_PAGE
-                );
-
-            }
-        );
+        loadPage(savedPage);
 
     }
-
-
-    /* =====================================================
-       LOGOUT MODAL STYLES
-    ===================================================== */
-
-    const logoutModalStyle =
-        document.createElement("style");
-
-
-    logoutModalStyle.id =
-        "logoutModalStyles";
-
-
-    logoutModalStyle.textContent = `
-
-        #logoutModal {
-            display: none;
-        }
-
-        #logoutModal.show {
-            display: block;
-        }
-
-        .logout-modal-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 999999;
-            animation: logoutOverlayFade 0.2s ease;
-        }
-
-        .logout-modal-box {
-            position: relative;
-            width: 100%;
-            max-width: 430px;
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 35px 30px 30px;
-            text-align: center;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
-            animation: logoutModalPop 0.25s ease;
-        }
-
-        .logout-modal-close {
-            position: absolute;
-            top: 13px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            border: none;
-            background: transparent;
-            color: #777;
-            font-size: 28px;
-            line-height: 1;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: 0.2s ease;
-        }
-
-        .logout-modal-close:hover {
-            background: #f1f1f1;
-            color: #222;
-        }
-
-        .logout-modal-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #fff4f4;
-            color: #d93025;
-            font-size: 28px;
-        }
-
-        .logout-modal-box h2 {
-            margin: 0 0 10px;
-            font-size: 25px;
-            font-weight: 700;
-            color: #222;
-        }
-
-        .logout-modal-box p {
-            margin: 0 auto 25px;
-            max-width: 340px;
-            color: #666;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .logout-modal-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .logout-modal-actions button {
-            flex: 1;
-            min-height: 46px;
-            border-radius: 10px;
-            padding: 10px 18px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-        .logout-cancel-btn {
-            border: 1px solid #ddd;
-            background: #ffffff;
-            color: #444;
-        }
-
-        .logout-cancel-btn:hover {
-            background: #f5f5f5;
-        }
-
-        .logout-confirm-btn {
-            border: 1px solid #d93025;
-            background: #d93025;
-            color: #ffffff;
-        }
-
-        .logout-confirm-btn:hover {
-            background: #b9231b;
-            border-color: #b9231b;
-        }
-
-        body.logout-modal-open {
-            overflow: hidden;
-        }
-
-        @keyframes logoutOverlayFade {
-
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-
-        }
-
-        @keyframes logoutModalPop {
-
-            from {
-                opacity: 0;
-                transform: scale(0.94) translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-
-        }
-
-        @media (max-width: 480px) {
-
-            .logout-modal-overlay {
-                padding: 15px;
-            }
-
-            .logout-modal-box {
-                max-width: 100%;
-                padding: 32px 20px 22px;
-                border-radius: 16px;
-            }
-
-            .logout-modal-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
-            }
-
-            .logout-modal-box h2 {
-                font-size: 22px;
-            }
-
-            .logout-modal-box p {
-                font-size: 14px;
-            }
-
-            .logout-modal-actions {
-                flex-direction: column-reverse;
-            }
-
-            .logout-modal-actions button {
-                width: 100%;
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(
-        logoutModalStyle
-    );
 
 });

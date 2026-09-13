@@ -11,6 +11,7 @@
     box-sizing: border-box;
     font-family: "Montserrat Alternates", sans-serif;
     text-decoration: none;
+    list-style: none;
 }
 
 
@@ -1014,11 +1015,15 @@ td {
 ===================================================== */
 
 footer {
-    display: flex;
-    justify-content: space-between;
     padding: 19px 4px 4px;
-    color: #9ba3af;
+    color: #3d4044;
     font-size: 12px;
+}
+
+footer hr{
+    margin-bottom: 3vh;
+    margin-top: 2vh;
+    border-color: #9ba3af20;
 }
 
 
@@ -1026,6 +1031,11 @@ footer i {
     color: #e05e6c;
     margin: 0 3px;
 }
+
+
+
+
+
 
 
 /* =====================================================
@@ -1297,6 +1307,7 @@ footer i {
         font-size: 11px;
     }
 
+
     .performance-list strong {
         font-size: 11px;
     }
@@ -1307,4 +1318,1431 @@ footer i {
         font-size: 11px;
     }
 
+}
+
+
+
+
+
+
+
+/* COURSES CSS */
+
+
+.courses-div{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap:10px;
+}
+
+.jss1-courses{
+    grid-column: 1 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.jss1-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.jss1-courses .subject{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 14px;
+    gap: 5px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+.jss2-courses{
+    grid-column: 2 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.jss2-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.jss2-courses .subject{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 14px;
+    gap: 5px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+
+.jss3-courses{
+    grid-column: 3 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.jss3-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.jss3-courses .subject{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 14px;
+    gap: 5
+    px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+.sss1-courses{
+    grid-column: 1 / span 1;
+    border: 5px solid red;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+
+.sss1-courses{
+    grid-column: 1 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.sss1-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.sss1-courses .subject{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 15px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+.sss2-courses{
+    grid-column: 2 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.sss2-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.sss2-courses .subject{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 15px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+.sss3-courses{
+    grid-column: 3 / span 1;
+    border: 1px solid #03f789db;
+    border-radius: 20px;
+    height: 50vh;
+    width: 24rem;
+}
+
+
+.sss3-courses .title{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: #02864b39;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+}
+
+.title .fa-graduation-cap{
+    font-size: 30px;
+    color: #02864b;
+}
+
+.title h1{
+    font-size: 20px;
+    color: #025a32df;
+}
+
+.sss3-courses .subject{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 15px;
+    font-size: 15px;
+}
+
+.subject ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 800;
+}
+
+
+
+
+
+/* =========================================================
+   RESPONSIVENESS ONLY
+   ========================================================= */
+
+
+@media (max-width: 1400px) {
+
+    .courses-div {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+@media (max-width: 1100px) {
+
+    .courses-div {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    .courses-div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        grid-column: auto;
+    }
+
+    .subject {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .subject ul {
+        width: 45%;
+        box-sizing: border-box;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .courses-div {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        width: 100%;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .subject {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .subject ul {
+        width: 100%;
+        margin: 0;
+        padding-left: 25px;
+        box-sizing: border-box;
+    }
+
+    .subject li {
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .courses-div {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .title {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .title .fa-graduation-cap {
+        flex-shrink: 0;
+    }
+
+    .title h1 {
+        font-size: 18px;
+    }
+
+    .subject {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+
+    .subject ul {
+        width: 100%;
+        padding-left: 22px;
+        margin: 0 0 10px 0;
+        box-sizing: border-box;
+    }
+
+    .subject li {
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .courses-div {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+    }
+
+    .jss1-courses,
+    .jss2-courses,
+    .jss3-courses,
+    .sss1-courses,
+    .sss2-courses,
+    .sss3-courses {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .title {
+        padding: 9px;
+    }
+
+    .title .fa-graduation-cap {
+        font-size: 25px;
+    }
+
+    .title h1 {
+        font-size: 17px;
+    }
+
+    .subject {
+        padding: 10px;
+    }
+
+    .subject ul {
+        padding-left: 20px;
+    }
+
+    .subject li {
+        font-size: 13px;
+        line-height: 1.55;
+    }
+}
+
+
+
+
+
+
+/* STUDENT CSS */
+
+
+.students-main-content {
+    width: 100%;
+    min-height: 100vh;
+    padding: 28px 30px 40px;
+    box-sizing: border-box;
+    background: #f8fbfc;
+    font-family: "Montserrat", sans-serif;
+}
+
+.students-page {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+
+/* ================================
+   STUDENTS HERO
+================================ */
+
+.students-hero {
+    position: relative;
+    width: 100%;
+    min-height: 138px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #cce6df;
+    border-radius: 14px;
+    background: linear-gradient(
+        105deg,
+        #edf9f5 0%,
+        #f7fcfb 55%,
+        #eaf6f4 100%
+    );
+}
+
+.students-hero::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 170px;
+    right: 80px;
+    top: -80px;
+    border-radius: 50%;
+    background: rgba(0, 137, 95, 0.08);
+}
+
+.students-hero::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 150px;
+    right: 180px;
+    bottom: -110px;
+    border-radius: 50%;
+    background: rgba(0, 105, 170, 0.06);
+}
+
+
+/* ================================
+   HERO ICON
+================================ */
+
+.students-hero-icon {
+    position: relative;
+    z-index: 2;
+    width: 74px;
+    height: 74px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: linear-gradient(
+        145deg,
+        #009b68,
+        #006b4c
+    );
+    box-shadow: 0 8px 20px rgba(0, 105, 76, 0.15);
+}
+
+.students-hero-icon i {
+    color: #ffffff;
+    font-size: 34px;
+}
+
+
+/* ================================
+   HERO TEXT
+================================ */
+
+.students-hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.students-hero-text h1 {
+    margin: 0 0 5px;
+    color: #00583f;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.students-hero-text p {
+    margin: 0;
+    color: #315a82;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+/* ================================
+   BOOK / PLANT DECORATION
+================================ */
+
+.students-books {
+    position: absolute;
+    z-index: 2;
+    right: 55px;
+    bottom: 5px;
+    width: 330px;
+    height: 115px;
+}
+
+
+/* books */
+
+.book {
+    position: absolute;
+    right: 5px;
+    width: 175px;
+    height: 26px;
+    border-radius: 4px 8px 8px 4px;
+    transform: skewX(-10deg);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+}
+
+.book-green {
+    bottom: 12px;
+    width: 185px;
+    height: 31px;
+    background: #006b4c;
+}
+
+.book-yellow {
+    bottom: 39px;
+    right: 17px;
+    background: #008f65;
+}
+
+.book-dark {
+    bottom: 66px;
+    right: 8px;
+    width: 185px;
+    height: 32px;
+    background: #00744f;
+}
+
+.book::after {
+    content: "";
+    position: absolute;
+    right: 7px;
+    top: 4px;
+    width: 7px;
+    height: 18px;
+    border-radius: 2px;
+    background: #ffffff;
+}
+
+
+/* plant */
+
+.plant {
+    position: absolute;
+    left: 35px;
+    bottom: 3px;
+    width: 80px;
+    height: 105px;
+}
+
+.plant-pot {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 45px;
+    height: 40px;
+    border-radius: 4px 4px 18px 18px;
+    background: #ffffff;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.08);
+}
+
+.plant-leaf {
+    position: absolute;
+    bottom: 34px;
+    left: 37px;
+    width: 13px;
+    height: 48px;
+    border-radius: 100% 0 100% 0;
+    background: #009b68;
+    transform-origin: bottom;
+}
+
+.leaf-1 {
+    transform: rotate(-42deg);
+}
+
+.leaf-2 {
+    transform: rotate(-20deg);
+}
+
+.leaf-3 {
+    transform: rotate(5deg);
+}
+
+.leaf-4 {
+    transform: rotate(28deg);
+}
+
+.leaf-5 {
+    transform: rotate(48deg);
+}
+
+
+/* ================================
+   CLASSES GRID
+================================ */
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 25px;
+}
+
+
+/* ================================
+   CLASS CARD
+================================ */
+
+.class-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #cfe4ed;
+    border-radius: 13px;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: 0.25s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 85, 120, 0.08);
+}
+
+
+/* ================================
+   CLASS HEADER
+================================ */
+
+.class-card-header {
+    height: 67px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 0 22px;
+    box-sizing: border-box;
+}
+
+.class-card-header i {
+    font-size: 30px;
+}
+
+.class-card-header h2 {
+    margin: 0;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   JSS 1 - GREEN
+================================ */
+
+.jss1 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e7f7f1,
+        #f2faf7
+    );
+}
+
+.jss1 .class-card-header i,
+.jss1 .class-card-header h2 {
+    color: #006b4c;
+}
+
+
+/* ================================
+   JSS 2 - BLUE
+================================ */
+
+.jss2 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e8f3fb,
+        #f2f8fc
+    );
+}
+
+.jss2 .class-card-header i,
+.jss2 .class-card-header h2 {
+    color: #0969a8;
+}
+
+
+/* ================================
+   JSS 3 - GREEN
+================================ */
+
+.jss3 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e7f7f1,
+        #f2faf7
+    );
+}
+
+.jss3 .class-card-header i,
+.jss3 .class-card-header h2 {
+    color: #007952;
+}
+
+
+/* ================================
+   SSS 1 - BLUE
+================================ */
+
+.sss1 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e8f3fb,
+        #f2f8fc
+    );
+}
+
+.sss1 .class-card-header i,
+.sss1 .class-card-header h2 {
+    color: #0969a8;
+}
+
+
+/* ================================
+   SSS 2 - GREEN
+================================ */
+
+.sss2 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e7f7f1,
+        #f2faf7
+    );
+}
+
+.sss2 .class-card-header i,
+.sss2 .class-card-header h2 {
+    color: #006b4c;
+}
+
+
+/* ================================
+   SSS 3 - BLUE
+================================ */
+
+.sss3 .class-card-header {
+    background: linear-gradient(
+        100deg,
+        #e8f3fb,
+        #f2f8fc
+    );
+}
+
+.sss3 .class-card-header i,
+.sss3 .class-card-header h2 {
+    color: #0969a8;
+}
+
+
+/* ================================
+   STUDENT STATISTICS
+================================ */
+
+.student-statistics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    padding: 20px 18px 21px;
+}
+
+
+/* ================================
+   STAT CARD
+================================ */
+
+.student-stat {
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.student-stat i {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.student-stat span {
+    margin-bottom: 7px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.student-stat strong {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   MALE - BLUE
+================================ */
+
+.student-stat.male {
+    background: linear-gradient(
+        145deg,
+        #edf6fc,
+        #f5faff
+    );
+}
+
+.student-stat.male i,
+.student-stat.male strong {
+    color: #0875bd;
+}
+
+.student-stat.male span {
+    color: #315b82;
+}
+
+
+/* ================================
+   FEMALE - GREEN
+================================ */
+
+.student-stat.female {
+    background: linear-gradient(
+        145deg,
+        #edf8f4,
+        #f7fcfa
+    );
+}
+
+.student-stat.female i,
+.student-stat.female strong {
+    color: #00875b;
+}
+
+.student-stat.female span {
+    color: #356b59;
+}
+
+
+/* ================================
+   TOTAL - GREEN / BLUE
+================================ */
+
+.student-stat.total {
+    background: linear-gradient(
+        145deg,
+        #edf8f5,
+        #f5fafc
+    );
+}
+
+.student-stat.total i,
+.student-stat.total strong {
+    color: #006b6f;
+}
+
+.student-stat.total span {
+    color: #315b76;
+}
+
+
+/* ================================
+   TOTAL STUDENTS
+================================ */
+
+.total-students-card {
+    width: 100%;
+    min-height: 103px;
+    margin-top: 25px;
+    padding: 16px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #cfe4e7;
+    border-radius: 13px;
+    background: linear-gradient(
+        100deg,
+        #edf8f5,
+        #f5fafc
+    );
+}
+
+
+/* left */
+
+.total-students-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* icon */
+
+.total-students-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #d9f0e8;
+}
+
+.total-students-icon i {
+    color: #007b55;
+    font-size: 29px;
+}
+
+
+/* text */
+
+.total-students-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.total-students-text span {
+    color: #087348;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.total-students-text strong {
+    color: #063b52;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* right message */
+
+.total-students-message {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #4384a0;
+    font-size: 14px;
+}
+
+.total-students-message i {
+    color: #007d63;
+    font-size: 21px;
+}
+
+.total-students-message b {
+    color: #4384a0;
+    font-size: 16px;
+}
+
+
+/* ================================
+   1200px
+================================ */
+
+@media (max-width: 1200px) {
+
+    .students-main-content {
+        padding: 25px 22px 35px;
+    }
+
+    .classes-grid {
+        gap: 18px;
+    }
+
+    .student-statistics {
+        gap: 12px;
+        padding: 18px 14px;
+    }
+
+    .student-stat {
+        min-height: 135px;
+    }
+
+    .student-stat strong {
+        font-size: 24px;
+    }
+
+    .students-books {
+        right: 25px;
+    }
+}
+
+
+/* ================================
+   992px
+================================ */
+
+@media (max-width: 992px) {
+
+    .students-main-content {
+        padding: 22px 18px 30px;
+    }
+
+    .students-hero {
+        min-height: 125px;
+        padding: 22px;
+    }
+
+    .students-hero-text h1 {
+        font-size: 31px;
+    }
+
+    .students-hero-text p {
+        font-size: 14px;
+    }
+
+    .students-books {
+        right: -10px;
+        transform: scale(0.8);
+        transform-origin: right bottom;
+    }
+
+    .classes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .class-card-header {
+        height: 62px;
+    }
+
+    .class-card-header h2 {
+        font-size: 24px;
+    }
+
+    .student-statistics {
+        gap: 10px;
+    }
+
+    .student-stat {
+        min-height: 130px;
+    }
+
+    .student-stat i {
+        font-size: 24px;
+    }
+
+    .student-stat span {
+        font-size: 13px;
+    }
+
+    .student-stat strong {
+        font-size: 23px;
+    }
+}
+
+
+/* ================================
+   768px
+================================ */
+
+@media (max-width: 768px) {
+
+    .students-main-content {
+        padding: 18px 15px 25px;
+    }
+
+    .students-hero {
+        min-height: 115px;
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .students-hero-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 17px;
+    }
+
+    .students-hero-icon i {
+        font-size: 28px;
+    }
+
+    .students-hero-text h1 {
+        font-size: 28px;
+    }
+
+    .students-hero-text p {
+        font-size: 13px;
+    }
+
+    .students-books {
+        display: none;
+    }
+
+    .classes-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .student-statistics {
+        padding: 16px 12px;
+    }
+
+    .student-stat {
+        min-height: 120px;
+    }
+
+    .total-students-card {
+        padding: 15px 20px;
+    }
+}
+
+
+/* ================================
+   576px
+================================ */
+
+@media (max-width: 576px) {
+
+    .students-main-content {
+        padding: 15px 12px 25px;
+    }
+
+    .students-hero {
+        min-height: 105px;
+        padding: 15px;
+        border-radius: 11px;
+    }
+
+    .students-hero-icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 14px;
+    }
+
+    .students-hero-icon i {
+        font-size: 24px;
+    }
+
+    .students-hero-text h1 {
+        font-size: 24px;
+    }
+
+    .students-hero-text p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .classes-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 18px;
+    }
+
+    .class-card-header {
+        height: 60px;
+        padding: 0 18px;
+    }
+
+    .class-card-header i {
+        font-size: 25px;
+    }
+
+    .class-card-header h2 {
+        font-size: 23px;
+    }
+
+    .student-statistics {
+        gap: 10px;
+        padding: 15px 12px;
+    }
+
+    .student-stat {
+        min-height: 115px;
+    }
+
+    .student-stat i {
+        margin-bottom: 7px;
+        font-size: 22px;
+    }
+
+    .student-stat span {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .student-stat strong {
+        font-size: 22px;
+    }
+
+    .total-students-card {
+        min-height: 90px;
+        margin-top: 18px;
+        padding: 12px 15px;
+    }
+
+    .total-students-left {
+        gap: 12px;
+    }
+
+    .total-students-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .total-students-icon i {
+        font-size: 23px;
+    }
+
+    .total-students-text span {
+        font-size: 14px;
+    }
+
+    .total-students-text strong {
+        font-size: 25px;
+    }
+
+    .total-students-message {
+        display: none;
+    }
+}
+
+
+/* ================================
+   400px
+================================ */
+
+@media (max-width: 400px) {
+
+    .students-hero-text h1 {
+        font-size: 22px;
+    }
+
+    .students-hero-text p {
+        font-size: 11px;
+    }
+
+    .student-stat {
+        min-height: 105px;
+    }
+
+    .student-stat i {
+        font-size: 20px;
+    }
+
+    .student-stat span {
+        font-size: 11px;
+    }
+
+    .student-stat strong {
+        font-size: 20px;
+    }
 }
