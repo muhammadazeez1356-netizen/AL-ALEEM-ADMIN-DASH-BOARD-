@@ -1091,3 +1091,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+
+
+
+
+
+
+// TEACHER JS
+
