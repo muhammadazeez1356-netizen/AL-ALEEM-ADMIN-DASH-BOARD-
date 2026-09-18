@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Results</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="results.css">
+</head>
+
+<body>
+
+    <main class="results-main">
+
+        <!-- Results Intro -->
+        <section class="results-intro">
+
+            <div class="results-icon">
+                <i class="fa-solid fa-file-lines"></i>
+            </div>
+
+            <div class="results-intro-text">
+                <h1>Results</h1>
+                <p>View and manage student results for Primary and Secondary levels.</p>
+            </div>
+
+        </section>
+
+
+        <!-- Result Tabs -->
+        <div class="result-tabs">
+
+            <button class="result-tab active" data-target="primaryResults">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Primary
+            </button>
+
+            <button class="result-tab" data-target="secondaryResults">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Secondary
+            </button>
+
+        </div>
+
+
+        <!-- Primary Results -->
+        <section class="results-box" id="primaryResults">
+
+            <div class="results-box-header">
+
+                <div class="box-title">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h2>Primary School Results</h2>
+                </div>
+
+                <div class="table-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="primarySearch"
+                        placeholder="Search by class or student...">
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="results-table">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Term</th>
+                            <th>Mathematics</th>
+                            <th>English</th>
+                            <th>Science</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="primaryTable">
+
+                        <tr>
+                            <td>1</td>
+                            <td>Adeola Ibrahim</td>
+                            <td>Primary 1</td>
+                            <td>First Term</td>
+                            <td>85</td>
+                            <td>78</td>
+                            <td>82</td>
+                            <td>245</td>
+                            <td>
+                                <span class="grade grade-a">A</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Adeola Ibrahim"
+                                    data-class="Primary 1"
+                                    data-term="First Term"
+                                    data-math="85"
+                                    data-english="78"
+                                    data-science="82"
+                                    data-total="245"
+                                    data-grade="A">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Bello Usman</td>
+                            <td>Primary 2</td>
+                            <td>First Term</td>
+                            <td>76</td>
+                            <td>70</td>
+                            <td>68</td>
+                            <td>214</td>
+                            <td>
+                                <span class="grade grade-b">B</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Bello Usman"
+                                    data-class="Primary 2"
+                                    data-term="First Term"
+                                    data-math="76"
+                                    data-english="70"
+                                    data-science="68"
+                                    data-total="214"
+                                    data-grade="B">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Chinedu Okafor</td>
+                            <td>Primary 3</td>
+                            <td>First Term</td>
+                            <td>92</td>
+                            <td>88</td>
+                            <td>90</td>
+                            <td>270</td>
+                            <td>
+                                <span class="grade grade-a">A</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Chinedu Okafor"
+                                    data-class="Primary 3"
+                                    data-term="First Term"
+                                    data-math="92"
+                                    data-english="88"
+                                    data-science="90"
+                                    data-total="270"
+                                    data-grade="A">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Fatima Lawal</td>
+                            <td>Primary 4</td>
+                            <td>First Term</td>
+                            <td>68</td>
+                            <td>65</td>
+                            <td>72</td>
+                            <td>205</td>
+                            <td>
+                                <span class="grade grade-c">C</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Fatima Lawal"
+                                    data-class="Primary 4"
+                                    data-term="First Term"
+                                    data-math="68"
+                                    data-english="65"
+                                    data-science="72"
+                                    data-total="205"
+                                    data-grade="C">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Suleiman Musa</td>
+                            <td>Primary 5</td>
+                            <td>First Term</td>
+                            <td>84</td>
+                            <td>80</td>
+                            <td>76</td>
+                            <td>240</td>
+                            <td>
+                                <span class="grade grade-a">A</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Suleiman Musa"
+                                    data-class="Primary 5"
+                                    data-term="First Term"
+                                    data-math="84"
+                                    data-english="80"
+                                    data-science="76"
+                                    data-total="240"
+                                    data-grade="A">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Secondary Results -->
+        <section class="results-box secondary-box" id="secondaryResults">
+
+            <div class="results-box-header">
+
+                <div class="box-title secondary-title">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h2>Secondary School Results</h2>
+                </div>
+
+                <div class="table-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        id="secondarySearch"
+                        placeholder="Search by class or student...">
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="results-table">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Term</th>
+                            <th>Mathematics</th>
+                            <th>English</th>
+                            <th>Physics</th>
+                            <th>Chemistry</th>
+                            <th>Biology</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="secondaryTable">
+
+                        <tr>
+                            <td>1</td>
+                            <td>Abdulrahman Yusuf</td>
+                            <td>JSS 1</td>
+                            <td>First Term</td>
+                            <td>78</td>
+                            <td>72</td>
+                            <td>68</td>
+                            <td>65</td>
+                            <td>70</td>
+                            <td>353</td>
+                            <td>
+                                <span class="grade grade-b">B</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Abdulrahman Yusuf"
+                                    data-class="JSS 1"
+                                    data-term="First Term"
+                                    data-math="78"
+                                    data-english="72"
+                                    data-physics="68"
+                                    data-chemistry="65"
+                                    data-biology="70"
+                                    data-total="353"
+                                    data-grade="B">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Habiba Ahmed</td>
+                            <td>JSS 2</td>
+                            <td>First Term</td>
+                            <td>85</td>
+                            <td>80</td>
+                            <td>78</td>
+                            <td>75</td>
+                            <td>82</td>
+                            <td>400</td>
+                            <td>
+                                <span class="grade grade-a">A</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Habiba Ahmed"
+                                    data-class="JSS 2"
+                                    data-term="First Term"
+                                    data-math="85"
+                                    data-english="80"
+                                    data-physics="78"
+                                    data-chemistry="75"
+                                    data-biology="82"
+                                    data-total="400"
+                                    data-grade="A">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Musa Bello</td>
+                            <td>JSS 3</td>
+                            <td>First Term</td>
+                            <td>70</td>
+                            <td>68</td>
+                            <td>65</td>
+                            <td>62</td>
+                            <td>66</td>
+                            <td>331</td>
+                            <td>
+                                <span class="grade grade-b">B</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Musa Bello"
+                                    data-class="JSS 3"
+                                    data-term="First Term"
+                                    data-math="70"
+                                    data-english="68"
+                                    data-physics="65"
+                                    data-chemistry="62"
+                                    data-biology="66"
+                                    data-total="331"
+                                    data-grade="B">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Aisha Ibrahim</td>
+                            <td>SSS 1</td>
+                            <td>First Term</td>
+                            <td>88</td>
+                            <td>84</td>
+                            <td>80</td>
+                            <td>78</td>
+                            <td>85</td>
+                            <td>415</td>
+                            <td>
+                                <span class="grade grade-a">A</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Aisha Ibrahim"
+                                    data-class="SSS 1"
+                                    data-term="First Term"
+                                    data-math="88"
+                                    data-english="84"
+                                    data-physics="80"
+                                    data-chemistry="78"
+                                    data-biology="85"
+                                    data-total="415"
+                                    data-grade="A">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Ibrahim Sani</td>
+                            <td>SSS 2</td>
+                            <td>First Term</td>
+                            <td>76</td>
+                            <td>72</td>
+                            <td>70</td>
+                            <td>68</td>
+                            <td>74</td>
+                            <td>360</td>
+                            <td>
+                                <span class="grade grade-b">B</span>
+                            </td>
+                            <td>
+                                <button class="view-btn"
+                                    data-name="Ibrahim Sani"
+                                    data-class="SSS 2"
+                                    data-term="First Term"
+                                    data-math="76"
+                                    data-english="72"
+                                    data-physics="70"
+                                    data-chemistry="68"
+                                    data-biology="74"
+                                    data-total="360"
+                                    data-grade="B">
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- View Result Modal -->
+    <div class="result-modal" id="resultModal">
+
+        <div class="modal-content">
+
+            <button class="close-modal" id="closeModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <div class="modal-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+                    <h2>Student Result</h2>
+                    <p>Academic performance details</p>
+                </div>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <div>
+                    <span>Student Name</span>
+                    <strong id="modalName">-</strong>
+                </div>
+
+                <div>
+                    <span>Class</span>
+                    <strong id="modalClass">-</strong>
+                </div>
+
+                <div>
+                    <span>Term</span>
+                    <strong id="modalTerm">-</strong>
+                </div>
+
+            </div>
+
+
+            <div class="modal-subjects" id="modalSubjects"></div>
+
+
+            <div class="modal-total">
+
+                <span>Total Score</span>
+                <strong id="modalTotal">0</strong>
+
+            </div>
+
+            <div class="modal-grade">
+
+                <span>Grade</span>
+                <strong id="modalGrade">-</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="results.js"></script>
+
+</body>
+
+</html>

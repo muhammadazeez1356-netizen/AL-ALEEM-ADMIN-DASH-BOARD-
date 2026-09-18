@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
        STORAGE KEYS
     ===================================================== */
 
+    const USERS_KEY = "alAleemUsers";
     const CURRENT_USER_KEY = "alAleemCurrentUser";
     const LOGIN_STATUS_KEY = "alAleemLoggedIn";
     const CURRENT_PAGE_KEY = "alAleemCurrentPage";
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
        CURRENT USER
     ===================================================== */
 
-    const currentUser =
+    let currentUser =
         getCurrentUser();
 
 
@@ -78,7 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const mainContent =
-        document.getElementById("mainContent");
+        document.getElementById(
+            "mainContent"
+        );
 
     const menuItems =
         document.querySelectorAll(
@@ -86,13 +89,19 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     const headerTitle =
-        document.getElementById("headerTitle");
+        document.getElementById(
+            "headerTitle"
+        );
 
     const menuToggle =
-        document.getElementById("menuToggle");
+        document.getElementById(
+            "menuToggle"
+        );
 
     const sideBar =
-        document.querySelector(".side-bar");
+        document.querySelector(
+            ".side-bar"
+        );
 
 
     /* =====================================================
@@ -114,34 +123,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       DISPLAY USER
+       DISPLAY CURRENT USER
     ===================================================== */
 
-    if (currentUser) {
+    function displayCurrentUser() {
+
+        currentUser =
+            getCurrentUser();
+
+
+        if (!currentUser) {
+            return;
+        }
+
 
         const userName =
-            currentUser.fullname ||
             currentUser.name ||
+            currentUser.fullname ||
             "Administrator";
+
 
         const userEmail =
             currentUser.email ||
             "";
+
+
+        const userPhone =
+            currentUser.phone ||
+            "";
+
+
+        const userRole =
+            currentUser.role ||
+            "Administrator";
+
 
         const sidebarName =
             document.getElementById(
                 "sidebarName"
             );
 
+
         const driverName =
             document.getElementById(
                 "driverName"
             );
 
+
         const adminDetails =
             document.querySelector(
                 ".admin-details"
             );
+
+
+        const adminName =
+            document.getElementById(
+                "adminName"
+            );
+
+
+        const adminRole =
+            document.getElementById(
+                "adminRole"
+            );
+
+
+        const adminAvatarImage =
+            document.getElementById(
+                "adminAvatarImage"
+            );
+
+
+        const adminAvatarDefault =
+            document.getElementById(
+                "adminAvatarDefault"
+            );
+
 
         if (sidebarName) {
 
@@ -150,12 +207,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
+
         if (driverName) {
 
             driverName.textContent =
                 userName;
 
         }
+
+
+        if (adminName) {
+
+            adminName.textContent =
+                userName;
+
+        }
+
+
+        if (adminRole) {
+
+            adminRole.textContent =
+                userRole;
+
+        }
+
 
         if (adminDetails) {
 
@@ -169,16 +244,65 @@ document.addEventListener("DOMContentLoaded", function () {
                 userEmail
             );
 
+            adminDetails.setAttribute(
+                "data-phone",
+                userPhone
+            );
+
+        }
+
+
+        /* =================================================
+           PROFILE PICTURE
+        ================================================= */
+
+        if (
+            adminAvatarImage &&
+            adminAvatarDefault
+        ) {
+
+            if (
+                currentUser.profilePicture
+            ) {
+
+                adminAvatarImage.src =
+                    currentUser.profilePicture;
+
+                adminAvatarImage.style.display =
+                    "block";
+
+                adminAvatarDefault.style.display =
+                    "none";
+
+            } else {
+
+                adminAvatarImage.src =
+                    "";
+
+                adminAvatarImage.style.display =
+                    "none";
+
+                adminAvatarDefault.style.display =
+                    "block";
+
+            }
+
         }
 
     }
+
+
+    displayCurrentUser();
 
 
     /* =====================================================
        MOBILE MENU
     ===================================================== */
 
-    if (menuToggle && sideBar) {
+    if (
+        menuToggle &&
+        sideBar
+    ) {
 
         menuToggle.addEventListener(
             "click",
@@ -198,122 +322,118 @@ document.addEventListener("DOMContentLoaded", function () {
        SIDEBAR MENU
     ===================================================== */
 
-    menuItems.forEach(function (item) {
+    menuItems.forEach(
+        function (item) {
 
-        item.addEventListener(
-            "click",
-            function (event) {
+            item.addEventListener(
+                "click",
+                function (event) {
 
-                const page =
-                    item.getAttribute(
-                        "data-page"
+                    const page =
+                        item.getAttribute(
+                            "data-page"
+                        );
+
+
+                    /* ===============================
+                       LOGOUT
+                    =============================== */
+
+                    if (
+                        item.classList.contains(
+                            "logout"
+                        )
+                    ) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        openLogoutModal();
+
+                        return;
+
+                    }
+
+
+                    /* ===============================
+                       NORMAL MENU ITEM
+                    =============================== */
+
+                    if (!page) {
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    /* ===============================
+                       REMEMBER CURRENT PAGE
+                    =============================== */
+
+                    localStorage.setItem(
+                        CURRENT_PAGE_KEY,
+                        page
                     );
 
 
-                /* ===============================
-                   LOGOUT
-                =============================== */
+                    menuItems.forEach(
+                        function (menu) {
 
-                if (
-                    item.classList.contains("logout")
-                ) {
+                            menu.classList.remove(
+                                "active"
+                            );
 
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    openLogoutModal();
-
-                    return;
-                }
+                        }
+                    );
 
 
-                /* ===============================
-                   NORMAL MENU ITEM
-                =============================== */
-
-                if (!page) {
-                    return;
-                }
+                    item.classList.add(
+                        "active"
+                    );
 
 
-                event.preventDefault();
+                    if (
+                        headerTitle &&
+                        pageTitles[page]
+                    ) {
+
+                        headerTitle.textContent =
+                            pageTitles[page];
+
+                    }
 
 
-                /* ===============================
-                   REMEMBER CURRENT PAGE
-                =============================== */
+                    if (
+                        page ===
+                        "dashboard"
+                    ) {
 
-                localStorage.setItem(
-                    CURRENT_PAGE_KEY,
-                    page
-                );
+                        loadDashboard();
+
+                    } else {
+
+                        loadPage(page);
+
+                    }
 
 
-                /* Remove active */
+                    if (
+                        sideBar &&
+                        window.innerWidth <= 900
+                    ) {
 
-                menuItems.forEach(
-                    function (menu) {
-
-                        menu.classList.remove(
-                            "active"
+                        sideBar.classList.remove(
+                            "show"
                         );
 
                     }
-                );
-
-
-                /* Add active */
-
-                item.classList.add("active");
-
-
-                /* Change header */
-
-                if (
-                    headerTitle &&
-                    pageTitles[page]
-                ) {
-
-                    headerTitle.textContent =
-                        pageTitles[page];
 
                 }
+            );
 
-
-                /* ===============================
-                   LOAD PAGE
-                =============================== */
-
-                if (page === "dashboard") {
-
-                    loadDashboard();
-
-                } else {
-
-                    loadPage(page);
-
-                }
-
-
-                /* ===============================
-                   CLOSE MOBILE SIDEBAR
-                =============================== */
-
-                if (
-                    sideBar &&
-                    window.innerWidth <= 900
-                ) {
-
-                    sideBar.classList.remove(
-                        "show"
-                    );
-
-                }
-
-            }
-        );
-
-    });
+        }
+    );
 
 
     /* =====================================================
@@ -338,8 +458,10 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+
         const file =
             page + ".html";
+
 
         mainContent.innerHTML = `
 
@@ -355,112 +477,129 @@ document.addEventListener("DOMContentLoaded", function () {
 
         `;
 
+
         fetch(file)
 
-            .then(function (response) {
+            .then(
+                function (response) {
 
-                if (!response.ok) {
+                    if (!response.ok) {
 
-                    throw new Error(
-                        "Could not load " + file
-                    );
-
-                }
-
-                return response.text();
-
-            })
-
-            .then(function (html) {
-
-                const parser =
-                    new DOMParser();
-
-                const pageDocument =
-                    parser.parseFromString(
-                        html,
-                        "text/html"
-                    );
-
-                let pageContent =
-                    pageDocument.querySelector(
-                        "#mainContent"
-                    );
-
-                if (!pageContent) {
-
-                    pageContent =
-                        pageDocument.querySelector(
-                            ".main-content"
+                        throw new Error(
+                            "Could not load " +
+                            file
                         );
 
+                    }
+
+                    return response.text();
+
                 }
+            )
 
-                if (!pageContent) {
+            .then(
+                function (html) {
 
-                    pageContent =
-                        pageDocument.querySelector(
-                            ".page-content"
+                    const parser =
+                        new DOMParser();
+
+
+                    const pageDocument =
+                        parser.parseFromString(
+                            html,
+                            "text/html"
                         );
 
+
+                    let pageContent =
+                        pageDocument.querySelector(
+                            "#mainContent"
+                        );
+
+
+                    if (!pageContent) {
+
+                        pageContent =
+                            pageDocument.querySelector(
+                                ".main-content"
+                            );
+
+                    }
+
+
+                    if (!pageContent) {
+
+                        pageContent =
+                            pageDocument.querySelector(
+                                ".page-content"
+                            );
+
+                    }
+
+
+                    if (!pageContent) {
+
+                        pageContent =
+                            pageDocument.body;
+
+                    }
+
+
+                    if (!pageContent) {
+
+                        throw new Error(
+                            "No page content found in " +
+                            file
+                        );
+
+                    }
+
+
+                    mainContent.innerHTML =
+                        pageContent.innerHTML;
+
+
+                    loadPageScript(page);
+
                 }
+            )
 
-                if (!pageContent) {
+            .catch(
+                function (error) {
 
-                    pageContent =
-                        pageDocument.body;
+                    console.error(error);
 
-                }
 
-                if (!pageContent) {
+                    mainContent.innerHTML = `
 
-                    throw new Error(
-                        "No page content found in " +
-                        file
-                    );
+                        <div class="page-error">
 
-                }
+                            <div class="page-error-icon">
 
-                mainContent.innerHTML =
-                    pageContent.innerHTML;
+                                <i class="fa-solid fa-triangle-exclamation"></i>
 
-                loadPageScript(page);
+                            </div>
 
-            })
+                            <h2>
+                                Unable to Load Page
+                            </h2>
 
-            .catch(function (error) {
+                            <p>
+                                We could not load the
+                                ${pageTitles[page] || page}
+                                page.
+                            </p>
 
-                console.error(error);
-
-                mainContent.innerHTML = `
-
-                    <div class="page-error">
-
-                        <div class="page-error-icon">
-
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <small>
+                                File: ${file}
+                            </small>
 
                         </div>
 
-                        <h2>
-                            Unable to Load Page
-                        </h2>
+                    `;
 
-                        <p>
-                            We could not load the
-                            ${pageTitles[page] || page}
-                            page.
-                        </p>
-
-                        <small>
-                            File: ${file}
-                        </small>
-
-                    </div>
-
-                `;
-
-            });
+                }
+            );
 
     }
 
@@ -476,26 +615,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 "script[data-page-script]"
             );
 
+
         if (oldScript) {
             oldScript.remove();
         }
 
+
         if (page === "dashboard") {
             return;
         }
+
 
         const script =
             document.createElement(
                 "script"
             );
 
+
         script.src =
             page + ".js";
+
 
         script.setAttribute(
             "data-page-script",
             page
         );
+
 
         script.onload =
             function () {
@@ -507,6 +652,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             };
 
+
         script.onerror =
             function () {
 
@@ -516,6 +662,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             };
+
 
         document.body.appendChild(
             script
@@ -533,6 +680,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "searchInput"
         );
 
+
     if (searchInput) {
 
         searchInput.addEventListener(
@@ -544,10 +692,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         .toLowerCase()
                         .trim();
 
+
                 const rows =
                     document.querySelectorAll(
                         "tbody tr"
                     );
+
 
                 rows.forEach(
                     function (row) {
@@ -555,6 +705,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const rowText =
                             row.textContent
                                 .toLowerCase();
+
 
                         if (
                             rowText.includes(
@@ -590,15 +741,18 @@ document.addEventListener("DOMContentLoaded", function () {
             "calendarMonth"
         );
 
+
     const calendarYear =
         document.getElementById(
             "calendarYear"
         );
 
+
     const previousMonth =
         document.getElementById(
             "previousMonth"
         );
+
 
     const nextMonth =
         document.getElementById(
@@ -613,13 +767,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateCalendar() {
 
         if (
-            !calendarMonth ||
-            !calendarYear
+            !calendarMonth
         ) {
 
             return;
 
         }
+
 
         const months = [
 
@@ -638,13 +792,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         ];
 
+
         calendarMonth.textContent =
             months[
                 calendarDate.getMonth()
             ];
 
-        calendarYear.textContent =
-            calendarDate.getFullYear();
+
+        if (calendarYear) {
+
+            calendarYear.textContent =
+                calendarDate.getFullYear();
+
+        }
 
     }
 
@@ -697,6 +857,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "notificationBtn"
         );
 
+
     if (notificationBtn) {
 
         notificationBtn.addEventListener(
@@ -722,6 +883,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ".quick-access"
         );
 
+
     quickAccess.forEach(
         function (item) {
 
@@ -745,9 +907,10 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
     const adminProfile =
-        document.querySelector(
-            ".admin-profile"
+        document.getElementById(
+            "adminProfile"
         );
+
 
     if (adminProfile) {
 
@@ -755,9 +918,17 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                alert(
-                    "Administrator Profile"
-                );
+                const settingsItem =
+                    document.querySelector(
+                        '.menu-item[data-page="settings"]'
+                    );
+
+
+                if (settingsItem) {
+
+                    settingsItem.click();
+
+                }
 
             }
         );
@@ -784,8 +955,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     "div"
                 );
 
+
             logoutModal.id =
                 "logoutModal";
+
 
             logoutModal.innerHTML = `
 
@@ -837,6 +1010,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "style"
                 );
 
+
             style.textContent = `
 
                 #logoutModal {
@@ -875,9 +1049,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     box-shadow:
                         0 20px 50px rgba(0,0,0,0.25);
-
-                    animation:
-                        logoutPopup 0.25s ease;
 
                 }
 
@@ -957,29 +1128,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 }
 
-                @keyframes logoutPopup {
-
-                    from {
-
-                        opacity: 0;
-                        transform: scale(0.9);
-
-                    }
-
-                    to {
-
-                        opacity: 1;
-                        transform: scale(1);
-
-                    }
-
-                }
-
             `;
+
 
             document.head.appendChild(
                 style
             );
+
 
             document.body.appendChild(
                 logoutModal
@@ -996,6 +1151,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById(
                 "cancelLogout"
             );
+
 
         const confirmLogout =
             document.getElementById(
@@ -1025,9 +1181,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         CURRENT_USER_KEY
                     );
 
+
                     localStorage.removeItem(
                         LOGIN_STATUS_KEY
                     );
+
+
+                    localStorage.removeItem(
+                        CURRENT_PAGE_KEY
+                    );
+
 
                     window.location.replace(
                         LOGIN_PAGE
@@ -1049,33 +1212,36 @@ document.addEventListener("DOMContentLoaded", function () {
             CURRENT_PAGE_KEY
         );
 
+
     if (
         savedPage &&
         savedPage !== "dashboard" &&
         pageTitles[savedPage]
     ) {
 
-        menuItems.forEach(function (item) {
+        menuItems.forEach(
+            function (item) {
 
-            if (
-                item.getAttribute(
-                    "data-page"
-                ) === savedPage
-            ) {
+                if (
+                    item.getAttribute(
+                        "data-page"
+                    ) === savedPage
+                ) {
 
-                item.classList.add(
-                    "active"
-                );
+                    item.classList.add(
+                        "active"
+                    );
 
-            } else {
+                } else {
 
-                item.classList.remove(
-                    "active"
-                );
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
 
         if (headerTitle) {
@@ -1086,17 +1252,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        loadPage(savedPage);
+        loadPage(
+            savedPage
+        );
 
     }
 
 });
-
-
-
-
-
-
-
-// TEACHER JS
-

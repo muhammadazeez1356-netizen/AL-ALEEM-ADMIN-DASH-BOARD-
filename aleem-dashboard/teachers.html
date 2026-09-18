@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Al-Aleem Group of Schools</title>
 
     <link rel="shortcut icon" href="/image/al-aleem-icon.jpeg" type="image/jpeg">
-    <link rel="icon" href="/image/al-aleem-icon.jpeg">
+    <link rel="icon" href="/image/alaleem.jpg">
 
-    <link rel="stylesheet" href="aleem.css">
+    <link rel="stylesheet" href="teachers.css">
 </head>
 
 <body>
@@ -23,14 +24,13 @@
         <div class="total-teacher">
             <div class="icon1">
                 <i class="fa-solid fa-users"></i>
-
             </div>
+
             <div class="teacher-text1">
                 <h3>Total Teachers</h3>
-                <h2>25</h2>
-                <h5>+2 this month</h5>
+                <h2 id="totalTeachers">25</h2>
+                <h5 id="totalTeachersText">+2 this month</h5>
             </div>
-
         </div>
 
 
@@ -38,15 +38,13 @@
 
             <div class="icon2">
                 <i class="fa-solid fa-user"></i>
-
             </div>
+
             <div class="male-teacher-text1">
                 <h3>Male Teachers</h3>
-                <h2>15</h2>
-                <h5>60% of total</h5>
+                <h2 id="maleTeachers">15</h2>
+                <h5 id="maleTeachersText">60% of total</h5>
             </div>
-
-
 
         </div>
 
@@ -55,14 +53,13 @@
 
             <div class="icon3">
                 <i class="fa-solid fa-user"></i>
-
             </div>
+
             <div class="female-teacher-text1">
                 <h3>Female Teachers</h3>
-                <h2>10</h2>
-                <h5>40% of total</h5>
+                <h2 id="femaleTeachers">10</h2>
+                <h5 id="femaleTeachersText">40% of total</h5>
             </div>
-
 
         </div>
 
@@ -71,386 +68,477 @@
 
             <div class="icon4">
                 <i class="fa-solid fa-graduation-cap"></i>
-
             </div>
+
             <div class="department-text1">
                 <h3>Departments</h3>
-                <h2>12</h2>
+                <h2 id="departmentCount">12</h2>
                 <h5>Active Departments</h5>
             </div>
 
-
         </div>
-
 
     </div>
 
 
     <div class="inputs">
 
-        <input type="search">
+        <input
+            type="search"
+            id="teacherSearch"
+            placeholder="search for teachers name here">
 
         <select name="" id="select1">
 
             <option value="">All Departments</option>
-            <option value="">Science</option>
-            <option value="">Arts</option>
-            <option value="">Social Science</option>
-            <option value="">Technology</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+            <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+            <option value="Social Science">Social Science</option>
+            <option value="Technology">Technology</option>
 
         </select>
+
 
         <select name="" id="select2">
 
             <option value="">All Gender</option>
-            <option value="">Male</option>
-            <option value="">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
 
         </select>
 
-        <button>Add Staff</button>
+
+        <button id="addStaffBtn">Add Staff</button>
 
     </div>
 
 
     <div class="staff">
+
         <table>
 
-            <tr>
-                <th>#</th>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Departments</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
-                <th>Name</th>
+            <tbody id="teacherTableBody">
 
-                <th>Subject</th>
+                <tr data-name="Mrs. Kehinde A. Victor. K.V."
+                    data-subject="Mathematics"
+                    data-department="Science"
+                    data-gender="Female"
+                    data-phone="0803 123 4567"
+                    data-email="kehinde.victor@aleem.edu.ng"
+                    data-status="Active">
 
-                <th>Departments</th>
+                    <td></td>
 
-                <th>Gender</th>
+                    <td>Mrs. Kehinde A. Victor. K.V.</td>
 
-                <th>Phone</th>
+                    <td>Mathematics</td>
 
-                <th>Email</th>
+                    <td>Science</td>
 
-                <th>Status</th>
+                    <td class="td2">
+                        <div class="td2-text2">Female</div>
+                    </td>
 
-                <th>Actions</th>
-            </tr>
+                    <td>0803 123 4567</td>
 
-            <tr>
-                <td>1</td>
+                    <td>kehinde.victor@aleem.edu.ng</td>
 
-                <td>Mrs. Kehinde A. Victor. K.V. </td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                <td>Mathematics</td>
+                    <td class="td3">
 
-                <td>Science</td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                <td class="td2">
-                    <div class="td2-text2">Female</div>
-                </td>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                <td>0803 123 4567</td>
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-                <td>kehinde.victor@aleem.edu.ng</td>
+                    </td>
 
-                <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                </tr>
 
-                <td class="td3">
 
-                    <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                <tr data-name="Mr. Adeyemi B. Lawal. A.B."
+                    data-subject="English Language"
+                    data-department="Arts"
+                    data-gender="Male"
+                    data-phone="0806 234 5678"
+                    data-email="adeyemi.lawal@aleem.edu.ng"
+                    data-status="Active">
 
+                    <td></td>
 
-                </td>
+                    <td>Mr. Adeyemi B. Lawal. A.B.</td>
 
-            </tr>
+                    <td>English Language</td>
 
+                    <td>Arts</td>
 
-            <tr>
-                <td>2</td>
+                    <td class="td1">
+                        <div class="td1-text1">Male</div>
+                    </td>
 
-                <td>Mr. Adeyemi B. Lawal. A.B. </td>
+                    <td>0806 234 5678</td>
 
-                <td>English Language</td>
+                    <td>adeyemi.lawal@aleem.edu.ng</td>
 
-                <td>Arts</td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                <td class="td1">
-                    <div class="td1-text1">Male</div>
-                </td>
+                    <td class="td3">
 
-                <td>0806 234 5678</td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                <td>adeyemi.lawal@aleem.edu.ng</td>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
+                    </td>
 
-                <td class="td3">
+                </tr>
 
-                     <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
 
+                <tr data-name="Mrs. Motunrayo O. Bello. M.O."
+                    data-subject="Biology"
+                    data-department="Science"
+                    data-gender="Female"
+                    data-phone="0812 345 6789"
+                    data-email="motunrayo.bello@aleem.edu.ng"
+                    data-status="Active">
 
-                </td>
+                    <td></td>
 
-            </tr>
+                    <td>Mrs. Motunrayo O. Bello. M.O.</td>
 
+                    <td>Biology</td>
 
-            <tr>
+                    <td>Science</td>
 
-                <td>3</td>
+                    <td class="td2">
+                        <div class="td2-text2">Female</div>
+                    </td>
 
-                <td>Mrs. Motunrayo O. Bello. M.O. </td>
+                    <td>0812 345 6789</td>
 
-                <td>Biology</td>
+                    <td>motunrayo.bello@aleem.edu.ng</td>
 
-                <td>Science</td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                <td class="td2">
-                    <div class="td2-text2">Female</div>
-                </td>
+                    <td class="td3">
 
-                <td>0812 345 6789</td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                <td>motunrayo.bello@aleem.edu.ng</td>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-                <td class="td3">
+                    </td>
 
-                     <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                </tr>
 
 
-                </td>
+                <tr data-name="Mr. Tunde Adebayo. T.A."
+                    data-subject="Physics"
+                    data-department="Science"
+                    data-gender="Male"
+                    data-phone="0703 456 7890"
+                    data-email="tunde.adebayo@aleem.edu.ng"
+                    data-status="Active">
 
-            </tr>
+                    <td></td>
 
+                    <td>Mr. Tunde Adebayo. T.A.</td>
 
-            <tr>
+                    <td>Physics</td>
 
-                <td>4</td>
+                    <td>Science</td>
 
-                <td>Mr. Tunde Adebayo. T.A. </td>
+                    <td class="td1">
+                        <div class="td1-text1">Male</div>
+                    </td>
 
-                <td>Physics</td>
+                    <td>0703 456 7890</td>
 
-                <td>Science</td>
+                    <td>tunde.adebayo@aleem.edu.ng</td>
 
-                <td class="td1">
-                    <div class="td1-text1">Male</div>
-                </td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                <td>0703 456 7890</td>
+                    <td class="td3">
 
-                <td>tunde.adebayo@aleem.edu.ng</td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                   <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                <td class="td3">
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-                     <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                    </td>
 
+                </tr>
 
-                </td>
 
+                <tr data-name="Mrs. Sodiqah A. Yusuf S.A."
+                    data-subject="Chemistry"
+                    data-department="Science"
+                    data-gender="Female"
+                    data-phone="0814 567 8901"
+                    data-email="sodiqah.yusuf@aleem.edu.ng"
+                    data-status="Active">
 
-            </tr>
+                    <td></td>
 
+                    <td>Mrs. Sodiqah A. Yusuf S.A.</td>
 
-            <tr>
+                    <td>Chemistry</td>
 
-                <td>5</td>
+                    <td>Science</td>
 
-                <td>Mrs. Sodiqah A. Yusuf S.A. </td>
+                    <td class="td2">
+                        <div class="td2-text2">Female</div>
+                    </td>
 
-                <td>Chemistry</td>
+                    <td>0814 567 8901</td>
 
-                <td>Science</td>
+                    <td>sodiqah.yusuf@aleem.edu.ng</td>
 
-                  <td class="td2">
-                    <div class="td2-text2">Female</div>
-                </td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                <td>0814 567 8901</td>
+                    <td class="td3">
 
-                <td>ibrahim.musa@aleem.edu.ng</td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                   <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                     <td class="td3">
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-                       <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                    </td>
 
+                </tr>
 
-                </td>
 
-            </tr>
+                <tr data-name="Mr. Ibrahim M. Musa. I.B."
+                    data-subject="Government"
+                    data-department="Social Science"
+                    data-gender="Male"
+                    data-phone="0809 678 9012"
+                    data-email="ibrahim.musa@aleem.edu.ng"
+                    data-status="Active">
 
-            <tr>
+                    <td></td>
 
-                <td>6</td>
+                    <td>Mr. Ibrahim M. Musa. I.B.</td>
 
-                <td>Mr. Ibrahim M. Musa. I.B. </td>
+                    <td>Government</td>
 
-                <td>Government</td>
+                    <td>Social Science</td>
 
-                <td>Social Science</td>
+                    <td class="td1">
+                        <div class="td1-text1">Male</div>
+                    </td>
 
-                      <td class="td1">
-                    <div class="td1-text1">Male</div>
-                </td>
+                    <td>0809 678 9012</td>
 
-                <td>0809 678 9012</td>
+                    <td>ibrahim.musa@aleem.edu.ng</td>
 
-                <td>ibrahim.musa@aleem.edu.ng</td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                  <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                    <td class="td3">
 
-                     <td class="td3">
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-                       <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
 
-            <tr>
+                <tr data-name="Mrs. Fatima S. Usman. F.A."
+                    data-subject="Literature in English"
+                    data-department="Arts"
+                    data-gender="Female"
+                    data-phone="0708 789 0123"
+                    data-email="fatima.usman@aleem.edu.ng"
+                    data-status="Active">
 
-                <td>7</td>
+                    <td></td>
 
-                <td>Mrs. Fatima S. Usman. F.A. </td>
+                    <td>Mrs. Fatima S. Usman. F.A.</td>
 
-                <td>Literature in English</td>
+                    <td>Literature in English</td>
 
-                <td>Arts</td>
+                    <td>Arts</td>
 
-                  <td class="td2">
-                    <div class="td2-text2">Female</div>
-                </td>
+                    <td class="td2">
+                        <div class="td2-text2">Female</div>
+                    </td>
 
-                <td>0708 789 0123</td>
+                    <td>0708 789 0123</td>
 
-                <td>fatima.usman@aleem.edu.ng</td>
+                    <td>fatima.usman@aleem.edu.ng</td>
 
-                <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
-                     <td class="td3">
+                    <td class="td3">
 
-                     <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
-                </td>
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
-            </tr>
+                    </td>
 
-            <tr>
+                </tr>
 
-                <td>8</td>
 
-                <td>Mr. Olamide R. Johnson. O.U. </td>
+                <tr data-name="Mr. Olamide R. Johnson. O.U."
+                    data-subject="Computer Studies"
+                    data-department="Technology"
+                    data-gender="Male"
+                    data-phone="0813 890 1234"
+                    data-email="olamide.johnson@aleem.edu.ng"
+                    data-status="Active">
 
-                <td>Computer Studies</td>
+                    <td></td>
 
-                <td>Technology</td>
+                    <td>Mr. Olamide R. Johnson. O.U.</td>
 
-                       <td class="td1">
-                    <div class="td1-text1">Male</div>
-                </td>
+                    <td>Computer Studies</td>
 
-                <td>0813 890 1234</td>
+                    <td>Technology</td>
 
-                <td>olamide.johnson@aleem.edu.ng</td>
+                    <td class="td1">
+                        <div class="td1-text1">Male</div>
+                    </td>
 
-                  <td class="td1">
-                    <div class="td1-text1">Active</div>
-                </td>
+                    <td>0813 890 1234</td>
 
-                     <td class="td3">
+                    <td>olamide.johnson@aleem.edu.ng</td>
 
-                 <div class="icons1"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icons2"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <div class="icons3"><i class="fa-solid fa-trash-can"></i></div>
+                    <td class="td1">
+                        <div class="td1-text1">Active</div>
+                    </td>
 
+                    <td class="td3">
 
-                </td>
+                        <div class="icons1 view-teacher">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
 
-            </tr>
+                        <div class="icons2 edit-teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
 
+                        <div class="icons3 delete-teacher">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </div>
 
+                    </td>
+
+                </tr>
+
+            </tbody>
 
         </table>
 
 
         <div class="line1"></div>
 
-            <div class="text-navigation">
 
-                <h5>Showing 1 to 8 of 86 teachers</h5>
+        <div class="text-navigation">
 
-                <div class="button-navigation">
+            <h5 id="showingText">Showing 1 to 8 of 86 teachers</h5>
 
-                    <button class="button-1">1</button>
-                    <button class="button-1">2</button>
-                    <button class="button-1">3</button>
-                    <button class="button-1">4</button>
-                    <button class="button-1">5</button>
-                    <button class="button-1">6</button>
-                    <button class="button-1">7</button>
-                    <button class="button-1">8</button>
+            <div class="button-navigation" id="pagination">
 
-
-                </div>
+                <button class="button-1" data-page="1">1</button>
+                <button class="button-1" data-page="2">2</button>
+                <button class="button-1" data-page="3">3</button>
+                <button class="button-1" data-page="4">4</button>
+                <button class="button-1" data-page="5">5</button>
+                <button class="button-1" data-page="6">6</button>
+                <button class="button-1" data-page="7">7</button>
+                <button class="button-1" data-page="8">8</button>
 
             </div>
 
+        </div>
 
     </div>
 
 
-
-
-
-
-
-
-
-
+    <script src="teachers.js"></script>
 
 </body>
 

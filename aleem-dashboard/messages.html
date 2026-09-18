@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Messages - Al-Aleem</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="messages.css">
+</head>
+
+<body>
+
+    <main class="messages-page">
+
+        <div class="messages-header">
+
+            <div>
+                <h2>Message Box</h2>
+                <p>Manage messages and communication</p>
+            </div>
+
+            <button class="new-message-btn">
+                <i class="fa-solid fa-pen-to-square"></i>
+                New Message
+            </button>
+
+        </div>
+
+
+        <div class="message-container">
+
+            <!-- MESSAGE SIDEBAR -->
+
+            <aside class="message-sidebar">
+
+                <div class="message-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        placeholder="Search messages">
+
+                </div>
+
+
+                <div class="message-menu">
+
+                    <div class="message-menu-item active">
+
+                        <i class="fa-solid fa-inbox"></i>
+
+                        <span>Inbox</span>
+
+                        <b>5</b>
+
+                    </div>
+
+
+                    <div class="message-menu-item">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        <span>Sent</span>
+
+                    </div>
+
+
+                    <div class="message-menu-item">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span>Starred</span>
+
+                    </div>
+
+
+                    <div class="message-menu-item">
+
+                        <i class="fa-solid fa-file"></i>
+
+                        <span>Drafts</span>
+
+                    </div>
+
+
+                    <div class="message-menu-item">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        <span>Trash</span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- MESSAGE LIST -->
+
+            <section class="message-list">
+
+                <div class="message-list-header">
+
+                    <div>
+
+                        <h3>Inbox</h3>
+
+                        <span>5 unread messages</span>
+
+                    </div>
+
+                    <button class="refresh-btn">
+
+                        <i class="fa-solid fa-rotate"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="messages">
+
+
+                    <div class="message-item unread">
+
+                        <div class="message-avatar">
+                            A
+                        </div>
+
+                        <div class="message-details">
+
+                            <div class="message-top">
+
+                                <strong>Academic Coordinator</strong>
+
+                                <span>10:45 AM</span>
+
+                            </div>
+
+                            <h4>Staff Meeting</h4>
+
+                            <p>
+                                All teachers are reminded about the staff meeting
+                                scheduled for tomorrow morning.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-solid fa-star message-star"></i>
+
+                    </div>
+
+
+
+                    <div class="message-item unread">
+
+                        <div class="message-avatar">
+                            P
+                        </div>
+
+                        <div class="message-details">
+
+                            <div class="message-top">
+
+                                <strong>Principal</strong>
+
+                                <span>Yesterday</span>
+
+                            </div>
+
+                            <h4>End of Term Results</h4>
+
+                            <p>
+                                Please ensure that all students' results are submitted
+                                before the deadline.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-regular fa-star message-star"></i>
+
+                    </div>
+
+
+
+                    <div class="message-item unread">
+
+                        <div class="message-avatar">
+                            F
+                        </div>
+
+                        <div class="message-details">
+
+                            <div class="message-top">
+
+                                <strong>Finance Department</strong>
+
+                                <span>Yesterday</span>
+
+                            </div>
+
+                            <h4>School Fees Update</h4>
+
+                            <p>
+                                The latest school fees payment information has been
+                                updated in the system.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-regular fa-star message-star"></i>
+
+                    </div>
+
+
+
+                    <div class="message-item">
+
+                        <div class="message-avatar">
+                            T
+                        </div>
+
+                        <div class="message-details">
+
+                            <div class="message-top">
+
+                                <strong>Teachers Department</strong>
+
+                                <span>12 Sep</span>
+
+                            </div>
+
+                            <h4>Examination Schedule</h4>
+
+                            <p>
+                                The examination timetable for this term has been
+                                prepared and is ready for review.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-regular fa-star message-star"></i>
+
+                    </div>
+
+
+
+                    <div class="message-item">
+
+                        <div class="message-avatar">
+                            A
+                        </div>
+
+                        <div class="message-details">
+
+                            <div class="message-top">
+
+                                <strong>Al-Aleem Administration</strong>
+
+                                <span>10 Sep</span>
+
+                            </div>
+
+                            <h4>Welcome to the New Session</h4>
+
+                            <p>
+                                Welcome to another successful academic session at
+                                Al-Aleem Group of Schools.
+                            </p>
+
+                        </div>
+
+                        <i class="fa-regular fa-star message-star"></i>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- MESSAGE PREVIEW -->
+
+            <section class="message-preview">
+
+                <div class="preview-empty">
+
+                    <div class="preview-icon">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                    </div>
+
+                    <h3>Select a message</h3>
+
+                    <p>
+                        Select a message from your inbox to view its contents.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

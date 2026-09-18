@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Settings</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="settings.css">
+
+</head>
+
+
+<body>
+
+    <main class="settings-content">
+
+
+        <div class="settings-header">
+
+            <div>
+
+                <h2>
+                    Settings
+                </h2>
+
+                <p>
+                    Manage your account and school settings
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="settings-layout">
+
+
+            <!-- SETTINGS SIDEBAR -->
+
+            <aside class="settings-sidebar">
+
+
+                <button
+                    class="settings-menu active">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <div>
+
+                        <strong>
+                            Profile
+                        </strong>
+
+                        <span>
+                            Personal information
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="settings-menu">
+
+                    <i class="fa-solid fa-school"></i>
+
+                    <div>
+
+                        <strong>
+                            School Information
+                        </strong>
+
+                        <span>
+                            School details
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="settings-menu">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                    <div>
+
+                        <strong>
+                            Notifications
+                        </strong>
+
+                        <span>
+                            Notification preferences
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="settings-menu">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <div>
+
+                        <strong>
+                            Security
+                        </strong>
+
+                        <span>
+                            Password and security
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="settings-menu">
+
+                    <i class="fa-solid fa-sliders"></i>
+
+                    <div>
+
+                        <strong>
+                            System Settings
+                        </strong>
+
+                        <span>
+                            System preferences
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+            </aside>
+
+
+            <!-- SETTINGS MAIN -->
+
+            <section class="settings-main">
+
+
+                <!-- PROFILE -->
+
+                <div class="settings-section">
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <h3>
+                                Profile Information
+                            </h3>
+
+                            <p>
+                                Update your personal account information
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROFILE TOP -->
+
+                    <div class="profile-top">
+
+
+                        <div class="profile-picture">
+
+                            <div class="profile-avatar">
+
+                                <img
+                                    id="settingsProfileImage"
+                                    src=""
+                                    alt="Profile Picture"
+                                    style="display: none;">
+
+                                <i
+                                    class="fa-solid fa-user"
+                                    id="settingsProfileDefault">
+                                </i>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="change-picture"
+                                id="changePictureBtn">
+
+                                <i class="fa-solid fa-camera"></i>
+
+                            </button>
+
+
+                            <input
+                                type="file"
+                                id="profilePictureInput"
+                                accept="image/*"
+                                style="display: none;">
+
+                        </div>
+
+
+                        <div class="profile-name">
+
+                            <h3
+                                id="settingsProfileName">
+                                Administrator
+                            </h3>
+
+                            <p>
+                                School Administrator
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- PROFILE FORM -->
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="profileName">
+
+                                Full Name
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="profileName"
+                                placeholder="Enter full name">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="profileEmail">
+
+                                Email Address
+
+                            </label>
+
+
+                            <input
+                                type="email"
+                                id="profileEmail"
+                                placeholder="Enter email address">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="profilePhone">
+
+                                Phone Number
+
+                            </label>
+
+
+                            <input
+                                type="tel"
+                                id="profilePhone"
+                                placeholder="Enter phone number">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="profileRole">
+
+                                Role
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="profileRole"
+                                value="Administrator"
+                                disabled>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-actions">
+
+
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            id="cancelProfileBtn">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="save-btn"
+                            id="saveProfileBtn">
+
+                            <i
+                                class="fa-solid fa-floppy-disk">
+                            </i>
+
+                            Save Changes
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SCHOOL INFORMATION -->
+
+                <div class="settings-section">
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <h3>
+                                School Information
+                            </h3>
+
+                            <p>
+                                Information about your school
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                School Name
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Al-Aleem Model College">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                School Motto
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Learning to Serve">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                School Email
+                            </label>
+
+                            <input
+                                type="email"
+                                value="info@alaleem.edu.ng">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                School Phone
+                            </label>
+
+                            <input
+                                type="tel"
+                                value="+234 800 000 0000">
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                School Address
+                            </label>
+
+                            <textarea
+                                rows="4"
+                                placeholder="Enter school address">Al-Aleem Model College, Nigeria</textarea>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="section-actions">
+
+                        <button
+                            class="save-btn">
+
+                            <i
+                                class="fa-solid fa-floppy-disk">
+                            </i>
+
+                            Save School Information
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- NOTIFICATIONS -->
+
+                <div class="settings-section">
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <h3>
+                                Notifications
+                            </h3>
+
+                            <p>
+                                Choose how you want to receive notifications
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notification-option">
+
+                        <div class="notification-icon">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+
+                        <div class="notification-text">
+
+                            <strong>
+                                System Notifications
+                            </strong>
+
+                            <span>
+                                Receive notifications about important system activities
+                            </span>
+
+                        </div>
+
+
+                        <label class="toggle">
+
+                            <input
+                                type="checkbox"
+                                checked>
+
+                            <span
+                                class="toggle-slider">
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="notification-option">
+
+                        <div class="notification-icon">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </div>
+
+
+                        <div class="notification-text">
+
+                            <strong>
+                                Email Notifications
+                            </strong>
+
+                            <span>
+                                Receive important updates through email
+                            </span>
+
+                        </div>
+
+
+                        <label class="toggle">
+
+                            <input
+                                type="checkbox"
+                                checked>
+
+                            <span
+                                class="toggle-slider">
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="notification-option">
+
+                        <div class="notification-icon">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                        </div>
+
+
+                        <div class="notification-text">
+
+                            <strong>
+                                School Events
+                            </strong>
+
+                            <span>
+                                Get reminders about school events and activities
+                            </span>
+
+                        </div>
+
+
+                        <label class="toggle">
+
+                            <input
+                                type="checkbox"
+                                checked>
+
+                            <span
+                                class="toggle-slider">
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SECURITY -->
+
+                <div class="settings-section">
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <h3>
+                                Security
+                            </h3>
+
+                            <p>
+                                Manage your account security
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="security-row">
+
+
+                        <div class="security-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                        </div>
+
+
+                        <div class="security-details">
+
+                            <strong>
+                                Password
+                            </strong>
+
+                            <span>
+                                Last updated recently
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="security-btn">
+
+                            Change Password
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="security-row">
+
+
+                        <div class="security-icon">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                        </div>
+
+
+                        <div class="security-details">
+
+                            <strong>
+                                Two-Factor Authentication
+                            </strong>
+
+                            <span>
+                                Add an extra layer of security to your account
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            class="security-btn">
+
+                            Enable
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SYSTEM -->
+
+                <div class="settings-section">
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <h3>
+                                System Settings
+                            </h3>
+
+                            <p>
+                                Manage general system preferences
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-option">
+
+
+                        <div>
+
+                            <strong>
+                                Academic Session
+                            </strong>
+
+                            <span>
+                                Current academic session
+                            </span>
+
+                        </div>
+
+
+                        <select>
+
+                            <option>
+                                2025 / 2026
+                            </option>
+
+                            <option>
+                                2026 / 2027
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                    <div class="system-option">
+
+
+                        <div>
+
+                            <strong>
+                                Current Term
+                            </strong>
+
+                            <span>
+                                Current academic term
+                            </span>
+
+                        </div>
+
+
+                        <select>
+
+                            <option>
+                                First Term
+                            </option>
+
+                            <option>
+                                Second Term
+                            </option>
+
+                            <option>
+                                Third Term
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+<script>
+
+
+
+    
+</script>
+
+
+
+</body>
+
+</html>
