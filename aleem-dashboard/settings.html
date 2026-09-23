@@ -5,16 +5,13 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Settings</title>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link rel="stylesheet"
-        href="settings.css">
+    <link rel="stylesheet" href="settings.css">
 
 </head>
 
@@ -48,14 +45,11 @@
 
             <aside class="settings-sidebar">
 
-
-                <button
-                    class="settings-menu active">
+                <button type="button" class="settings-menu active">
 
                     <i class="fa-solid fa-user"></i>
 
                     <div>
-
                         <strong>
                             Profile
                         </strong>
@@ -63,19 +57,16 @@
                         <span>
                             Personal information
                         </span>
-
                     </div>
 
                 </button>
 
 
-                <button
-                    class="settings-menu">
+                <button type="button" class="settings-menu" data-popover="schoolInformationPopover">
 
                     <i class="fa-solid fa-school"></i>
 
                     <div>
-
                         <strong>
                             School Information
                         </strong>
@@ -83,19 +74,18 @@
                         <span>
                             School details
                         </span>
-
                     </div>
+
+                    <i class="fa-solid fa-chevron-right settings-arrow"></i>
 
                 </button>
 
 
-                <button
-                    class="settings-menu">
+                <button type="button" class="settings-menu" data-popover="notificationsPopover">
 
                     <i class="fa-solid fa-bell"></i>
 
                     <div>
-
                         <strong>
                             Notifications
                         </strong>
@@ -103,19 +93,18 @@
                         <span>
                             Notification preferences
                         </span>
-
                     </div>
+
+                    <i class="fa-solid fa-chevron-right settings-arrow"></i>
 
                 </button>
 
 
-                <button
-                    class="settings-menu">
+                <button type="button" class="settings-menu" data-popover="securityPopover">
 
                     <i class="fa-solid fa-lock"></i>
 
                     <div>
-
                         <strong>
                             Security
                         </strong>
@@ -123,19 +112,18 @@
                         <span>
                             Password and security
                         </span>
-
                     </div>
+
+                    <i class="fa-solid fa-chevron-right settings-arrow"></i>
 
                 </button>
 
 
-                <button
-                    class="settings-menu">
+                <button type="button" class="settings-menu" data-popover="systemSettingsPopover">
 
                     <i class="fa-solid fa-sliders"></i>
 
                     <div>
-
                         <strong>
                             System Settings
                         </strong>
@@ -143,13 +131,637 @@
                         <span>
                             System preferences
                         </span>
-
                     </div>
+
+                    <i class="fa-solid fa-chevron-right settings-arrow"></i>
 
                 </button>
 
-
             </aside>
+
+
+
+            <!-- =====================================================
+     SCHOOL INFORMATION POPOVER
+===================================================== -->
+
+            <div class="settings-popover-overlay" id="schoolInformationPopover">
+
+                <div class="settings-popover">
+
+                    <div class="popover-header">
+
+                        <div class="popover-title">
+
+                            <div class="popover-icon">
+                                <i class="fa-solid fa-school"></i>
+                            </div>
+
+                            <div>
+                                <h3>
+                                    School Information
+                                </h3>
+
+                                <p>
+                                    Manage your school details
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="popover-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="popover-body">
+
+                        <div class="popover-info">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            <span>
+                                Keep your school information up to date.
+                            </span>
+
+                        </div>
+
+
+                        <div class="popover-field">
+
+                            <label>
+                                School Name
+                            </label>
+
+                            <input type="text" value="Al-Aleem Group of Schools">
+
+                        </div>
+
+
+                        <div class="popover-field">
+
+                            <label>
+                                School Address
+                            </label>
+
+                            <input type="text" placeholder="Enter school address">
+
+                        </div>
+
+
+                        <div class="popover-row">
+
+                            <div class="popover-field">
+
+                                <label>
+                                    Phone Number
+                                </label>
+
+                                <input type="text" placeholder="Enter phone number">
+
+                            </div>
+
+
+                            <div class="popover-field">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <input type="email" placeholder="Enter school email">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="popover-field">
+
+                            <label>
+                                School Motto
+                            </label>
+
+                            <input type="text" value="Learning to Serve">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="popover-footer">
+
+                        <button type="button" class="popover-cancel">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="button" class="popover-save">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+     NOTIFICATIONS POPOVER
+===================================================== -->
+
+            <div class="settings-popover-overlay" id="notificationsPopover">
+
+                <div class="settings-popover">
+
+                    <div class="popover-header">
+
+                        <div class="popover-title">
+
+                            <div class="popover-icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Notifications
+                                </h3>
+
+                                <p>
+                                    Manage your notification preferences
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="popover-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="popover-body">
+
+                        <div class="notification-setting">
+
+                            <div>
+
+                                <strong>
+                                    New Messages
+                                </strong>
+
+                                <small>
+                                    Receive notifications when you get a new message.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="notification-setting">
+
+                            <div>
+
+                                <strong>
+                                    Student Updates
+                                </strong>
+
+                                <small>
+                                    Receive important updates about students.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="notification-setting">
+
+                            <div>
+
+                                <strong>
+                                    Attendance Alerts
+                                </strong>
+
+                                <small>
+                                    Get notified about attendance activities.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="notification-setting">
+
+                            <div>
+
+                                <strong>
+                                    System Notifications
+                                </strong>
+
+                                <small>
+                                    Receive important system notifications.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox">
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="popover-footer">
+
+                        <button type="button" class="popover-cancel">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="button" class="popover-save">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Preferences
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+     SECURITY POPOVER
+===================================================== -->
+
+            <div class="settings-popover-overlay" id="securityPopover">
+
+                <div class="settings-popover">
+
+                    <div class="popover-header">
+
+                        <div class="popover-title">
+
+                            <div class="popover-icon">
+                                <i class="fa-solid fa-lock"></i>
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Security
+                                </h3>
+
+                                <p>
+                                    Manage your account security
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="popover-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="popover-body">
+
+                        <div class="security-status">
+
+                            <div class="security-status-icon">
+
+                                <i class="fa-solid fa-shield-halved"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Your account is protected
+                                </strong>
+
+                                <small>
+                                    Review your security settings regularly.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="security-item">
+
+                            <div>
+
+                                <strong>
+                                    Password
+                                </strong>
+
+                                <small>
+                                    Change your account password.
+                                </small>
+
+                            </div>
+
+
+                            <button type="button" class="security-action">
+
+                                Change Password
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="security-item">
+
+                            <div>
+
+                                <strong>
+                                    Login Sessions
+                                </strong>
+
+                                <small>
+                                    Manage active login sessions.
+                                </small>
+
+                            </div>
+
+
+                            <button type="button" class="security-action">
+
+                                View Sessions
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="security-item">
+
+                            <div>
+
+                                <strong>
+                                    Account Protection
+                                </strong>
+
+                                <small>
+                                    Additional protection for your account.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================================
+     SYSTEM SETTINGS POPOVER
+===================================================== -->
+
+            <div class="settings-popover-overlay" id="systemSettingsPopover">
+
+                <div class="settings-popover">
+
+                    <div class="popover-header">
+
+                        <div class="popover-title">
+
+                            <div class="popover-icon">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+
+                            <div>
+                                <h3>
+                                    System Settings
+                                </h3>
+
+                                <p>
+                                    Manage dashboard preferences
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="popover-close">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="popover-body">
+
+                        <div class="system-setting">
+
+                            <div>
+
+                                <strong>
+                                    Compact Sidebar
+                                </strong>
+
+                                <small>
+                                    Reduce the size of the dashboard sidebar.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox">
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="system-setting">
+
+                            <div>
+
+                                <strong>
+                                    Auto Save
+                                </strong>
+
+                                <small>
+                                    Automatically save changes where possible.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="system-setting">
+
+                            <div>
+
+                                <strong>
+                                    Confirm Before Logout
+                                </strong>
+
+                                <small>
+                                    Ask for confirmation before logging out.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox" checked>
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="system-setting">
+
+                            <div>
+
+                                <strong>
+                                    Dashboard Refresh
+                                </strong>
+
+                                <small>
+                                    Automatically refresh dashboard information.
+                                </small>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input type="checkbox">
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="popover-footer">
+
+                        <button type="button" class="popover-cancel">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button type="button" class="popover-save">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save Settings
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
             <!-- SETTINGS MAIN -->
@@ -188,43 +800,29 @@
 
                             <div class="profile-avatar">
 
-                                <img
-                                    id="settingsProfileImage"
-                                    src=""
-                                    alt="Profile Picture"
-                                    style="display: none;">
+                                <img id="settingsProfileImage" src="" alt="Profile Picture" style="display: none;">
 
-                                <i
-                                    class="fa-solid fa-user"
-                                    id="settingsProfileDefault">
+                                <i class="fa-solid fa-user" id="settingsProfileDefault">
                                 </i>
 
                             </div>
 
 
-                            <button
-                                type="button"
-                                class="change-picture"
-                                id="changePictureBtn">
+                            <button type="button" class="change-picture" id="changePictureBtn">
 
                                 <i class="fa-solid fa-camera"></i>
 
                             </button>
 
 
-                            <input
-                                type="file"
-                                id="profilePictureInput"
-                                accept="image/*"
-                                style="display: none;">
+                            <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
 
                         </div>
 
 
                         <div class="profile-name">
 
-                            <h3
-                                id="settingsProfileName">
+                            <h3 id="settingsProfileName">
                                 Administrator
                             </h3>
 
@@ -252,10 +850,7 @@
                             </label>
 
 
-                            <input
-                                type="text"
-                                id="profileName"
-                                placeholder="Enter full name">
+                            <input type="text" id="profileName" placeholder="Enter full name">
 
                         </div>
 
@@ -269,10 +864,7 @@
                             </label>
 
 
-                            <input
-                                type="email"
-                                id="profileEmail"
-                                placeholder="Enter email address">
+                            <input type="email" id="profileEmail" placeholder="Enter email address">
 
                         </div>
 
@@ -286,10 +878,7 @@
                             </label>
 
 
-                            <input
-                                type="tel"
-                                id="profilePhone"
-                                placeholder="Enter phone number">
+                            <input type="tel" id="profilePhone" placeholder="Enter phone number">
 
                         </div>
 
@@ -303,11 +892,7 @@
                             </label>
 
 
-                            <input
-                                type="text"
-                                id="profileRole"
-                                value="Administrator"
-                                disabled>
+                            <input type="text" id="profileRole" value="Administrator" disabled>
 
                         </div>
 
@@ -318,23 +903,16 @@
                     <div class="section-actions">
 
 
-                        <button
-                            type="button"
-                            class="cancel-btn"
-                            id="cancelProfileBtn">
+                        <button type="button" class="cancel-btn" id="cancelProfileBtn">
 
                             Cancel
 
                         </button>
 
 
-                        <button
-                            type="button"
-                            class="save-btn"
-                            id="saveProfileBtn">
+                        <button type="button" class="save-btn" id="saveProfileBtn">
 
-                            <i
-                                class="fa-solid fa-floppy-disk">
+                            <i class="fa-solid fa-floppy-disk">
                             </i>
 
                             Save Changes
@@ -379,9 +957,7 @@
                                 School Name
                             </label>
 
-                            <input
-                                type="text"
-                                value="Al-Aleem Model College">
+                            <input type="text" value="Al-Aleem Model College">
 
                         </div>
 
@@ -392,9 +968,7 @@
                                 School Motto
                             </label>
 
-                            <input
-                                type="text"
-                                value="Learning to Serve">
+                            <input type="text" value="Learning to Serve">
 
                         </div>
 
@@ -405,9 +979,7 @@
                                 School Email
                             </label>
 
-                            <input
-                                type="email"
-                                value="info@alaleem.edu.ng">
+                            <input type="email" value="info@alaleem.edu.ng">
 
                         </div>
 
@@ -418,9 +990,7 @@
                                 School Phone
                             </label>
 
-                            <input
-                                type="tel"
-                                value="+234 800 000 0000">
+                            <input type="tel" value="+234 800 000 0000">
 
                         </div>
 
@@ -431,8 +1001,7 @@
                                 School Address
                             </label>
 
-                            <textarea
-                                rows="4"
+                            <textarea rows="4"
                                 placeholder="Enter school address">Al-Aleem Model College, Nigeria</textarea>
 
                         </div>
@@ -443,11 +1012,9 @@
 
                     <div class="section-actions">
 
-                        <button
-                            class="save-btn">
+                        <button class="save-btn">
 
-                            <i
-                                class="fa-solid fa-floppy-disk">
+                            <i class="fa-solid fa-floppy-disk">
                             </i>
 
                             Save School Information
@@ -506,12 +1073,9 @@
 
                         <label class="toggle">
 
-                            <input
-                                type="checkbox"
-                                checked>
+                            <input type="checkbox" checked>
 
-                            <span
-                                class="toggle-slider">
+                            <span class="toggle-slider">
                             </span>
 
                         </label>
@@ -543,12 +1107,9 @@
 
                         <label class="toggle">
 
-                            <input
-                                type="checkbox"
-                                checked>
+                            <input type="checkbox" checked>
 
-                            <span
-                                class="toggle-slider">
+                            <span class="toggle-slider">
                             </span>
 
                         </label>
@@ -580,12 +1141,9 @@
 
                         <label class="toggle">
 
-                            <input
-                                type="checkbox"
-                                checked>
+                            <input type="checkbox" checked>
 
-                            <span
-                                class="toggle-slider">
+                            <span class="toggle-slider">
                             </span>
 
                         </label>
@@ -641,8 +1199,7 @@
                         </div>
 
 
-                        <button
-                            class="security-btn">
+                        <button class="security-btn">
 
                             Change Password
 
@@ -675,8 +1232,7 @@
                         </div>
 
 
-                        <button
-                            class="security-btn">
+                        <button class="security-btn">
 
                             Enable
 
@@ -789,14 +1345,6 @@
 
 
     </main>
-
-
-<script>
-
-
-
-    
-</script>
 
 
 

@@ -5700,6 +5700,856 @@ td {
 }
 
 
+/* =====================================================
+   SETTINGS MENU
+===================================================== */
+
+.settings-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-menu {
+    width: 100%;
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-family: inherit;
+
+    transition: 0.25s ease;
+
+    box-sizing: border-box;
+}
+
+.settings-menu:hover {
+    background: #f0f8f4;
+}
+
+.settings-menu > i:first-child {
+    width: 22px;
+    min-width: 22px;
+
+    color: #087d4c;
+
+    font-size: 17px;
+
+    text-align: center;
+}
+
+.settings-menu > div {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.settings-menu strong {
+    color: #075b35;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.settings-menu span {
+    color: #6d7d8d;
+
+    font-size: 11px;
+}
+
+.settings-menu.active {
+    background: #258c61;
+}
+
+.settings-menu.active > i:first-child,
+.settings-menu.active strong,
+.settings-menu.active span {
+    color: #ffffff;
+}
+
+.settings-arrow {
+    width: auto !important;
+    min-width: auto !important;
+
+    color: #087d4c !important;
+
+    font-size: 11px !important;
+
+    transition: 0.25s ease;
+}
+
+.settings-menu:hover .settings-arrow {
+    transform: translateX(3px);
+}
+
+.settings-menu.active .settings-arrow {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+   SETTINGS POPOVER OVERLAY
+===================================================== */
+
+.settings-popover-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background: rgba(3, 69, 34, 0.38);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* THIS IS WHAT HIDES THE POPOVERS */
+
+.settings-popover-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   POPOVER BOX
+===================================================== */
+
+.settings-popover {
+    width: 100%;
+
+    max-width: 650px;
+
+    max-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 60, 35, 0.20);
+
+    box-sizing: border-box;
+
+    transform: translateY(20px) scale(0.97);
+
+    transition: transform 0.25s ease;
+}
+
+.settings-popover-overlay.active .settings-popover {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =====================================================
+   POPOVER HEADER
+===================================================== */
+
+.popover-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 24px;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #e3eee8;
+
+    background: #ffffff;
+}
+
+.popover-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+.popover-icon {
+    width: 45px;
+    height: 45px;
+
+    min-width: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #e8f6ef;
+
+    color: #087d4c;
+
+    font-size: 18px;
+}
+
+.popover-title h3 {
+    margin: 0;
+
+    color: #075b35;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.popover-title p {
+    margin: 4px 0 0;
+
+    color: #718096;
+
+    font-size: 12px;
+}
+
+.popover-close {
+    width: 35px;
+    height: 35px;
+
+    min-width: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #f1f5f3;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.popover-close:hover {
+    background: #e7f4ed;
+
+    color: #087d4c;
+}
+
+
+/* =====================================================
+   POPOVER BODY
+===================================================== */
+
+.popover-body {
+    width: 100%;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+}
+
+.popover-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.popover-body::-webkit-scrollbar-thumb {
+    background: #c9ded3;
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
+   INFORMATION NOTE
+===================================================== */
+
+.popover-info {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 14px;
+
+    margin-bottom: 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 9px;
+
+    background: #f1f8ff;
+
+    color: #2874b8;
+
+    font-size: 12px;
+}
+
+.popover-info i {
+    color: #2874b8;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FORM FIELDS
+===================================================== */
+
+.popover-field {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 17px;
+}
+
+.popover-field label {
+    color: #075b35;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.popover-field input {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cbded4;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #334155;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition: 0.2s ease;
+}
+
+.popover-field input::placeholder {
+    color: #9aa6b2;
+}
+
+.popover-field input:focus {
+    border-color: #218c61;
+
+    box-shadow:
+        0 0 0 3px rgba(33, 140, 97, 0.08);
+}
+
+.popover-row {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+.notification-setting,
+.system-setting {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 16px 0;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #edf2ef;
+}
+
+.notification-setting:last-child,
+.system-setting:last-child {
+    border-bottom: none;
+}
+
+.notification-setting > div,
+.system-setting > div {
+    flex: 1;
+}
+
+.notification-setting strong,
+.system-setting strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #075b35;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.notification-setting small,
+.system-setting small {
+    display: block;
+
+    color: #7a8793;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   SWITCH
+===================================================== */
+
+.switch {
+    position: relative;
+
+    width: 43px;
+    height: 23px;
+
+    min-width: 43px;
+
+    display: block;
+}
+
+.switch input {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    opacity: 0;
+}
+
+.slider {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    border-radius: 30px;
+
+    background: #d6e0db;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 17px;
+    height: 17px;
+
+    top: 3px;
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.25s ease;
+}
+
+.switch input:checked + .slider {
+    background: #087d4c;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+.security-status {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    margin-bottom: 18px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d9eee3;
+
+    border-radius: 10px;
+
+    background: #eef8f3;
+}
+
+.security-status-icon {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #087d4c;
+
+    color: #ffffff;
+}
+
+.security-status strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #075b35;
+
+    font-size: 13px;
+}
+
+.security-status small {
+    color: #718096;
+
+    font-size: 11px;
+}
+
+.security-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 0;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #edf2ef;
+}
+
+.security-item:last-child {
+    border-bottom: none;
+}
+
+.security-item > div {
+    flex: 1;
+}
+
+.security-item strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #075b35;
+
+    font-size: 13px;
+}
+
+.security-item small {
+    color: #7a8793;
+
+    font-size: 11px;
+}
+
+.security-action {
+    padding: 8px 12px;
+
+    border: 1px solid #b9d9ca;
+
+    border-radius: 7px;
+
+    background: #f4faf7;
+
+    color: #087d4c;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+.security-action:hover {
+    background: #e8f5ee;
+
+    border-color: #087d4c;
+}
+
+
+/* =====================================================
+   POPOVER FOOTER
+===================================================== */
+
+.popover-footer {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 16px 24px;
+
+    box-sizing: border-box;
+
+    border-top: 1px solid #e5eee9;
+
+    background: #fbfdfc;
+}
+
+.popover-cancel,
+.popover-save {
+    min-height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.popover-cancel {
+    border: none;
+
+    background: #edf6f1;
+
+    color: #087d4c;
+}
+
+.popover-cancel:hover {
+    background: #e2f0e9;
+}
+
+.popover-save {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+
+    background: #087d4c;
+
+    color: #ffffff;
+}
+
+.popover-save:hover {
+    background: #075f3a;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .settings-popover-overlay {
+        padding: 12px;
+    }
+
+    .settings-popover {
+        max-height: 94vh;
+
+        border-radius: 14px;
+    }
+
+    .popover-header {
+        padding: 17px;
+    }
+
+    .popover-body {
+        padding: 18px;
+    }
+
+    .popover-footer {
+        padding: 14px 17px;
+    }
+
+    .popover-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .popover-title h3 {
+        font-size: 16px;
+    }
+
+    .popover-title p {
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .settings-menu {
+        min-height: 60px;
+
+        padding: 9px 10px;
+    }
+
+    .settings-menu strong {
+        font-size: 13px;
+    }
+
+    .settings-menu span {
+        font-size: 10px;
+    }
+
+    .notification-setting,
+    .system-setting,
+    .security-item {
+        align-items: flex-start;
+    }
+
+    .popover-footer {
+        flex-direction: column-reverse;
+    }
+
+    .popover-cancel,
+    .popover-save {
+        width: 100%;
+    }
+
+}
+
+
+
 /* LARGE SCREEN */
 
 @media (max-width: 1200px) {

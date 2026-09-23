@@ -1259,3 +1259,178 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+
+
+
+
+/* =====================================================
+   SETTINGS POPOVERS
+===================================================== */
+
+document.addEventListener("click", function (event) {
+
+
+    /* ================================================
+       OPEN SETTINGS POPOVER
+    ================================================= */
+
+    const settingsMenu = event.target.closest(
+        ".settings-menu[data-popover]"
+    );
+
+
+    if (settingsMenu) {
+
+        const popoverId =
+            settingsMenu.getAttribute("data-popover");
+
+
+        const popover =
+            document.getElementById(popoverId);
+
+
+        if (!popover) {
+            return;
+        }
+
+
+        /* Close any other open popover */
+
+        document
+            .querySelectorAll(".settings-popover-overlay.active")
+            .forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+
+        /* Open selected popover */
+
+        popover.classList.add("active");
+
+
+        /* Prevent page scrolling */
+
+        document.body.style.overflow = "hidden";
+
+
+        return;
+    }
+
+
+
+    /* ================================================
+       CLOSE BUTTON
+    ================================================= */
+
+    const closeButton = event.target.closest(
+        ".popover-close"
+    );
+
+
+    if (closeButton) {
+
+        const popover =
+            closeButton.closest(
+                ".settings-popover-overlay"
+            );
+
+
+        if (popover) {
+
+            popover.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        return;
+    }
+
+
+
+    /* ================================================
+       CANCEL BUTTON
+    ================================================= */
+
+    const cancelButton = event.target.closest(
+        ".popover-cancel"
+    );
+
+
+    if (cancelButton) {
+
+        const popover =
+            cancelButton.closest(
+                ".settings-popover-overlay"
+            );
+
+
+        if (popover) {
+
+            popover.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        return;
+    }
+
+
+
+    /* ================================================
+       CLICK OUTSIDE POPOVER
+    ================================================= */
+
+    if (
+        event.target.classList.contains(
+            "settings-popover-overlay"
+        )
+    ) {
+
+        event.target.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+        return;
+    }
+
+});
+
+
+
+/* =====================================================
+   CLOSE SETTINGS POPOVER WITH ESCAPE
+===================================================== */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key !== "Escape") {
+        return;
+    }
+
+
+    document
+        .querySelectorAll(
+            ".settings-popover-overlay.active"
+        )
+        .forEach(function (popover) {
+
+            popover.classList.remove("active");
+
+        });
+
+
+    document.body.style.overflow = "";
+
+});
+
+
+
+
+
