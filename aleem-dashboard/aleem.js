@@ -295,6 +295,15 @@ document.addEventListener("DOMContentLoaded", function () {
     displayCurrentUser();
 
 
+    /*
+       Make displayCurrentUser available to the
+       settings section below.
+    */
+
+    window.displayCurrentUser =
+        displayCurrentUser;
+
+
     /* =====================================================
        MOBILE MENU
     ===================================================== */
@@ -618,6 +627,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (oldScript) {
             oldScript.remove();
+        }
+
+
+        /*
+           Settings is handled directly inside
+           this aleem.js file.
+        */
+
+        if (page === "settings") {
+
+            return;
+
         }
 
 
@@ -1258,36 +1279,273 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-});
+
+
+    /* =====================================================
+       SETTINGS POPOVERS
+    ===================================================== */
+
+    const SETTINGS_KEY_PREFIX =
+        "alAleemSettings_";
+
+
+    function getSettingsUserKey() {
+
+        const user =
+            getCurrentUser();
+
+
+        if (!user) {
+
+            return "default";
+
+        }
+
+
+        return (
+            user.id ||
+            user.email ||
+            user.phone ||
+            "default"
+        );
+
+    }
+
+
+    function getSettingsStorageKey() {
+
+        return (
+            SETTINGS_KEY_PREFIX +
+            getSettingsUserKey()
+        );
+
+    }
+
+
+    function getDefaultSettings() {
+
+        return {
+
+            schoolInformation: {
+
+                schoolName:
+                    "Al-Aleem Group of Schools",
+
+                schoolAddress:
+                    "",
+
+                schoolPhone:
+                    "",
+
+                schoolEmail:
+                    "",
+
+                schoolMotto:
+                    "Learning to Serve"
+
+            },
+
+            notifications: {
+
+                newMessages:
+                    true,
+
+                studentUpdates:
+                    true,
+
+                attendanceAlerts:
+                    true,
+
+                systemNotifications:
+                    false
+
+            },
+
+            systemSettings: {
+
+                compactSidebar:
+                    false,
+
+                autoSave:
+                    true,
+
+                confirmBeforeLogout:
+                    true,
+
+                dashboardRefresh:
+                    false
+
+            }
+
+        };
+
+    }
+
+
+    function getSavedSettings() {
+
+        const defaults =
+            getDefaultSettings();
+
+
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    getSettingsStorageKey()
+                );
+
+
+            if (!saved) {
+
+                return defaults;
+
+            }
+
+
+            const parsed =
+                JSON.parse(saved);
+
+
+            return {
+
+                schoolInformation: {
+
+                    ...defaults.schoolInformation,
+                    ...(parsed.schoolInformation || {})
+
+                },
+
+                notifications: {
+
+                    ...defaults.notifications,
+                    ...(parsed.notifications || {})
+
+                },
+
+                systemSettings: {
+
+                    ...defaults.systemSettings,
+                    ...(parsed.systemSettings || {})
+
+                }
+
+            };
+
+        } catch (error) {
+
+            console.error(
+                "Could not load settings:",
+                error
+            );
+
+
+            return defaults;
+
+        }
+
+    }
+
+
+    function saveSettings(settings) {
+
+        try {
+
+            localStorage.setItem(
+                getSettingsStorageKey(),
+                JSON.stringify(
+                    settings
+                )
+            );
+
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+                "Could not save settings:",
+                error
+            );
+
+
+            return false;
+
+        }
+
+    }
+
+
+    let savedSettings =
+        getSavedSettings();
 
 
 
+    /* =====================================================
+       CLOSE POPOVER
+    ===================================================== */
+
+    function closeSettingsPopover(
+        popover
+    ) {
+
+        if (!popover) {
+            return;
+        }
 
 
-/* =====================================================
-   SETTINGS POPOVERS
-===================================================== */
-
-document.addEventListener("click", function (event) {
+        popover.classList.remove(
+            "active"
+        );
 
 
-    /* ================================================
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE ALL POPOVERS
+    ===================================================== */
+
+    function closeAllSettingsPopovers() {
+
+        document
+            .querySelectorAll(
+                ".settings-popover-overlay.active"
+            )
+            .forEach(
+                function (popover) {
+
+                    popover.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+
+    /* =====================================================
        OPEN SETTINGS POPOVER
-    ================================================= */
+    ===================================================== */
 
-    const settingsMenu = event.target.closest(
-        ".settings-menu[data-popover]"
-    );
-
-
-    if (settingsMenu) {
-
-        const popoverId =
-            settingsMenu.getAttribute("data-popover");
-
+    function openSettingsPopover(
+        popoverId
+    ) {
 
         const popover =
-            document.getElementById(popoverId);
+            document.getElementById(
+                popoverId
+            );
 
 
         if (!popover) {
@@ -1295,142 +1553,1098 @@ document.addEventListener("click", function (event) {
         }
 
 
-        /* Close any other open popover */
-
-        document
-            .querySelectorAll(".settings-popover-overlay.active")
-            .forEach(function (item) {
-
-                item.classList.remove("active");
-
-            });
+        closeAllSettingsPopovers();
 
 
-        /* Open selected popover */
-
-        popover.classList.add("active");
-
-
-        /* Prevent page scrolling */
-
-        document.body.style.overflow = "hidden";
+        savedSettings =
+            getSavedSettings();
 
 
-        return;
+        loadPopoverData(
+            popoverId
+        );
+
+
+        popover.classList.add(
+            "active"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
     }
 
 
 
-    /* ================================================
-       CLOSE BUTTON
-    ================================================= */
+    /* =====================================================
+       LOAD POPOVER DATA
+    ===================================================== */
 
-    const closeButton = event.target.closest(
-        ".popover-close"
-    );
-
-
-    if (closeButton) {
-
-        const popover =
-            closeButton.closest(
-                ".settings-popover-overlay"
-            );
-
-
-        if (popover) {
-
-            popover.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        }
-
-
-        return;
-    }
-
-
-
-    /* ================================================
-       CANCEL BUTTON
-    ================================================= */
-
-    const cancelButton = event.target.closest(
-        ".popover-cancel"
-    );
-
-
-    if (cancelButton) {
-
-        const popover =
-            cancelButton.closest(
-                ".settings-popover-overlay"
-            );
-
-
-        if (popover) {
-
-            popover.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        }
-
-
-        return;
-    }
-
-
-
-    /* ================================================
-       CLICK OUTSIDE POPOVER
-    ================================================= */
-
-    if (
-        event.target.classList.contains(
-            "settings-popover-overlay"
-        )
+    function loadPopoverData(
+        popoverId
     ) {
 
-        event.target.classList.remove("active");
 
-        document.body.style.overflow = "";
+        /* =========================================
+           SCHOOL INFORMATION
+        ========================================= */
 
-        return;
+        if (
+            popoverId ===
+            "schoolInformationPopover"
+        ) {
+
+            const school =
+                savedSettings.schoolInformation;
+
+
+            const inputs =
+                document.querySelectorAll(
+                    "#schoolInformationPopover input"
+                );
+
+
+            if (inputs[0]) {
+
+                inputs[0].value =
+                    school.schoolName || "";
+
+            }
+
+
+            if (inputs[1]) {
+
+                inputs[1].value =
+                    school.schoolAddress || "";
+
+            }
+
+
+            if (inputs[2]) {
+
+                inputs[2].value =
+                    school.schoolPhone || "";
+
+            }
+
+
+            if (inputs[3]) {
+
+                inputs[3].value =
+                    school.schoolEmail || "";
+
+            }
+
+
+            if (inputs[4]) {
+
+                inputs[4].value =
+                    school.schoolMotto || "";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           NOTIFICATIONS
+        ========================================= */
+
+        if (
+            popoverId ===
+            "notificationsPopover"
+        ) {
+
+            const notificationSettings =
+                savedSettings.notifications;
+
+
+            const checkboxes =
+                document.querySelectorAll(
+                    "#notificationsPopover input[type='checkbox']"
+                );
+
+
+            if (checkboxes[0]) {
+
+                checkboxes[0].checked =
+                    notificationSettings.newMessages;
+
+            }
+
+
+            if (checkboxes[1]) {
+
+                checkboxes[1].checked =
+                    notificationSettings.studentUpdates;
+
+            }
+
+
+            if (checkboxes[2]) {
+
+                checkboxes[2].checked =
+                    notificationSettings.attendanceAlerts;
+
+            }
+
+
+            if (checkboxes[3]) {
+
+                checkboxes[3].checked =
+                    notificationSettings.systemNotifications;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SYSTEM SETTINGS
+        ========================================= */
+
+        if (
+            popoverId ===
+            "systemSettingsPopover"
+        ) {
+
+            const systemSettings =
+                savedSettings.systemSettings;
+
+
+            const checkboxes =
+                document.querySelectorAll(
+                    "#systemSettingsPopover input[type='checkbox']"
+                );
+
+
+            if (checkboxes[0]) {
+
+                checkboxes[0].checked =
+                    systemSettings.compactSidebar;
+
+            }
+
+
+            if (checkboxes[1]) {
+
+                checkboxes[1].checked =
+                    systemSettings.autoSave;
+
+            }
+
+
+            if (checkboxes[2]) {
+
+                checkboxes[2].checked =
+                    systemSettings.confirmBeforeLogout;
+
+            }
+
+
+            if (checkboxes[3]) {
+
+                checkboxes[3].checked =
+                    systemSettings.dashboardRefresh;
+
+            }
+
+        }
+
     }
 
-});
+
+
+    /* =====================================================
+       SAVE POPOVER DATA
+    ===================================================== */
+
+    function saveSettingsPopover(
+        popoverId,
+        popover
+    ) {
+
+        if (!popover) {
+            return;
+        }
+
+
+        savedSettings =
+            getSavedSettings();
 
 
 
-/* =====================================================
-   CLOSE SETTINGS POPOVER WITH ESCAPE
-===================================================== */
+        /* =========================================
+           SCHOOL INFORMATION
+        ========================================= */
 
-document.addEventListener("keydown", function (event) {
+        if (
+            popoverId ===
+            "schoolInformationPopover"
+        ) {
 
-    if (event.key !== "Escape") {
-        return;
+            const inputs =
+                popover.querySelectorAll(
+                    "input"
+                );
+
+
+            savedSettings.schoolInformation = {
+
+                schoolName:
+                    inputs[0]
+                        ? inputs[0].value.trim()
+                        : "",
+
+                schoolAddress:
+                    inputs[1]
+                        ? inputs[1].value.trim()
+                        : "",
+
+                schoolPhone:
+                    inputs[2]
+                        ? inputs[2].value.trim()
+                        : "",
+
+                schoolEmail:
+                    inputs[3]
+                        ? inputs[3].value.trim()
+                        : "",
+
+                schoolMotto:
+                    inputs[4]
+                        ? inputs[4].value.trim()
+                        : ""
+
+            };
+
+
+            if (
+                saveSettings(
+                    savedSettings
+                )
+            ) {
+
+                closeSettingsPopover(
+                    popover
+                );
+
+            }
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           NOTIFICATIONS
+        ========================================= */
+
+        if (
+            popoverId ===
+            "notificationsPopover"
+        ) {
+
+            const checkboxes =
+                popover.querySelectorAll(
+                    "input[type='checkbox']"
+                );
+
+
+            savedSettings.notifications = {
+
+                newMessages:
+                    checkboxes[0]
+                        ? checkboxes[0].checked
+                        : true,
+
+                studentUpdates:
+                    checkboxes[1]
+                        ? checkboxes[1].checked
+                        : true,
+
+                attendanceAlerts:
+                    checkboxes[2]
+                        ? checkboxes[2].checked
+                        : true,
+
+                systemNotifications:
+                    checkboxes[3]
+                        ? checkboxes[3].checked
+                        : false
+
+            };
+
+
+            if (
+                saveSettings(
+                    savedSettings
+                )
+            ) {
+
+                closeSettingsPopover(
+                    popover
+                );
+
+            }
+
+
+            return;
+
+        }
+
+
+
+        /* =========================================
+           SYSTEM SETTINGS
+        ========================================= */
+
+        if (
+            popoverId ===
+            "systemSettingsPopover"
+        ) {
+
+            const checkboxes =
+                popover.querySelectorAll(
+                    "input[type='checkbox']"
+                );
+
+
+            savedSettings.systemSettings = {
+
+                compactSidebar:
+                    checkboxes[0]
+                        ? checkboxes[0].checked
+                        : false,
+
+                autoSave:
+                    checkboxes[1]
+                        ? checkboxes[1].checked
+                        : true,
+
+                confirmBeforeLogout:
+                    checkboxes[2]
+                        ? checkboxes[2].checked
+                        : true,
+
+                dashboardRefresh:
+                    checkboxes[3]
+                        ? checkboxes[3].checked
+                        : false
+
+            };
+
+
+            if (
+                saveSettings(
+                    savedSettings
+                )
+            ) {
+
+                closeSettingsPopover(
+                    popover
+                );
+
+            }
+
+
+            return;
+
+        }
+
     }
 
 
-    document
-        .querySelectorAll(
-            ".settings-popover-overlay.active"
-        )
-        .forEach(function (popover) {
 
-            popover.classList.remove("active");
+    /* =====================================================
+       SETTINGS CLICK HANDLER
+    ===================================================== */
 
-        });
+    document.addEventListener(
+        "click",
+        function (event) {
 
 
-    document.body.style.overflow = "";
+            /* =========================================
+               OPEN POPOVER
+            ========================================= */
+
+            const settingsMenu =
+                event.target.closest(
+                    ".settings-menu[data-popover]"
+                );
+
+
+            if (settingsMenu) {
+
+                const popoverId =
+                    settingsMenu.getAttribute(
+                        "data-popover"
+                    );
+
+
+                openSettingsPopover(
+                    popoverId
+                );
+
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               CLOSE BUTTON
+            ========================================= */
+
+            const closeButton =
+                event.target.closest(
+                    ".popover-close"
+                );
+
+
+            if (closeButton) {
+
+                const popover =
+                    closeButton.closest(
+                        ".settings-popover-overlay"
+                    );
+
+
+                closeSettingsPopover(
+                    popover
+                );
+
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               CANCEL BUTTON
+            ========================================= */
+
+            const cancelButton =
+                event.target.closest(
+                    ".popover-cancel"
+                );
+
+
+            if (cancelButton) {
+
+                const popover =
+                    cancelButton.closest(
+                        ".settings-popover-overlay"
+                    );
+
+
+                closeSettingsPopover(
+                    popover
+                );
+
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               SAVE BUTTON
+            ========================================= */
+
+            const saveButton =
+                event.target.closest(
+                    ".popover-save"
+                );
+
+
+            if (saveButton) {
+
+                const popover =
+                    saveButton.closest(
+                        ".settings-popover-overlay"
+                    );
+
+
+                if (!popover) {
+                    return;
+                }
+
+
+                saveSettingsPopover(
+                    popover.id,
+                    popover
+                );
+
+
+                return;
+
+            }
+
+
+
+            /* =========================================
+               CLICK OUTSIDE
+            ========================================= */
+
+            if (
+                event.target.classList.contains(
+                    "settings-popover-overlay"
+                )
+            ) {
+
+                closeSettingsPopover(
+                    event.target
+                );
+
+                return;
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       ESCAPE TO CLOSE
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key !== "Escape"
+            ) {
+
+                return;
+
+            }
+
+
+            closeAllSettingsPopovers();
+
+        }
+    );
+
+
+
+    /* =====================================================
+       PROFILE INFORMATION
+    ===================================================== */
+
+    function loadProfileInformation() {
+
+        const user =
+            getCurrentUser();
+
+
+        if (!user) {
+            return;
+        }
+
+
+        const userName =
+            user.name ||
+            user.fullname ||
+            "Administrator";
+
+
+        const userEmail =
+            user.email ||
+            "";
+
+
+        const userPhone =
+            user.phone ||
+            "";
+
+
+        const userRole =
+            user.role ||
+            "Administrator";
+
+
+        const profileName =
+            document.getElementById(
+                "profileName"
+            );
+
+
+        const profileEmail =
+            document.getElementById(
+                "profileEmail"
+            );
+
+
+        const profilePhone =
+            document.getElementById(
+                "profilePhone"
+            );
+
+
+        const profileRole =
+            document.getElementById(
+                "profileRole"
+            );
+
+
+        const settingsProfileName =
+            document.getElementById(
+                "settingsProfileName"
+            );
+
+
+        const settingsProfileImage =
+            document.getElementById(
+                "settingsProfileImage"
+            );
+
+
+        const settingsProfileDefault =
+            document.getElementById(
+                "settingsProfileDefault"
+            );
+
+
+        if (profileName) {
+
+            profileName.value =
+                userName;
+
+        }
+
+
+        if (profileEmail) {
+
+            profileEmail.value =
+                userEmail;
+
+        }
+
+
+        if (profilePhone) {
+
+            profilePhone.value =
+                userPhone;
+
+        }
+
+
+        if (profileRole) {
+
+            profileRole.value =
+                userRole;
+
+        }
+
+
+        if (settingsProfileName) {
+
+            settingsProfileName.textContent =
+                userName;
+
+        }
+
+
+        if (
+            user.profilePicture &&
+            settingsProfileImage &&
+            settingsProfileDefault
+        ) {
+
+            settingsProfileImage.src =
+                user.profilePicture;
+
+            settingsProfileImage.style.display =
+                "block";
+
+            settingsProfileDefault.style.display =
+                "none";
+
+        } else if (
+            settingsProfileImage &&
+            settingsProfileDefault
+        ) {
+
+            settingsProfileImage.src =
+                "";
+
+            settingsProfileImage.style.display =
+                "none";
+
+            settingsProfileDefault.style.display =
+                "block";
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SAVE USER TO USERS ARRAY
+    ===================================================== */
+
+    function updateUserInUsersArray(
+        updatedUser
+    ) {
+
+        try {
+
+            const users =
+                JSON.parse(
+                    localStorage.getItem(
+                        USERS_KEY
+                    )
+                ) || [];
+
+
+            const userIndex =
+                users.findIndex(
+                    function (user) {
+
+                        if (
+                            updatedUser.id &&
+                            user.id
+                        ) {
+
+                            return (
+                                user.id ===
+                                updatedUser.id
+                            );
+
+                        }
+
+
+                        if (
+                            updatedUser.email &&
+                            user.email
+                        ) {
+
+                            return (
+                                user.email ===
+                                updatedUser.email
+                            );
+
+                        }
+
+
+                        return false;
+
+                    }
+                );
+
+
+            if (userIndex !== -1) {
+
+                users[userIndex] = {
+
+                    ...users[userIndex],
+                    ...updatedUser
+
+                };
+
+
+                localStorage.setItem(
+                    USERS_KEY,
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Could not update user:",
+                error
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       PROFILE SAVE
+    ===================================================== */
+
+    const saveProfileBtn =
+        document.getElementById(
+            "saveProfileBtn"
+        );
+
+
+    if (saveProfileBtn) {
+
+        saveProfileBtn.addEventListener(
+            "click",
+            function () {
+
+                const user =
+                    getCurrentUser();
+
+
+                if (!user) {
+                    return;
+                }
+
+
+                const profileName =
+                    document.getElementById(
+                        "profileName"
+                    );
+
+
+                const profileEmail =
+                    document.getElementById(
+                        "profileEmail"
+                    );
+
+
+                const profilePhone =
+                    document.getElementById(
+                        "profilePhone"
+                    );
+
+
+                const profileRole =
+                    document.getElementById(
+                        "profileRole"
+                    );
+
+
+                if (profileName) {
+
+                    user.name =
+                        profileName.value.trim();
+
+                }
+
+
+                if (profileEmail) {
+
+                    user.email =
+                        profileEmail.value.trim();
+
+                }
+
+
+                if (profilePhone) {
+
+                    user.phone =
+                        profilePhone.value.trim();
+
+                }
+
+
+                if (profileRole) {
+
+                    user.role =
+                        profileRole.value;
+
+                }
+
+
+                localStorage.setItem(
+                    CURRENT_USER_KEY,
+                    JSON.stringify(
+                        user
+                    )
+                );
+
+
+                updateUserInUsersArray(
+                    user
+                );
+
+
+                displayCurrentUser();
+
+
+                loadProfileInformation();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       CANCEL PROFILE
+    ===================================================== */
+
+    const cancelProfileBtn =
+        document.getElementById(
+            "cancelProfileBtn"
+        );
+
+
+    if (cancelProfileBtn) {
+
+        cancelProfileBtn.addEventListener(
+            "click",
+            function () {
+
+                loadProfileInformation();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       PROFILE PICTURE
+    ===================================================== */
+
+    const changePictureBtn =
+        document.getElementById(
+            "changePictureBtn"
+        );
+
+
+    const profilePictureInput =
+        document.getElementById(
+            "profilePictureInput"
+        );
+
+
+    if (
+        changePictureBtn &&
+        profilePictureInput
+    ) {
+
+        changePictureBtn.addEventListener(
+            "click",
+            function () {
+
+                profilePictureInput.click();
+
+            }
+        );
+
+    }
+
+
+    if (profilePictureInput) {
+
+        profilePictureInput.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    profilePictureInput.files[0];
+
+
+                if (!file) {
+                    return;
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        const user =
+                            getCurrentUser();
+
+
+                        if (!user) {
+                            return;
+                        }
+
+
+                        const imageData =
+                            event.target.result;
+
+
+                        user.profilePicture =
+                            imageData;
+
+
+                        localStorage.setItem(
+                            CURRENT_USER_KEY,
+                            JSON.stringify(
+                                user
+                            )
+                        );
+
+
+                        updateUserInUsersArray(
+                            user
+                        );
+
+
+                        displayCurrentUser();
+
+
+                        loadProfileInformation();
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       LOAD PROFILE WHEN SETTINGS PAGE IS INSERTED
+       DYNAMICALLY
+    ===================================================== */
+
+    setTimeout(
+        function () {
+
+            loadProfileInformation();
+
+        },
+        100
+    );
+
+
+
+    /* =====================================================
+       STORAGE EVENT
+    ===================================================== */
+
+    window.addEventListener(
+        "storage",
+        function () {
+
+            savedSettings =
+                getSavedSettings();
+
+            loadProfileInformation();
+
+            displayCurrentUser();
+
+        }
+    );
 
 });
-
-
-
-
-
