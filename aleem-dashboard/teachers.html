@@ -28,57 +28,245 @@
 
             <div class="teacher-text1">
                 <h3>Total Teachers</h3>
-                <h2 id="totalTeachers">25</h2>
+                <h2 id="totalTeachers">28</h2>
                 <h5 id="totalTeachersText">+2 this month</h5>
             </div>
         </div>
 
 
-        <div class="male-teacher">
+       <div class="male-teacher" id="primaryTeacherCard">
 
-            <div class="icon2">
-                <i class="fa-solid fa-user"></i>
-            </div>
+    <div class="icon2">
+        <i class="fa-solid fa-user"></i>
+    </div>
 
-            <div class="male-teacher-text1">
-                <h3>Male Teachers</h3>
-                <h2 id="maleTeachers">15</h2>
-                <h5 id="maleTeachersText">60% of total</h5>
-            </div>
-
-        </div>
+    <div class="male-teacher-text1">
+        <h3>Primary Teachers</h3>
+        <h2 id="maleTeachers">15</h2>
+        <h5 id="maleTeachersText">60% of total</h5>
+    </div>
 
 
-        <div class="female-teacher">
+    <!-- PRIMARY TEACHERS POPOVER -->
 
-            <div class="icon3">
-                <i class="fa-solid fa-user"></i>
-            </div>
+    <div class="primary-teachers-popover" id="primaryTeachersPopover">
 
-            <div class="female-teacher-text1">
-                <h3>Female Teachers</h3>
-                <h2 id="femaleTeachers">10</h2>
-                <h5 id="femaleTeachersText">40% of total</h5>
-            </div>
+        <div class="primary-teachers-popover-header">
+
+            <h3>Primary Teachers</h3>
+
+            <button type="button" id="closePrimaryTeachersPopover">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
         </div>
 
 
-        <div class="department">
+        <div class="primary-teachers-popover-list">
 
-            <div class="icon4">
-                <i class="fa-solid fa-graduation-cap"></i>
+            <!-- MALE -->
+
+            <div class="primary-teachers-popover-item">
+
+                <div class="primary-teachers-popover-icon">
+                    <i class="fa-solid fa-person"></i>
+                </div>
+
+                <div class="primary-teachers-popover-info">
+
+                    <span>Male</span>
+
+                    <strong>6</strong>
+
+                </div>
+
             </div>
 
-            <div class="department-text1">
-                <h3>Departments</h3>
-                <h2 id="departmentCount">12</h2>
-                <h5>Active Departments</h5>
+
+            <!-- FEMALE -->
+
+            <div class="primary-teachers-popover-item">
+
+                <div class="primary-teachers-popover-icon">
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+
+                <div class="primary-teachers-popover-info">
+
+                    <span>Female</span>
+
+                    <strong>9</strong>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
+
+</div>
+
+
+      <div class="female-teacher" id="secondaryTeacherCard">
+
+    <div class="icon3">
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+    <div class="female-teacher-text1">
+        <h3>Secondary Teachers</h3>
+        <h2 id="femaleTeachers">13</h2>
+        <h5 id="femaleTeachersText">40% of total</h5>
+    </div>
+
+
+    <!-- SECONDARY TEACHERS POPOVER -->
+
+    <div class="secondary-teachers-popover" id="secondaryTeachersPopover">
+
+        <div class="secondary-teachers-popover-header">
+
+            <h3>Secondary Teachers</h3>
+
+            <button type="button" id="closeSecondaryTeachersPopover">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="secondary-teachers-popover-list">
+
+
+            <!-- MALE -->
+
+            <div class="secondary-teachers-popover-item">
+
+                <div class="secondary-teachers-popover-icon">
+                    <i class="fa-solid fa-person"></i>
+                </div>
+
+                <div class="secondary-teachers-popover-info">
+
+                    <span>Male</span>
+
+                    <strong>5</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEMALE -->
+
+            <div class="secondary-teachers-popover-item">
+
+                <div class="secondary-teachers-popover-icon">
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+
+                <div class="secondary-teachers-popover-info">
+
+                    <span>Female</span>
+
+                    <strong>8</strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+  <div class="department">
+
+    <div class="icon4">
+        <i class="fa-solid fa-graduation-cap"></i>
+    </div>
+
+    <div class="department-text1">
+        <h3>Departments</h3>
+        <h2 id="departmentCount">3</h2>
+        <h5>Active Departments</h5>
+    </div>
+
+
+    <!-- DEPARTMENT POPOVER -->
+
+    <div class="department-popover" id="departmentPopover">
+
+        <div class="department-popover-header">
+
+            <h3>Departments</h3>
+
+            <button type="button" id="closeDepartmentPopover">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="department-popover-content">
+
+
+            <!-- SCIENCE -->
+
+            <div class="department-item">
+
+                <div class="department-item-icon">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+
+                <div class="department-item-info">
+                    <span>Science Department</span>
+                </div>
+
+            </div>
+
+
+            <!-- ARTS -->
+
+            <div class="department-item">
+
+                <div class="department-item-icon">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+
+                <div class="department-item-info">
+                    <span>Arts Department</span>
+                </div>
+
+            </div>
+
+
+            <!-- COMMERCIAL -->
+
+            <div class="department-item">
+
+                <div class="department-item-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div class="department-item-info">
+                    <span>Commercial Department</span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
 
 
     <div class="inputs">
@@ -91,10 +279,9 @@
         <select name="" id="select1">
 
             <option value="">All Departments</option>
-            <option value="Science">Science</option>
-            <option value="Arts">Arts</option>
-            <option value="Social Science">Social Science</option>
-            <option value="Technology">Technology</option>
+            <option value="Science">Science Department</option>
+            <option value="Arts">Arts Department</option>
+            <option value="Social Science">Commercial Department</option>
 
         </select>
 

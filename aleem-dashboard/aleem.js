@@ -2648,3 +2648,784 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+
+// =====================================================
+// STAT CARD POPOVERS
+// =====================================================
+
+
+// STUDENTS
+const studentStatCard = document.getElementById("studentStatCard");
+const studentPopover = document.getElementById("studentPopover");
+const closeStudentPopover = document.getElementById("closeStudentPopover");
+
+
+// TEACHERS
+const teacherStatCard = document.getElementById("teacherStatCard");
+const teacherPopover = document.getElementById("teacherPopover");
+const closeTeacherPopover = document.getElementById("closeTeacherPopover");
+
+
+// COURSES
+const courseStatCard = document.getElementById("courseStatCard");
+const coursePopover = document.getElementById("coursePopover");
+const closeCoursePopover = document.getElementById("closeCoursePopover");
+
+
+
+
+// =====================================================
+// CLOSE ALL POPOVERS
+// =====================================================
+
+function closeAllStatPopovers() {
+
+    if (studentPopover) {
+        studentPopover.classList.remove("show");
+    }
+
+    if (teacherPopover) {
+        teacherPopover.classList.remove("show");
+    }
+
+    if (coursePopover) {
+        coursePopover.classList.remove("show");
+    }
+
+}
+
+
+
+
+// =====================================================
+// STUDENT POPOVER
+// =====================================================
+
+if (studentStatCard && studentPopover) {
+
+    studentStatCard.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+
+        // Check if this popover is already open
+        const isOpen = studentPopover.classList.contains("show");
+
+
+        // Close every popover first
+        closeAllStatPopovers();
+
+
+        // Open this one only if it was closed
+        if (!isOpen) {
+
+            studentPopover.classList.add("show");
+
+        }
+
+    });
+
+
+    // Prevent clicks inside popover from closing it
+    studentPopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+    });
+
+}
+
+
+
+
+// CLOSE STUDENT POPOVER WITH X
+
+if (closeStudentPopover) {
+
+    closeStudentPopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        studentPopover.classList.remove("show");
+
+    });
+
+}
+
+
+
+
+// =====================================================
+// TEACHER POPOVER
+// =====================================================
+
+if (teacherStatCard && teacherPopover) {
+
+    teacherStatCard.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+
+        // Check if this popover is already open
+        const isOpen = teacherPopover.classList.contains("show");
+
+
+        // Close every popover first
+        closeAllStatPopovers();
+
+
+        // Open this one only if it was closed
+        if (!isOpen) {
+
+            teacherPopover.classList.add("show");
+
+        }
+
+    });
+
+
+    // Prevent clicks inside popover from closing it
+    teacherPopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+    });
+
+}
+
+
+
+
+// CLOSE TEACHER POPOVER WITH X
+
+if (closeTeacherPopover) {
+
+    closeTeacherPopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        teacherPopover.classList.remove("show");
+
+    });
+
+}
+
+
+
+
+// =====================================================
+// COURSE POPOVER
+// =====================================================
+
+if (courseStatCard && coursePopover) {
+
+    courseStatCard.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+
+        // Check if this popover is already open
+        const isOpen = coursePopover.classList.contains("show");
+
+
+        // Close every popover first
+        closeAllStatPopovers();
+
+
+        // Open this one only if it was closed
+        if (!isOpen) {
+
+            coursePopover.classList.add("show");
+
+        }
+
+    });
+
+
+    // Prevent clicks inside popover from closing it
+    coursePopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+    });
+
+}
+
+
+
+
+// CLOSE COURSE POPOVER WITH X
+
+if (closeCoursePopover) {
+
+    closeCoursePopover.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        coursePopover.classList.remove("show");
+
+    });
+
+}
+
+
+
+
+// =====================================================
+// CLICK ANYWHERE OUTSIDE TO CLOSE ALL POPOVERS
+// =====================================================
+
+document.addEventListener("click", function () {
+
+    closeAllStatPopovers();
+
+});
+
+
+
+/* =====================================================
+   ACADEMIC CALENDAR
+===================================================== */
+
+const calendarMonth = document.getElementById("calendarMonth");
+const previousMonth = document.getElementById("previousMonth");
+const nextMonth = document.getElementById("nextMonth");
+const calendarDates = document.querySelector(".calendar-dates");
+
+
+// GET TODAY'S REAL DATE
+const today = new Date();
+
+
+// START WITH CURRENT MONTH AND YEAR
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
+
+
+// MONTH NAMES
+const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
+
+
+
+/* =====================================================
+   CREATE CALENDAR
+===================================================== */
+
+function renderCalendar() {
+
+    if (!calendarMonth || !calendarDates) {
+        return;
+    }
+
+
+    // SHOW CURRENT MONTH AND YEAR
+    calendarMonth.textContent =
+        monthNames[currentMonth] + " " + currentYear;
+
+
+    // UPDATE "May 2024" UNDER ACADEMIC CALENDAR
+    const calendarCard = document.querySelector(".calendar-card");
+
+    if (calendarCard) {
+
+        const cardDate = calendarCard.querySelector(".card-heading p");
+
+        if (cardDate) {
+
+            cardDate.textContent =
+                monthNames[currentMonth] + " " + currentYear;
+
+        }
+
+    }
+
+
+    // REMOVE OLD DATES
+    calendarDates.innerHTML = "";
+
+
+    // FIRST DAY OF MONTH
+    const firstDay = new Date(
+        currentYear,
+        currentMonth,
+        1
+    );
+
+
+    // NUMBER OF DAYS IN CURRENT MONTH
+    const daysInMonth = new Date(
+        currentYear,
+        currentMonth + 1,
+        0
+    ).getDate();
+
+
+    // NUMBER OF DAYS IN PREVIOUS MONTH
+    const daysInPreviousMonth = new Date(
+        currentYear,
+        currentMonth,
+        0
+    ).getDate();
+
+
+
+    /* =================================================
+       CALENDAR STARTS ON MONDAY
+    ================================================= */
+
+    let startingDay = firstDay.getDay();
+
+
+    if (startingDay === 0) {
+
+        startingDay = 6;
+
+    } else {
+
+        startingDay = startingDay - 1;
+
+    }
+
+
+
+    /* =================================================
+       PREVIOUS MONTH DATES
+    ================================================= */
+
+    for (let i = startingDay; i > 0; i--) {
+
+        const span = document.createElement("span");
+
+        span.textContent =
+            daysInPreviousMonth - i + 1;
+
+        span.classList.add("other-month");
+
+        calendarDates.appendChild(span);
+
+    }
+
+
+
+    /* =================================================
+       CURRENT MONTH DATES
+    ================================================= */
+
+    for (let day = 1; day <= daysInMonth; day++) {
+
+        const span = document.createElement("span");
+
+        span.textContent = day;
+
+
+        const thisDate = new Date(
+            currentYear,
+            currentMonth,
+            day
+        );
+
+
+
+        /* =============================================
+           HIGHLIGHT TODAY
+        ============================================= */
+
+        if (
+            day === today.getDate() &&
+            currentMonth === today.getMonth() &&
+            currentYear === today.getFullYear()
+        ) {
+
+            span.classList.add("today");
+
+        }
+
+
+
+        /* =============================================
+           SUNDAY = HOLIDAY
+        ============================================= */
+
+        if (thisDate.getDay() === 0) {
+
+            span.classList.add("holiday");
+
+        }
+
+
+        calendarDates.appendChild(span);
+
+    }
+
+
+
+    /* =================================================
+       NEXT MONTH DATES
+    ================================================= */
+
+    const totalUsed =
+        startingDay + daysInMonth;
+
+
+    let totalCalendarCells;
+
+
+    if (totalUsed <= 35) {
+
+        totalCalendarCells = 35;
+
+    } else {
+
+        totalCalendarCells = 42;
+
+    }
+
+
+    const remaining =
+        totalCalendarCells - totalUsed;
+
+
+    for (let day = 1; day <= remaining; day++) {
+
+        const span = document.createElement("span");
+
+        span.textContent = day;
+
+        span.classList.add("other-month");
+
+        calendarDates.appendChild(span);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PREVIOUS MONTH BUTTON
+===================================================== */
+
+if (previousMonth) {
+
+    previousMonth.addEventListener("click", function () {
+
+        currentMonth--;
+
+
+        if (currentMonth < 0) {
+
+            currentMonth = 11;
+
+            currentYear--;
+
+        }
+
+
+        renderCalendar();
+
+    });
+
+}
+
+
+
+/* =====================================================
+   NEXT MONTH BUTTON
+===================================================== */
+
+if (nextMonth) {
+
+    nextMonth.addEventListener("click", function () {
+
+        currentMonth++;
+
+
+        if (currentMonth > 11) {
+
+            currentMonth = 0;
+
+            currentYear++;
+
+        }
+
+
+        renderCalendar();
+
+    });
+
+}
+
+
+
+/* =====================================================
+   SHOW CURRENT CALENDAR WHEN PAGE LOADS
+===================================================== */
+
+renderCalendar();
+
+
+setInterval(function () {
+
+    const now = new Date();
+
+    // If the real date has changed
+    if (
+        now.getDate() !== today.getDate() ||
+        now.getMonth() !== today.getMonth() ||
+        now.getFullYear() !== today.getFullYear()
+    ) {
+
+        // Update today's stored date
+        today.setTime(now.getTime());
+
+        // Return calendar to the current real month
+        currentMonth = now.getMonth();
+        currentYear = now.getFullYear();
+
+        // Redraw calendar
+        renderCalendar();
+
+    }
+
+}, 60000);
+
+
+
+
+
+/* =====================================================
+   PRIMARY TEACHERS POPOVER
+===================================================== */
+
+document.addEventListener("click", function (event) {
+
+    const primaryTeacherCard =
+        event.target.closest("#primaryTeacherCard");
+
+    const primaryTeachersPopover =
+        document.getElementById("primaryTeachersPopover");
+
+
+    /* =================================================
+       CLOSE BUTTON
+    ================================================= */
+
+    const closeButton =
+        event.target.closest("#closePrimaryTeachersPopover");
+
+
+    if (closeButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (primaryTeachersPopover) {
+
+            primaryTeachersPopover.classList.remove("show");
+
+        }
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK INSIDE POPOVER
+    ================================================= */
+
+    if (
+        event.target.closest("#primaryTeachersPopover")
+    ) {
+
+        event.stopPropagation();
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK PRIMARY TEACHER CARD
+    ================================================= */
+
+    if (primaryTeacherCard && primaryTeachersPopover) {
+
+        event.stopPropagation();
+
+        primaryTeachersPopover.classList.toggle("show");
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK ANYWHERE OUTSIDE
+    ================================================= */
+
+    if (primaryTeachersPopover) {
+
+        primaryTeachersPopover.classList.remove("show");
+
+    }
+
+});
+
+
+
+/* =====================================================
+   SECONDARY TEACHERS POPOVER
+===================================================== */
+
+document.addEventListener("click", function (event) {
+
+    const secondaryTeacherCard =
+        event.target.closest("#secondaryTeacherCard");
+
+    const secondaryTeachersPopover =
+        document.getElementById("secondaryTeachersPopover");
+
+
+    /* =================================================
+       CLOSE BUTTON
+    ================================================= */
+
+    const closeButton =
+        event.target.closest("#closeSecondaryTeachersPopover");
+
+
+    if (closeButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (secondaryTeachersPopover) {
+
+            secondaryTeachersPopover.classList.remove("show");
+
+        }
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK INSIDE POPOVER
+    ================================================= */
+
+    if (
+        event.target.closest("#secondaryTeachersPopover")
+    ) {
+
+        event.stopPropagation();
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK SECONDARY TEACHER CARD
+    ================================================= */
+
+    if (secondaryTeacherCard && secondaryTeachersPopover) {
+
+        event.stopPropagation();
+
+        secondaryTeachersPopover.classList.toggle("show");
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CLICK ANYWHERE OUTSIDE
+    ================================================= */
+
+    if (secondaryTeachersPopover) {
+
+        secondaryTeachersPopover.classList.remove("show");
+
+    }
+
+});
+
+
+/* =====================================================
+   DEPARTMENT POPOVER
+===================================================== */
+
+document.addEventListener("click", function (event) {
+
+    const departmentCard =
+        event.target.closest(".department");
+
+    const departmentPopover =
+        document.querySelector(".department-popover");
+
+    const closeButton =
+        event.target.closest(".close-department-popover");
+
+
+    /* CLOSE BUTTON */
+
+    if (closeButton) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (departmentPopover) {
+            departmentPopover.classList.remove("show");
+        }
+
+        return;
+    }
+
+
+    /* CLICK INSIDE POPOVER */
+
+    if (event.target.closest(".department-popover")) {
+
+        event.stopPropagation();
+
+        return;
+    }
+
+
+    /* CLICK DEPARTMENT CARD */
+
+    if (departmentCard && departmentPopover) {
+
+        event.stopPropagation();
+
+        departmentPopover.classList.toggle("show");
+
+        return;
+    }
+
+
+    /* CLICK ANYWHERE OUTSIDE */
+
+    if (departmentPopover) {
+
+        departmentPopover.classList.remove("show");
+
+    }
+
+});

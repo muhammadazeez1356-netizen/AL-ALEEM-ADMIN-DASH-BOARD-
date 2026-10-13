@@ -186,7 +186,7 @@
 
             <section class="stats-container">
 
-                <div class="stat-card">
+                <div class="stat-card student-stat-card" id="studentStatCard">
 
                     <div class="stat-icon blue">
                         <i class="fa-solid fa-user-graduate"></i>
@@ -196,22 +196,70 @@
 
                         <span>Total Students</span>
 
-                        <h2>1,248</h2>
+                        <h2>334</h2>
 
                         <small class="positive">
 
                             <i class="fa-solid fa-arrow-up"></i>
 
-                            12% this term
+                            90% this term
 
                         </small>
+
+                    </div>
+
+
+                    <!-- STUDENT POPOVER -->
+                    <div class="student-popover" id="studentPopover">
+
+                        <div class="student-popover-header">
+
+                            <h3>Students</h3>
+
+                            <button type="button" id="closeStudentPopover">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="student-school-list">
+
+                            <div class="student-school">
+
+                                <div class="student-school-icon">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+
+                                <div class="student-school-info">
+                                    <span>Primary School</span>
+                                    <strong>198</strong>
+                                </div>
+
+                            </div>
+
+
+                            <div class="student-school">
+
+                                <div class="student-school-icon">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+
+                                <div class="student-school-info">
+                                    <span>Secondary School</span>
+                                    <strong>141</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <div class="stat-card">
+                <div class="stat-card teacher-stat-card" id="teacherStatCard">
 
                     <div class="stat-icon green">
                         <i class="fa-solid fa-chalkboard-user"></i>
@@ -221,7 +269,7 @@
 
                         <span>Total Teachers</span>
 
-                        <h2>86</h2>
+                        <h2>28</h2>
 
                         <small class="positive">
 
@@ -233,10 +281,60 @@
 
                     </div>
 
+
+                    <!-- TEACHER POPOVER -->
+                    <div class="teacher-popover" id="teacherPopover">
+
+                        <div class="teacher-popover-header">
+
+                            <h3>Teachers</h3>
+
+                            <button type="button" id="closeTeacherPopover">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="teacher-school-list">
+
+                            <!-- PRIMARY SCHOOL -->
+                            <div class="teacher-school">
+
+                                <div class="teacher-school-icon">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+
+                                <div class="teacher-school-info">
+                                    <span>Primary School</span>
+                                    <strong>15</strong>
+                                </div>
+
+                            </div>
+
+
+                            <!-- SECONDARY SCHOOL -->
+                            <div class="teacher-school">
+
+                                <div class="teacher-school-icon">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+
+                                <div class="teacher-school-info">
+                                    <span>Secondary School</span>
+                                    <strong>13</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="stat-card">
+                <div class="stat-card course-stat-card" id="courseStatCard">
 
                     <div class="stat-icon purple">
                         <i class="fa-solid fa-book-open"></i>
@@ -244,13 +342,120 @@
 
                     <div class="stat-information">
 
-                        <span>Courses</span>
+                        <span>Total Courses</span>
 
-                        <h2>42</h2>
+                        <h2>49</h2>
 
                         <small class="purple-text">
                             Active courses
                         </small>
+
+                    </div>
+
+
+                    <!-- COURSE POPOVER -->
+                    <div class="course-popover" id="coursePopover">
+
+                        <div class="course-popover-header">
+
+                            <h3>Courses</h3>
+
+                            <button type="button" id="closeCoursePopover">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="course-school-list">
+
+
+                            <!-- ==============================
+                 PRIMARY SCHOOL
+            =============================== -->
+
+                            <div class="course-school course-school-main">
+
+                                <div class="course-school-icon">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+
+                                <div class="course-school-info">
+                                    <span>Primary School</span>
+                                    <strong>26</strong>
+                                </div>
+
+                            </div>
+
+
+                            <!-- PRIMARY BREAKDOWN -->
+
+                            <div class="course-breakdown">
+
+                                <div class="course-breakdown-item">
+
+                                    <span>Nursery</span>
+
+                                    <strong>13</strong>
+
+                                </div>
+
+
+                                <div class="course-breakdown-item">
+
+                                    <span>Primary 1 - 5</span>
+
+                                    <strong>12</strong>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- ==============================
+                 SECONDARY SCHOOL
+            =============================== -->
+
+                            <div class="course-school course-school-main">
+
+                                <div class="course-school-icon">
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+
+                                <div class="course-school-info">
+                                    <span>Secondary School</span>
+                                    <strong>24</strong>
+                                </div>
+
+                            </div>
+
+
+                            <!-- SECONDARY BREAKDOWN -->
+
+                            <div class="course-breakdown">
+
+                                <div class="course-breakdown-item">
+
+                                    <span>JSS 1 - 3</span>
+
+                                    <strong>12</strong>
+
+                                </div>
+
+
+                                <div class="course-breakdown-item">
+
+                                    <span>SSS 1 - 3</span>
+
+                                    <strong>12</strong>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
 
                     </div>
 
@@ -267,7 +472,7 @@
 
                         <span>Examinations</span>
 
-                        <h2>8</h2>
+                        <h2>0</h2>
 
                         <small class="orange-text">
                             This term
@@ -294,7 +499,7 @@
 
                             <i class="fa-solid fa-arrow-up"></i>
 
-                            3.5% this month
+                            30.5% this month
 
                         </small>
 
@@ -318,9 +523,7 @@
 
                         <div>
 
-                            <h3>Recent Results</h3>
-
-                            <p>Latest academic results</p>
+                            <h3>Last Term Results</h3>
 
                         </div>
 
@@ -378,11 +581,11 @@
 
                                     <td>Mathematics</td>
 
-                                    <td>92/100</td>
+                                    <td>72/100</td>
 
                                     <td>
                                         <span class="grade excellent">
-                                            A+
+                                            A
                                         </span>
                                     </td>
 
@@ -411,7 +614,7 @@
 
                                     <td>English</td>
 
-                                    <td>88/100</td>
+                                    <td>78/100</td>
 
                                     <td>
                                         <span class="grade good">
@@ -444,7 +647,7 @@
 
                                     <td>Basic Science</td>
 
-                                    <td>84/100</td>
+                                    <td>64/100</td>
 
                                     <td>
                                         <span class="grade good">
@@ -510,7 +713,7 @@
 
                                     <td>Computer Studies</td>
 
-                                    <td>91/100</td>
+                                    <td>81/100</td>
 
                                     <td>
                                         <span class="grade excellent">
@@ -648,252 +851,197 @@
             <section class="bottom-grid">
 
 
-                <!-- ACADEMIC CALENDAR -->
+    <!-- ACADEMIC CALENDAR -->
 
-                <div class="dashboard-card calendar-card">
+    <div class="dashboard-card calendar-card">
 
-                    <div class="card-heading">
+        <div class="card-heading">
 
-                        <div>
+            <div>
 
-                            <h3>
-                                Academic Calendar
-                            </h3>
+                <h3>
+                    Academic Calendar
+                </h3>
 
-                            <p>
-                                May 2024
-                            </p>
+                <p>
+                    May 2024
+                </p>
 
-                        </div>
+            </div>
 
-                        <a href="#">
-                            View Calendar
-                        </a>
+            <a href="#">
+                View Calendar
+            </a>
 
-                    </div>
-
-
-                    <div class="calendar">
+        </div>
 
 
-                        <div class="calendar-header">
-
-                            <button id="previousMonth">
-
-                                <i class="fa-solid fa-chevron-left"></i>
-
-                            </button>
+        <div class="calendar">
 
 
-                            <strong id="calendarMonth">
-                                May 2024
-                            </strong>
+            <div class="calendar-header">
+
+                <button id="previousMonth">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
 
 
-                            <button id="nextMonth">
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </button>
-
-                        </div>
+                <strong id="calendarMonth">
+                    May 2024
+                </strong>
 
 
-                        <div class="calendar-days">
+                <button id="nextMonth">
 
-                            <span>Mon</span>
-                            <span>Tue</span>
-                            <span>Wed</span>
-                            <span>Thu</span>
-                            <span>Fri</span>
-                            <span>Sat</span>
-                            <span>Sun</span>
+                    <i class="fa-solid fa-chevron-right"></i>
 
-                        </div>
+                </button>
+
+            </div>
 
 
-                        <div class="calendar-dates">
+            <div class="calendar-days">
 
-                            <span>29</span>
-                            <span>30</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
 
-                            <span>1</span>
-                            <span>2</span>
-                            <span>3</span>
-                            <span>4</span>
+            </div>
 
-                            <span class="holiday">
-                                5
-                            </span>
 
-                            <span>6</span>
-                            <span>7</span>
-                            <span>8</span>
-                            <span>9</span>
-                            <span>10</span>
-                            <span>11</span>
+            <!-- JAVASCRIPT WILL AUTOMATICALLY ADD THE DATES HERE -->
 
-                            <span class="holiday">
-                                12
-                            </span>
+            <div class="calendar-dates">
 
-                            <span>13</span>
-                            <span>14</span>
+            </div>
 
-                            <span class="today">
-                                15
-                            </span>
 
-                            <span>16</span>
-                            <span>17</span>
-                            <span>18</span>
+        </div>
 
-                            <span class="holiday">
-                                19
-                            </span>
+    </div>
 
-                            <span>20</span>
-                            <span>21</span>
-                            <span>22</span>
-                            <span>23</span>
-                            <span>24</span>
-                            <span>25</span>
 
-                            <span class="holiday">
-                                26
-                            </span>
+    <!-- PERFORMANCE OVERVIEW -->
 
-                            <span>27</span>
-                            <span>28</span>
-                            <span>29</span>
-                            <span>30</span>
-                            <span>31</span>
+    <div class="dashboard-card performance-card">
 
-                            <span></span>
-                            <span></span>
+        <div class="card-heading">
 
-                        </div>
+            <div>
 
-                    </div>
+                <h3>
+                    Performance Overview
+                </h3>
+
+                <p>
+                    Overall school performance
+                </p>
+
+            </div>
+
+            <a href="#">
+                View Details
+            </a>
+
+        </div>
+
+
+        <div class="performance-content">
+
+
+            <div class="donut-chart">
+
+                <div class="donut-inner">
+
+                    <strong>
+                        84%
+                    </strong>
+
+                    <span>
+                        Overall<br>
+                        Performance
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-list">
+
+
+                <div>
+
+                    <span class="performance-dot excellent-dot"></span>
+
+                    <p>
+                        Excellent
+                    </p>
+
+                    <strong>
+                        60%
+                    </strong>
 
                 </div>
 
 
-                <!-- PERFORMANCE OVERVIEW -->
+                <div>
 
-                <div class="dashboard-card performance-card">
+                    <span class="performance-dot good-dot"></span>
 
-                    <div class="card-heading">
+                    <p>
+                        Good
+                    </p>
 
-                        <div>
-
-                            <h3>
-                                Performance Overview
-                            </h3>
-
-                            <p>
-                                Overall school performance
-                            </p>
-
-                        </div>
-
-                        <a href="#">
-                            View Details
-                        </a>
-
-                    </div>
-
-
-                    <div class="performance-content">
-
-
-                        <div class="donut-chart">
-
-                            <div class="donut-inner">
-
-                                <strong>
-                                    84%
-                                </strong>
-
-                                <span>
-                                    Overall<br>
-                                    Performance
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="performance-list">
-
-
-                            <div>
-
-                                <span class="performance-dot excellent-dot"></span>
-
-                                <p>
-                                    Excellent
-                                </p>
-
-                                <strong>
-                                    60%
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="performance-dot good-dot"></span>
-
-                                <p>
-                                    Good
-                                </p>
-
-                                <strong>
-                                    20%
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="performance-dot average-dot"></span>
-
-                                <p>
-                                    Average
-                                </p>
-
-                                <strong>
-                                    12%
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span class="performance-dot poor-dot"></span>
-
-                                <p>
-                                    Needs Improvement
-                                </p>
-
-                                <strong>
-                                    8%
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <strong>
+                        20%
+                    </strong>
 
                 </div>
 
-            </section>
+
+                <div>
+
+                    <span class="performance-dot average-dot"></span>
+
+                    <p>
+                        Average
+                    </p>
+
+                    <strong>
+                        12%
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="performance-dot poor-dot"></span>
+
+                    <p>
+                        Needs Improvement
+                    </p>
+
+                    <strong>
+                        8%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
             <!-- ================= FOOTER ================= -->

@@ -457,6 +457,590 @@
     margin-bottom: 24px;
 }
 
+/* =====================================================
+   TOTAL STUDENTS CLICKABLE CARD
+===================================================== */
+
+.student-stat-card {
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   STUDENT POPOVER
+===================================================== */
+
+.student-popover {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+
+    width: 290px;
+    padding: 18px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+
+    display: none;
+}
+
+
+/* Show popover */
+
+.student-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   POPOVER HEADER
+===================================================== */
+
+.student-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.student-popover-header h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #034522;
+}
+
+
+.student-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    outline: none;
+
+    background: #f2f2f2;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.student-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   SCHOOL LIST
+===================================================== */
+
+.student-school-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.student-school {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* School icon */
+
+.student-school-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e5f4ec;
+    color: #075b35;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+
+/* School information */
+
+.student-school-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+.student-school-info span {
+    font-size: 13px;
+
+    color: #666666;
+}
+
+
+.student-school-info strong {
+    font-size: 21px;
+
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .student-popover {
+        width: 260px;
+        left: 0;
+    }
+
+}
+
+
+/* =====================================================
+   TOTAL TEACHERS CLICKABLE CARD
+===================================================== */
+
+.teacher-stat-card {
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   TEACHER POPOVER
+===================================================== */
+
+.teacher-popover {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+
+    width: 290px;
+    padding: 18px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+
+    display: none;
+}
+
+
+/* SHOW POPOVER */
+
+.teacher-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   POPOVER HEADER
+===================================================== */
+
+.teacher-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.teacher-popover-header h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #034522;
+}
+
+
+.teacher-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    outline: none;
+
+    background: #f2f2f2;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.teacher-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   TEACHER SCHOOL LIST
+===================================================== */
+
+.teacher-school-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.teacher-school {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* TEACHER SCHOOL ICON */
+
+.teacher-school-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e5f4ec;
+    color: #075b35;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+
+/* TEACHER INFORMATION */
+
+.teacher-school-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+.teacher-school-info span {
+    font-size: 13px;
+    color: #666666;
+}
+
+
+.teacher-school-info strong {
+    font-size: 21px;
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .teacher-popover {
+        width: 260px;
+        left: 0;
+    }
+
+}
+
+
+
+
+
+/* =====================================================
+   TOTAL COURSES CLICKABLE CARD
+===================================================== */
+
+.course-stat-card {
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   COURSE POPOVER
+===================================================== */
+
+.course-popover {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+
+    width: 290px;
+    padding: 18px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+
+    display: none;
+}
+
+
+.course-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   POPOVER HEADER
+===================================================== */
+
+.course-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.course-popover-header h3 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #034522;
+}
+
+
+.course-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    outline: none;
+
+    background: #f2f2f2;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.course-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   COURSE SCHOOL LIST
+===================================================== */
+
+.course-school-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.course-school {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* COURSE SCHOOL ICON */
+
+.course-school-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e5f4ec;
+    color: #075b35;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+
+/* COURSE INFORMATION */
+
+.course-school-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+
+.course-school-info span {
+    font-size: 13px;
+    color: #666666;
+}
+
+
+.course-school-info strong {
+    font-size: 21px;
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .course-popover {
+        width: 260px;
+        left: 0;
+    }
+
+}
+
+/* =====================================================
+   COURSE SCHOOL MAIN
+===================================================== */
+
+.course-school-main {
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   COURSE BREAKDOWN
+===================================================== */
+
+.course-breakdown {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: -3px;
+    margin-bottom: 10px;
+
+    padding-left: 15px;
+}
+
+
+/* INDIVIDUAL BREAKDOWN */
+
+.course-breakdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 9px 12px;
+
+    background: #f8f8f8;
+
+    border-left: 3px solid #075b35;
+
+    border-radius: 6px;
+}
+
+
+.course-breakdown-item span {
+    font-size: 13px;
+    color: #555555;
+}
+
+
+.course-breakdown-item strong {
+    font-size: 15px;
+    color: #034522;
+}
+
+
+
+
 
 .stat-card {
     background: #ffffff;
@@ -1373,6 +1957,530 @@ footer i {
 
 
 
+/* =====================================================
+   PRIMARY TEACHERS POPOVER
+===================================================== */
+
+#primaryTeacherCard {
+    position: relative;
+    cursor: pointer;
+}
+
+
+.primary-teachers-popover {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    left: 0;
+
+    width: 280px;
+
+    padding: 16px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+
+    z-index: 9999;
+
+    display: none;
+}
+
+
+.primary-teachers-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.primary-teachers-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.primary-teachers-popover-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+
+    color: #034522;
+}
+
+
+.primary-teachers-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333333;
+
+    cursor: pointer;
+}
+
+
+.primary-teachers-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.primary-teachers-popover-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.primary-teachers-popover-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.primary-teachers-popover-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #e5f4ec;
+
+    color: #075b35;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.primary-teachers-popover-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.primary-teachers-popover-info span {
+    font-size: 13px;
+
+    color: #666666;
+}
+
+
+.primary-teachers-popover-info strong {
+    font-size: 21px;
+
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .primary-teachers-popover {
+        width: 250px;
+    }
+
+}
+
+
+
+/* =====================================================
+   SECONDARY TEACHERS POPOVER
+===================================================== */
+
+#secondaryTeacherCard {
+    position: relative;
+    cursor: pointer;
+}
+
+
+.secondary-teachers-popover {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    left: 0;
+
+    width: 280px;
+
+    padding: 16px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+
+    z-index: 9999;
+
+    display: none;
+}
+
+
+.secondary-teachers-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.secondary-teachers-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.secondary-teachers-popover-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+
+    color: #034522;
+}
+
+
+.secondary-teachers-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333333;
+
+    cursor: pointer;
+}
+
+
+.secondary-teachers-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.secondary-teachers-popover-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.secondary-teachers-popover-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.secondary-teachers-popover-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #e5f4ec;
+
+    color: #075b35;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.secondary-teachers-popover-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.secondary-teachers-popover-info span {
+    font-size: 13px;
+
+    color: #666666;
+}
+
+
+.secondary-teachers-popover-info strong {
+    font-size: 21px;
+
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .secondary-teachers-popover {
+        width: 250px;
+    }
+
+}
+
+
+/* =====================================================
+   DEPARTMENT POPOVER
+===================================================== */
+
+.department {
+    position: relative;
+    cursor: pointer;
+}
+
+
+.department-popover {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 300px;
+
+    padding: 16px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+
+    z-index: 9999;
+
+    display: none;
+}
+
+
+.department-popover.show {
+    display: block;
+}
+
+
+/* =====================================================
+   POPOVER HEADER
+===================================================== */
+
+.department-popover-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.department-popover-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+
+    color: #034522;
+}
+
+
+.department-popover-header button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: #f1f1f1;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+
+.department-popover-header button:hover {
+    background: #e5e5e5;
+}
+
+
+/* =====================================================
+   DEPARTMENT LIST
+===================================================== */
+
+.department-popover-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.department-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    background: #f5f8f6;
+
+    border-radius: 9px;
+}
+
+
+/* ICON */
+
+.department-item-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #e5f4ec;
+
+    color: #075b35;
+
+    border-radius: 9px;
+
+    font-size: 17px;
+}
+
+
+/* TEXT */
+
+.department-item-info {
+    display: flex;
+    align-items: center;
+}
+
+
+.department-item-info span {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #034522;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .department-popover {
+        width: 270px;
+    }
+
+}
+
+
 .male-teacher {
     border: 1px solid #0864c687;
     height: 20vh;
@@ -2158,6 +3266,167 @@ td {
     gap: 10px;
 }
 
+
+/* =====================================================
+   PRIMARY SCHOOL COURSE SECTION
+===================================================== */
+
+.primary-course-section {
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+
+/* SECTION TITLE */
+
+.course-section-title {
+    margin-bottom: 20px;
+}
+
+.course-section-title h2 {
+    color: #075b35;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.course-section-title p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   COURSE GRID
+===================================================== */
+
+.primary-course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+
+/* =====================================================
+   COURSE CARD
+===================================================== */
+
+.course-class-card {
+    background: #ffffff;
+
+    border: 1px solid #20d989;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    min-height: 360px;
+}
+
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.course-class-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px;
+
+    background: #c8e3d8;
+
+    color: #087c4a;
+}
+
+
+.course-class-header i {
+    font-size: 34px;
+}
+
+
+.course-class-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #087347;
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+.course-subjects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 25px;
+    row-gap: 10px;
+
+    padding: 18px 16px 25px;
+}
+
+
+.course-subjects span {
+    color: #000000;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1.25;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .primary-course-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .primary-course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-class-card {
+        min-height: auto;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .course-subjects {
+        grid-template-columns: 1fr;
+    }
+
+    .course-class-header h2 {
+        font-size: 19px;
+    }
+
+}
+
+
 .jss1-courses {
     grid-column: 1 / span 1;
     border: 1px solid #03f789db;
@@ -2690,6 +3959,80 @@ td {
     background: #f8fbfc;
     margin-top: -2rem;
 }
+
+
+.student-classes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.class-card {
+    background: #ffffff;
+    border: 1px solid #cfe3e8;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.class-title {
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    background: #eef8f4;
+    color: #08794f;
+}
+
+.class-title i {
+    font-size: 32px;
+}
+
+.class-title h2 {
+    font-size: 25px;
+}
+
+.student-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.student-box {
+    padding: 20px 10px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.student-box i {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.student-box p {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.student-box h2 {
+    font-size: 27px;
+}
+
+.student-box.male {
+    background: #f0f7fc;
+    color: #0878bd;
+}
+
+.student-box.female {
+    background: #f1faf6;
+    color: #078b58;
+}
+
+.student-box.total {
+    background: #f1f8f8;
+    color: #007776;
+}
+
 
 .students-page {
     width: 100%;
