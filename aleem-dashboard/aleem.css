@@ -2840,7 +2840,7 @@ td {
 /* =========================================================
    RESPONSIVENESS ONLY
    ========================================================= */
-   
+
 
 
 /* Large tablets and small laptops */
@@ -4041,6 +4041,254 @@ td {
 }
 
 
+
+/* =========================================================
+   RESPONSIVENESS ONLY
+========================================================= */
+
+
+/* =========================================================
+   LARGE SCREENS - 1200px AND ABOVE
+========================================================= */
+
+@media (min-width: 1200px) {
+
+    .student-classes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP / SMALL DESKTOP - 992px TO 1199px
+========================================================= */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .student-classes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .class-title {
+        padding: 20px;
+    }
+
+    .class-title i {
+        font-size: 29px;
+    }
+
+    .class-title h2 {
+        font-size: 23px;
+    }
+
+    .student-details {
+        gap: 12px;
+        padding: 18px;
+    }
+
+    .student-box {
+        padding: 18px 8px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET - 768px TO 991px
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .student-classes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .class-title {
+        padding: 18px;
+        gap: 13px;
+    }
+
+    .class-title i {
+        font-size: 27px;
+    }
+
+    .class-title h2 {
+        font-size: 21px;
+    }
+
+    .student-details {
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .student-box {
+        padding: 16px 6px;
+    }
+
+    .student-box i {
+        font-size: 26px;
+    }
+
+    .student-box p {
+        font-size: 15px;
+    }
+
+    .student-box h2 {
+        font-size: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   LARGE MOBILE - 576px TO 767px
+========================================================= */
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+    .students-page {
+        width: 100%;
+    }
+
+    .student-classes {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .class-title {
+        padding: 18px;
+        gap: 13px;
+    }
+
+    .class-title i {
+        font-size: 27px;
+    }
+
+    .class-title h2 {
+        font-size: 22px;
+    }
+
+    .student-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 17px;
+    }
+
+    .student-box {
+        padding: 17px 8px;
+    }
+
+    .student-box i {
+        font-size: 27px;
+    }
+
+    .student-box p {
+        font-size: 16px;
+    }
+
+    .student-box h2 {
+        font-size: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE - BELOW 575px
+========================================================= */
+
+@media (max-width: 575px) {
+
+    .students-page {
+        width: 100%;
+    }
+
+    .student-classes {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .class-card {
+        border-radius: 12px;
+    }
+
+    .class-title {
+        padding: 15px;
+        gap: 11px;
+    }
+
+    .class-title i {
+        font-size: 24px;
+    }
+
+    .class-title h2 {
+        font-size: 19px;
+    }
+
+    .student-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .student-box {
+        padding: 14px 5px;
+        border-radius: 9px;
+    }
+
+    .student-box i {
+        font-size: 23px;
+        margin-bottom: 7px;
+    }
+
+    .student-box p {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .student-box h2 {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .student-details {
+        gap: 6px;
+        padding: 10px;
+    }
+
+    .student-box {
+        padding: 12px 3px;
+    }
+
+    .student-box i {
+        font-size: 21px;
+    }
+
+    .student-box p {
+        font-size: 12px;
+    }
+
+    .student-box h2 {
+        font-size: 19px;
+    }
+
+    .class-title h2 {
+        font-size: 18px;
+    }
+
+}
+
 /* ================================
    STUDENTS HERO
 ================================ */
@@ -4918,19 +5166,19 @@ td {
     padding: 10px;
 }
 
-.school1 .fa-user{
+.school1 .fa-user {
     color: #fff;
     font-size: 30px;
 }
 
-.school h4{
+.school h4 {
     font-size: 20px;
 }
 
-.school1:hover{
+.school1:hover {
     background-color: #00583fd5;
     color: #fff;
-        transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
 }
 
 
@@ -4947,19 +5195,19 @@ td {
     padding: 10px;
 }
 
-.school2 .fa-user{
+.school2 .fa-user {
     color: #fff;
     font-size: 30px;
 }
 
-.schoo2 h4{
+.schoo2 h4 {
     font-size: 20px;
 }
 
-.school2:hover{
+.school2:hover {
     background-color: #00583fd5;
     color: #fff;
-        transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
 }
 
 
@@ -4975,16 +5223,16 @@ td {
     padding: 10px;
 }
 
-.school3 .fa-graduation-cap{
+.school3 .fa-graduation-cap {
     color: #fff;
     font-size: 30px;
 }
 
-.schoo3 h4{
+.schoo3 h4 {
     font-size: 20px;
 }
 
-.school3:hover{
+.school3:hover {
     background-color: #00583fd5;
     color: #fff;
     transition: 1s ease-in-out;
@@ -4992,20 +5240,20 @@ td {
 
 
 
-.attendance{
+.attendance {
     background-color: #00000010;
     width: 100%;
     height: 100vh;
     border-radius: 20px;
 }
 
-.attendance tr th{
+.attendance tr th {
     background-color: #006b4d67;
     color: #000;
     border-radius: 10px 10px 0 0;
 }
 
-.td1-text4{
+.td1-text4 {
     background-color: #ff000033;
     color: red;
     padding: 6px;
@@ -6608,7 +6856,7 @@ td {
     margin-bottom: 0;
 }
 
-.settings-menu > i {
+.settings-menu>i {
     width: 22px;
     min-width: 22px;
     font-size: 18px;
@@ -6927,11 +7175,11 @@ td {
     transition: 0.2s ease;
 }
 
-.toggle input:checked + .toggle-slider {
+.toggle input:checked+.toggle-slider {
     background: #27875b;
 }
 
-.toggle input:checked + .toggle-slider::before {
+.toggle input:checked+.toggle-slider::before {
     transform: translateX(21px);
 }
 
@@ -7010,7 +7258,7 @@ td {
     padding-bottom: 0;
 }
 
-.system-option > div {
+.system-option>div {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -7084,7 +7332,7 @@ td {
     background: #f0f8f4;
 }
 
-.settings-menu > i:first-child {
+.settings-menu>i:first-child {
     width: 22px;
     min-width: 22px;
 
@@ -7095,7 +7343,7 @@ td {
     text-align: center;
 }
 
-.settings-menu > div {
+.settings-menu>div {
     flex: 1;
 
     display: flex;
@@ -7122,7 +7370,7 @@ td {
     background: #258c61;
 }
 
-.settings-menu.active > i:first-child,
+.settings-menu.active>i:first-child,
 .settings-menu.active strong,
 .settings-menu.active span {
     color: #ffffff;
@@ -7503,8 +7751,8 @@ td {
     border-bottom: none;
 }
 
-.notification-setting > div,
-.system-setting > div {
+.notification-setting>div,
+.system-setting>div {
     flex: 1;
 }
 
@@ -7595,11 +7843,11 @@ td {
     transition: 0.25s ease;
 }
 
-.switch input:checked + .slider {
+.switch input:checked+.slider {
     background: #087d4c;
 }
 
-.switch input:checked + .slider::before {
+.switch input:checked+.slider::before {
     transform: translateX(20px);
 }
 
@@ -7686,7 +7934,7 @@ td {
     border-bottom: none;
 }
 
-.security-item > div {
+.security-item>div {
     flex: 1;
 }
 
