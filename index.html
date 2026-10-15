@@ -3,11 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-sign-login</title>
+
+    <title>Admin Login</title>
+
     <link rel="shortcut icon" href="favicon.ico" type="image/image/logo">
+
     <link rel="icon" href="/image/alaleem.jpg">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,12 +27,19 @@
         <div class="splash-content">
 
             <div class="splash-logo">
-                <img src="image/al-aleem-image.png" alt="Al-Aleem Model College Logo">
+
+                <img src="image/al-aleem-image.png"
+                    alt="Al-Aleem Model College Logo">
+
             </div>
 
-            <h1>Al-Aleem Group of School College</h1>
+            <h1>
+                Al-Aleem Group of School College
+            </h1>
 
-            <p>Learning to Serve</p>
+            <p>
+                Learning to Serve
+            </p>
 
             <div class="loader"></div>
 
@@ -40,15 +54,21 @@
 
         <div class="auth-container">
 
-            <!-- LEFT SIDE -->
+
+            <!-- ================= LEFT SIDE ================= -->
 
             <div class="welcome-section">
 
                 <div class="welcome-content">
 
-                    <img src="image/al-aleem-image.png" alt="Al-Aleem Model College Logo" class="school-logo">
+                    <img src="image/al-aleem-image.png"
+                        alt="Al-Aleem Model College Logo"
+                        class="school-logo">
 
-                    <h1>Al-Aleem<br>Groupof school</h1>
+                    <h1>
+                        Al-Aleem<br>
+                        Groupof school
+                    </h1>
 
                     <p class="motto">
                         Learning to Serve
@@ -56,7 +76,7 @@
 
                     <p class="welcome-text">
                         Welcome to Al-Aleem group of school.
-                        Create your account as an Admin to continue.
+                        Login as an Admin to continue.
                     </p>
 
                 </div>
@@ -64,7 +84,7 @@
             </div>
 
 
-            <!-- RIGHT SIDE / SIGNUP -->
+            <!-- ================= RIGHT SIDE / LOGIN ================= -->
 
             <div class="form-section">
 
@@ -72,118 +92,143 @@
 
                     <div class="form-title">
 
-                        <h2>Create Account</h2>
+                        <h2>
+                            Admin Login
+                        </h2>
 
-                        <p>
-                            Sign up to get started
+                        <p id="loginDescription">
+                            Enter your email address to continue
                         </p>
 
                     </div>
 
 
-                    <!-- SIGNUP FORM -->
+                    <!-- ================= LOGIN FORM ================= -->
 
-                    <form id="signupForm">
-
-                        <div class="input-group">
-
-                            <label for="signupName">
-                                Full Name
-                            </label>
-
-                            <input type="text" id="signupName" placeholder="Enter your full name" autocomplete="name"
-                                required>
-
-                        </div>
-
+                    <form id="loginForm">
 
                         <div class="input-group">
 
-                            <label for="signupEmail">
+                            <label for="loginEmail">
                                 Email Address
                             </label>
 
-                            <input type="email" id="signupEmail" placeholder="Enter your email" autocomplete="email"
-                                required>
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
+                            >
 
                         </div>
 
 
-                        <div class="input-group">
+                        <!-- ================= FIRST SEND CODE ================= -->
 
-                            <label for="signupPhone">
-                                Phone Number
-                            </label>
-
-                            <input type="tel" id="signupPhone" placeholder="Enter your phone number" autocomplete="tel"
-                                required>
-
-                        </div>
-
-
-                        <div class="input-group">
-
-                            <label for="signupPassword">
-                                Password
-                            </label>
-
-                            <div class="password-box">
-
-                                <input type="password" id="signupPassword" placeholder="Create a password"
-                                    autocomplete="new-password" required>
-
-                                <button type="button" class="password-toggle" data-target="signupPassword">
-                                    <i class="fa-solid fa-eye-slash eye"></i>
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="input-group">
-
-                            <label for="confirmPassword">
-                                Confirm Password
-                            </label>
-
-                            <div class="password-box">
-
-                                <input type="password" id="confirmPassword" placeholder="Confirm your password"
-                                    autocomplete="new-password" required>
-
-                                <button type="button" class="password-toggle" data-target="confirmPassword">
-                                    <i class="fa-solid fa-eye-slash eye"></i>
-                                </button>
-
-                            </div>
-
-                        </div>
-
-
-                        <button type="submit" class="submit-btn">
-
-                            Create Account
-
+                        <button
+                            type="button"
+                            class="send-code-btn"
+                            id="sendCodeBtn"
+                        >
+                            Send Code
                         </button>
 
-                    </form>
+
+                        <!-- ================= PASSWORD AREA ================= -->
+
+                        <div class="password-area" id="passwordArea">
+
+                            <div class="input-group">
+
+                                <label for="loginPassword">
+                                    Password
+                                </label>
+
+                                <div class="password-box">
+
+                                    <input
+                                        type="password"
+                                        id="loginPassword"
+                                        placeholder="Enter your password"
+                                        autocomplete="current-password"
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="password-toggle"
+                                        data-target="loginPassword"
+                                    >
+
+                                        <i class="fa-solid fa-eye-slash eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
 
-                    <!-- LOGIN LINK -->
+                            <!-- ================= RESEND FIRST CODE ================= -->
 
-                    <div class="switch-form">
+                            <div
+                                class="resend-code-box"
+                                id="resendCodeBox"
+                            >
 
-                        <p>
-                            Already have an account?
+                                <p>
+                                    Didn't write down the code?
+                                </p>
 
-                            <button type="button" id="openLoginBtn">
+                                <button
+                                    type="button"
+                                    id="resendCodeBtn"
+                                >
+                                    Resend Code
+                                </button>
+
+                            </div>
+
+
+                            <!-- ================= LOGIN OPTIONS ================= -->
+
+                            <div class="login-options">
+
+                                <label class="remember-me">
+
+                                    <input
+                                        type="checkbox"
+                                        id="rememberMe"
+                                    >
+
+                                    <span>
+                                        Remember me
+                                    </span>
+
+                                </label>
+
+
+                                <button
+                                    type="button"
+                                    class="forgot-password"
+                                    id="forgotPasswordBtn"
+                                >
+                                    Forgot password?
+                                </button>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="submit-btn login-btn"
+                            >
                                 Login
                             </button>
 
-                        </p>
+                        </div>
 
-                    </div>
+                    </form>
 
                 </div>
 
@@ -194,126 +239,99 @@
     </main>
 
 
-    <!-- ================= LOGIN POPOVER ================= -->
+    <!-- ================= FORGOT PASSWORD OVERLAY ================= -->
 
-    <div class="login-overlay" id="loginOverlay">
+    <div class="login-overlay" id="forgotPasswordOverlay">
 
-        <div class="login-popover" id="loginPopover">
+        <div class="login-popover">
 
+            <!-- CLOSE -->
 
-            <!-- CLOSE BUTTON -->
-
-            <button type="button" class="close-login" id="closeLoginBtn">
-
+            <button
+                type="button"
+                class="close-login"
+                id="closeForgotPasswordBtn"
+            >
                 &times;
-
             </button>
 
 
-            <!-- LOGIN LOGO -->
+            <!-- LOGO -->
 
             <div class="login-logo">
 
-                <img src="image/al-aleem_logo__2_-removebg-preview.png" alt="Al-Aleem Model College Logo">
+                <img
+                    src="image/al-aleem_logo__2_-removebg-preview.png"
+                    alt="Al-Aleem Model College Logo"
+                >
 
             </div>
 
 
-            <!-- LOGIN TITLE -->
+            <!-- TITLE -->
 
             <div class="login-title">
 
-                <h2>Welcome Back</h2>
+                <h2>
+                    Forgot Password
+                </h2>
 
                 <p>
-                    Login to your Al-Aleem account
+                    Enter your registered email to receive a new password code
                 </p>
 
             </div>
 
 
-            <!-- LOGIN FORM -->
+            <!-- FORGOT PASSWORD FORM -->
 
-            <form id="loginForm">
+            <form id="forgotPasswordForm">
 
                 <div class="input-group">
 
-                    <label for="loginEmail">
+                    <label for="forgotEmail">
                         Email Address
                     </label>
 
-                    <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="email" required>
+                    <input
+                        type="email"
+                        id="forgotEmail"
+                        placeholder="Enter your registered email"
+                        autocomplete="email"
+                        required
+                    >
 
                 </div>
 
 
-                <div class="input-group">
-
-                    <label for="loginPassword">
-                        Password
-                    </label>
-
-                    <div class="password-box">
-
-                        <input type="password" id="loginPassword" placeholder="Enter your password"
-                            autocomplete="current-password" required>
-
-                        <button type="button" class="password-toggle" data-target="loginPassword">
-
-                            <i class="fa-solid fa-eye-slash eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="login-options">
-
-                    <label class="remember-me">
-
-                        <input type="checkbox" id="rememberMe">
-
-                        <span>
-                            Remember me
-                        </span>
-
-                    </label>
-
-
-                    <button type="button" class="forgot-password" id="forgotPasswordBtn">
-
-                        Forgot password?
-
-                    </button>
-
-                </div>
-
-
-                <button type="submit" class="submit-btn login-btn">
-
-                    Login
-
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="forgotSendCodeBtn"
+                >
+                    Send New Code
                 </button>
 
             </form>
 
 
-            <!-- SWITCH TO SIGNUP -->
+            <!-- RESEND FORGOT PASSWORD CODE -->
 
-            <div class="switch-form login-switch">
+            <div
+                class="forgot-resend-box"
+                id="forgotResendBox"
+            >
 
                 <p>
-                    Don't have an account?
-
-                    <button type="button" id="backToSignupBtn">
-
-                        Sign Up
-
-                    </button>
-
+                    Didn't write down the new code?
                 </p>
+
+                <button
+                    type="button"
+                    id="forgotResendCodeBtn"
+                >
+                    Resend Code
+                </button>
 
             </div>
 
@@ -322,7 +340,7 @@
     </div>
 
 
-    <!-- ================= MESSAGE ================= -->
+    <!-- ================= MESSAGE / TOAST ================= -->
 
     <div class="message-box" id="messageBox">
 

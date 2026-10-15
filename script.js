@@ -1,165 +1,348 @@
 // =====================================================
-// AL-ALEEM SIGNUP / LOGIN
+// AL-ALEEM ADMIN LOGIN
+// ONE ADMIN EMAIL / CODE PASSWORD SYSTEM
 // =====================================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const splashScreen = document.getElementById("splashScreen");
-    const mainPage = document.getElementById("mainPage");
+    // =====================================================
+    // ELEMENTS
+    // =====================================================
 
-    const signupForm = document.getElementById("signupForm");
-    const loginForm = document.getElementById("loginForm");
+    const splashScreen =
+        document.getElementById("splashScreen");
 
-    const loginOverlay = document.getElementById("loginOverlay");
-    const openLoginBtn = document.getElementById("openLoginBtn");
-    const closeLoginBtn = document.getElementById("closeLoginBtn");
-    const backToSignupBtn = document.getElementById("backToSignupBtn");
-    const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
+    const mainPage =
+        document.getElementById("mainPage");
 
-    const messageBox = document.getElementById("messageBox");
-    const messageText = document.getElementById("messageText");
-    const messageIcon = document.getElementById("messageIcon");
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const loginEmailInput =
+        document.getElementById("loginEmail");
+
+    const loginPasswordInput =
+        document.getElementById("loginPassword");
+
+    const sendCodeBtn =
+        document.getElementById("sendCodeBtn");
+
+    const passwordArea =
+        document.getElementById("passwordArea");
+
+    const loginDescription =
+        document.getElementById("loginDescription");
+
+    const resendCodeBox =
+        document.getElementById("resendCodeBox");
+
+    const resendCodeBtn =
+        document.getElementById("resendCodeBtn");
+
+    const forgotPasswordBtn =
+        document.getElementById("forgotPasswordBtn");
+
+    const forgotPasswordOverlay =
+        document.getElementById("forgotPasswordOverlay");
+
+    const closeForgotPasswordBtn =
+        document.getElementById("closeForgotPasswordBtn");
+
+    const forgotPasswordForm =
+        document.getElementById("forgotPasswordForm");
+
+    const forgotEmailInput =
+        document.getElementById("forgotEmail");
+
+    const forgotSendCodeBtn =
+        document.getElementById("forgotSendCodeBtn");
+
+    const forgotResendBox =
+        document.getElementById("forgotResendBox");
+
+    const forgotResendCodeBtn =
+        document.getElementById("forgotResendCodeBtn");
+
+    const messageBox =
+        document.getElementById("messageBox");
+
+    const messageText =
+        document.getElementById("messageText");
+
+    const messageIcon =
+        document.getElementById("messageIcon");
 
 
-    /* =====================================================
-       LOCAL STORAGE
-    ===================================================== */
+    // =====================================================
+    // STORAGE KEYS
+    // =====================================================
 
-    const USERS_KEY = "alAleemUsers";
-    const CURRENT_USER_KEY = "alAleemCurrentUser";
-    const LOGIN_STATUS_KEY = "alAleemLoggedIn";
+    const USERS_KEY =
+        "alAleemUsers";
+
+    const CURRENT_USER_KEY =
+        "alAleemCurrentUser";
+
+    const LOGIN_STATUS_KEY =
+        "alAleemLoggedIn";
+
+    const ADMIN_ACCOUNT_KEY =
+        "alAleemAdminAccount";
 
 
-    /* =====================================================
-       DASHBOARD PAGE
-    ===================================================== */
+    // =====================================================
+    // DASHBOARD PAGE
+    // =====================================================
 
-    const DASHBOARD_PAGE = "./aleem-dashboard/aleem.html";
+    const DASHBOARD_PAGE =
+        "./aleem-dashboard/aleem.html";
 
 
-    /* =====================================================
-       SPLASH SCREEN
-    ===================================================== */
+    // =====================================================
+    // RESEND SETTINGS
+    // =====================================================
+
+    const MAX_RESENDS = 3;
+
+    const RESEND_WAIT_TIME = 60;
+
+    let firstLoginResendCount = 0;
+
+    let firstLoginResendTimer = null;
+
+    let forgotPasswordSendCount = 0;
+
+    let forgotPasswordTimer = null;
+
+    let messageTimer = null;
+
+
+    // =====================================================
+    // SPLASH SCREEN
+    // =====================================================
 
     if (mainPage) {
-        mainPage.style.display = "none";
+
+        mainPage.style.display =
+            "none";
+
     }
+
 
     setTimeout(function () {
 
         if (splashScreen) {
-            splashScreen.classList.add("hide");
+
+            splashScreen.classList.add(
+                "hide"
+            );
+
         }
 
+
         if (mainPage) {
-            mainPage.style.display = "flex";
+
+            mainPage.style.display =
+                "flex";
+
         }
 
     }, 5000);
 
 
-    /* =====================================================
-       GET USERS
-    ===================================================== */
+    // =====================================================
+    // GET ADMIN ACCOUNT
+    // =====================================================
 
-    function getUsers() {
+    function getAdminAccount() {
 
         try {
 
-            const savedUsers =
-                localStorage.getItem(USERS_KEY);
+            const savedAccount =
+                localStorage.getItem(
+                    ADMIN_ACCOUNT_KEY
+                );
 
-            if (!savedUsers) {
-                return [];
+
+            if (!savedAccount) {
+
+                return null;
+
             }
 
-            const users =
-                JSON.parse(savedUsers);
 
-            if (!Array.isArray(users)) {
-                return [];
+            const account =
+                JSON.parse(
+                    savedAccount
+                );
+
+
+            if (
+                !account ||
+                typeof account !== "object"
+            ) {
+
+                return null;
+
             }
 
-            return users;
+
+            return account;
 
         } catch (error) {
 
             console.error(
-                "Error reading users:",
+                "Error reading admin account:",
                 error
             );
 
-            return [];
+
+            return null;
+
         }
+
     }
 
 
-    /* =====================================================
-       SAVE USERS
-    ===================================================== */
+    // =====================================================
+    // SAVE ADMIN ACCOUNT
+    // =====================================================
 
-    function saveUsers(users) {
+    function saveAdminAccount(account) {
 
         try {
 
             localStorage.setItem(
-                USERS_KEY,
-                JSON.stringify(users)
+                ADMIN_ACCOUNT_KEY,
+                JSON.stringify(account)
             );
+
+
+            syncAccountWithOldUserStorage(
+                account
+            );
+
 
             return true;
 
         } catch (error) {
 
             console.error(
-                "Error saving users:",
+                "Error saving admin account:",
                 error
             );
 
+
             return false;
+
         }
+
     }
 
 
-    /* =====================================================
-       SAVE CURRENT USER
-    ===================================================== */
+    // =====================================================
+    // KEEP DASHBOARD USER STORAGE COMPATIBLE
+    // =====================================================
 
-    function saveCurrentUser(user) {
+    function syncAccountWithOldUserStorage(account) {
+
+        try {
+
+            const dashboardUser = {
+
+                id:
+                    account.id,
+
+                name:
+                    account.name ||
+                    "Administrator",
+
+                email:
+                    account.email,
+
+                phone:
+                    account.phone ||
+                    "",
+
+                password:
+                    account.password,
+
+                role:
+                    account.role ||
+                    "Administrator",
+
+                school:
+                    account.school ||
+                    "Al-Aleem Group of Schools",
+
+                profilePicture:
+                    account.profilePicture ||
+                    "",
+
+                createdAt:
+                    account.createdAt ||
+                    ""
+
+            };
+
+
+            localStorage.setItem(
+                USERS_KEY,
+                JSON.stringify(
+                    [dashboardUser]
+                )
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error synchronizing account:",
+                error
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // SAVE CURRENT USER
+    // =====================================================
+
+    function saveCurrentUser(account) {
 
         try {
 
             const currentUser = {
 
-                id: user.id,
+                id:
+                    account.id,
 
                 name:
-                    user.name ||
-                    user.fullname ||
+                    account.name ||
                     "Administrator",
 
                 email:
-                    user.email ||
-                    "",
+                    account.email,
 
                 phone:
-                    user.phone ||
+                    account.phone ||
                     "",
 
                 role:
-                    user.role ||
+                    account.role ||
                     "Administrator",
 
                 school:
-                    user.school ||
+                    account.school ||
                     "Al-Aleem Group of Schools",
 
                 profilePicture:
-                    user.profilePicture ||
+                    account.profilePicture ||
                     "",
 
                 createdAt:
-                    user.createdAt ||
+                    account.createdAt ||
                     ""
 
             };
@@ -186,18 +369,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 error
             );
 
+
             return false;
+
         }
+
     }
 
 
-    /* =====================================================
-       MESSAGE
-    ===================================================== */
+    // =====================================================
+    // SHOW MESSAGE
+    // =====================================================
 
     function showMessage(
         message,
-        type = "success"
+        type = "success",
+        duration = 3500
     ) {
 
         if (
@@ -205,7 +392,18 @@ document.addEventListener("DOMContentLoaded", function () {
             !messageText ||
             !messageIcon
         ) {
+
             return;
+
+        }
+
+
+        if (messageTimer) {
+
+            clearTimeout(
+                messageTimer
+            );
+
         }
 
 
@@ -224,6 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "error"
             );
 
+
             messageIcon.textContent =
                 "!";
 
@@ -231,6 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             messageIcon.textContent =
                 "✓";
+
         }
 
 
@@ -239,223 +439,286 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        setTimeout(function () {
+        messageTimer =
+            setTimeout(
+                function () {
 
-            messageBox.classList.remove(
-                "show"
+                    messageBox.classList.remove(
+                        "show"
+                    );
+
+                },
+                duration
             );
-
-        }, 3500);
 
     }
 
 
-    /* =====================================================
-       OPEN LOGIN
-    ===================================================== */
+    // =====================================================
+    // GENERATE UNIQUE CODE
+    // =====================================================
 
-    if (
-        openLoginBtn &&
-        loginOverlay
+    function generateCode(previousCode = "") {
+
+        let newCode = "";
+
+
+        do {
+
+            newCode =
+                Math.floor(
+                    100000 +
+                    Math.random() * 900000
+                ).toString();
+
+        } while (
+            newCode === previousCode
+        );
+
+
+        return newCode;
+
+    }
+
+
+    // =====================================================
+    // VALID EMAIL
+    // =====================================================
+
+    function isValidEmail(input) {
+
+        if (!input) {
+
+            return false;
+
+        }
+
+
+        return input.checkValidity();
+
+    }
+
+
+    // =====================================================
+    // CLEAR LOGIN FORM
+    // =====================================================
+
+    function clearLoginForm() {
+
+        if (loginEmailInput) {
+
+            loginEmailInput.value =
+                "";
+
+        }
+
+
+        if (loginPasswordInput) {
+
+            loginPasswordInput.value =
+                "";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // FIRST LOGIN DISPLAY
+    // =====================================================
+
+    function showFirstTimeLogin() {
+
+        if (sendCodeBtn) {
+
+            sendCodeBtn.style.display =
+                "block";
+
+        }
+
+
+        if (passwordArea) {
+
+            passwordArea.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        if (resendCodeBox) {
+
+            resendCodeBox.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        if (loginDescription) {
+
+            loginDescription.textContent =
+                "Enter your email address and click Send Code";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // NORMAL LOGIN DISPLAY
+    // =====================================================
+
+    function showNormalLogin() {
+
+        if (sendCodeBtn) {
+
+            sendCodeBtn.style.display =
+                "none";
+
+        }
+
+
+        if (passwordArea) {
+
+            passwordArea.classList.add(
+                "show"
+            );
+
+        }
+
+
+        if (resendCodeBox) {
+
+            resendCodeBox.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        if (loginDescription) {
+
+            loginDescription.textContent =
+                "Enter your email address and password to continue";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // FIRST CODE WAITING DISPLAY
+    // =====================================================
+
+    function showFirstCodeWaiting() {
+
+        if (sendCodeBtn) {
+
+            sendCodeBtn.style.display =
+                "none";
+
+        }
+
+
+        if (passwordArea) {
+
+            passwordArea.classList.add(
+                "show"
+            );
+
+        }
+
+
+        if (resendCodeBox) {
+
+            resendCodeBox.classList.add(
+                "show"
+            );
+
+        }
+
+
+        if (loginDescription) {
+
+            loginDescription.textContent =
+                "Enter the code shown in the notification as your password";
+
+        }
+
+    }
+
+
+    // =====================================================
+    // CHECK ACCOUNT WHEN PAGE LOADS
+    // =====================================================
+
+    const existingAccount =
+        getAdminAccount();
+
+
+    if (!existingAccount) {
+
+        showFirstTimeLogin();
+
+    } else if (
+        existingAccount.firstLoginCompleted === true
     ) {
 
-        openLoginBtn.addEventListener(
-            "click",
-            function () {
+        showNormalLogin();
 
-                loginOverlay.classList.add(
-                    "show"
-                );
+        clearLoginForm();
 
-                document.body.style.overflow =
-                    "hidden";
+    } else {
 
-            }
-        );
-
-    }
+        showFirstCodeWaiting();
 
 
-    /* =====================================================
-       CLOSE LOGIN
-    ===================================================== */
+        // The email is kept because this is still
+        // the FIRST code setup process.
 
-    function closeLogin() {
+        if (
+            loginEmailInput &&
+            existingAccount.email
+        ) {
 
-        if (loginOverlay) {
-
-            loginOverlay.classList.remove(
-                "show"
-            );
+            loginEmailInput.value =
+                existingAccount.email;
 
         }
 
-        document.body.style.overflow =
-            "";
 
-    }
+        if (loginPasswordInput) {
 
-
-    if (closeLoginBtn) {
-
-        closeLoginBtn.addEventListener(
-            "click",
-            closeLogin
-        );
-
-    }
-
-
-    /* =====================================================
-       CLICK OUTSIDE LOGIN
-    ===================================================== */
-
-    if (loginOverlay) {
-
-        loginOverlay.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target ===
-                    loginOverlay
-                ) {
-
-                    closeLogin();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       ESCAPE KEY
-    ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape" &&
-                loginOverlay &&
-                loginOverlay.classList.contains("show")
-            ) {
-
-                closeLogin();
-
-            }
+            loginPasswordInput.value =
+                "";
 
         }
-    );
+
+    }
 
 
-    /* =====================================================
-       BACK TO SIGNUP
-    ===================================================== */
+    // =====================================================
+    // SEND FIRST LOGIN CODE
+    // =====================================================
 
-    if (backToSignupBtn) {
+    if (sendCodeBtn) {
 
-        backToSignupBtn.addEventListener(
+        sendCodeBtn.addEventListener(
             "click",
             function () {
 
-                closeLogin();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SIGN UP
-    ===================================================== */
-
-    if (signupForm) {
-
-        signupForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const nameInput =
-                    document.getElementById(
-                        "signupName"
-                    );
-
-                const emailInput =
-                    document.getElementById(
-                        "signupEmail"
-                    );
-
-                const phoneInput =
-                    document.getElementById(
-                        "signupPhone"
-                    );
-
-                const passwordInput =
-                    document.getElementById(
-                        "signupPassword"
-                    );
-
-                const confirmPasswordInput =
-                    document.getElementById(
-                        "confirmPassword"
-                    );
-
-
-                if (
-                    !nameInput ||
-                    !emailInput ||
-                    !phoneInput ||
-                    !passwordInput ||
-                    !confirmPasswordInput
-                ) {
-
-                    showMessage(
-                        "Signup form could not be loaded correctly.",
-                        "error"
-                    );
+                if (!loginEmailInput) {
 
                     return;
+
                 }
 
-
-                const name =
-                    nameInput.value.trim();
 
                 const email =
-                    emailInput.value
+                    loginEmailInput.value
                         .trim()
                         .toLowerCase();
-
-                const phone =
-                    phoneInput.value.trim();
-
-                const password =
-                    passwordInput.value;
-
-                const confirmPassword =
-                    confirmPasswordInput.value;
-
-
-                if (!name) {
-
-                    showMessage(
-                        "Please enter your full name.",
-                        "error"
-                    );
-
-                    nameInput.focus();
-
-                    return;
-                }
 
 
                 if (!email) {
@@ -465,14 +728,19 @@ document.addEventListener("DOMContentLoaded", function () {
                         "error"
                     );
 
-                    emailInput.focus();
+
+                    loginEmailInput.focus();
+
 
                     return;
+
                 }
 
 
                 if (
-                    !emailInput.checkValidity()
+                    !isValidEmail(
+                        loginEmailInput
+                    )
                 ) {
 
                     showMessage(
@@ -480,100 +748,102 @@ document.addEventListener("DOMContentLoaded", function () {
                         "error"
                     );
 
-                    emailInput.focus();
+
+                    loginEmailInput.focus();
+
 
                     return;
+
                 }
 
 
-                if (!phone) {
-
-                    showMessage(
-                        "Please enter your phone number.",
-                        "error"
-                    );
-
-                    phoneInput.focus();
-
-                    return;
-                }
+                const savedAccount =
+                    getAdminAccount();
 
 
-                if (password.length < 6) {
+                // =================================================
+                // ACCOUNT ALREADY EXISTS
+                // =================================================
 
-                    showMessage(
-                        "Password must be at least 6 characters.",
-                        "error"
-                    );
+                if (savedAccount) {
 
-                    passwordInput.focus();
+                    if (
+                        savedAccount.email
+                            .toLowerCase() !==
+                        email
+                    ) {
 
-                    return;
-                }
-
-
-                if (
-                    password !==
-                    confirmPassword
-                ) {
-
-                    showMessage(
-                        "Passwords do not match.",
-                        "error"
-                    );
-
-                    confirmPasswordInput.focus();
-
-                    return;
-                }
+                        showMessage(
+                            "This email is not authorized to access this account.",
+                            "error"
+                        );
 
 
-                const users =
-                    getUsers();
+                        return;
+
+                    }
 
 
-                const existingUser =
-                    users.find(
-                        function (user) {
+                    if (
+                        savedAccount.firstLoginCompleted === true
+                    ) {
 
-                            return (
-                                user.email &&
-                                user.email
-                                    .toLowerCase() ===
-                                    email
-                            );
+                        showNormalLogin();
+
+
+                        if (loginPasswordInput) {
+
+                            loginPasswordInput.value =
+                                "";
+
+                            loginPasswordInput.focus();
 
                         }
-                    );
 
 
-                if (existingUser) {
+                        showMessage(
+                            "This account already has a password. Please enter your password.",
+                            "error"
+                        );
 
-                    showMessage(
-                        "An account with this email already exists. Please login.",
-                        "error"
-                    );
+
+                        return;
+
+                    }
+
+
+                    showFirstCodeWaiting();
+
 
                     return;
+
                 }
 
 
-                const newUser = {
+                // =================================================
+                // GENERATE FIRST CODE
+                // =================================================
+
+                const generatedCode =
+                    generateCode();
+
+
+                const newAccount = {
 
                     id:
                         Date.now().toString(),
 
                     name:
-                        name,
+                        "Administrator",
 
                     email:
                         email,
 
                     phone:
-                        phone,
+                        "",
 
                     password:
-                        password,
+                        generatedCode,
 
                     role:
                         "Administrator",
@@ -585,65 +855,57 @@ document.addEventListener("DOMContentLoaded", function () {
                         "",
 
                     createdAt:
-                        new Date().toISOString()
+                        new Date().toISOString(),
+
+                    firstLoginCompleted:
+                        false
 
                 };
 
 
-                users.push(
-                    newUser
-                );
+                const saved =
+                    saveAdminAccount(
+                        newAccount
+                    );
 
 
-                const usersSaved =
-                    saveUsers(users);
-
-
-                if (!usersSaved) {
+                if (!saved) {
 
                     showMessage(
-                        "Your account could not be saved. Please try again.",
+                        "Your login code could not be created. Please try again.",
                         "error"
                     );
 
+
                     return;
+
                 }
 
 
-                const sessionSaved =
-                    saveCurrentUser(
-                        newUser
-                    );
+                firstLoginResendCount =
+                    0;
 
 
-                if (!sessionSaved) {
-
-                    showMessage(
-                        "Account created, but login could not be completed.",
-                        "error"
-                    );
-
-                    return;
-                }
+                showFirstCodeWaiting();
 
 
                 showMessage(
-                    "Account created successfully. Opening dashboard..."
+                    "Your login code is: " +
+                    generatedCode +
+                    ". This code is now your password.",
+                    "success",
+                    10000
                 );
 
 
-                signupForm.reset();
+                if (loginPasswordInput) {
 
+                    loginPasswordInput.value =
+                        "";
 
-                setTimeout(
-                    function () {
+                    loginPasswordInput.focus();
 
-                        window.location.href =
-                            DASHBOARD_PAGE;
-
-                    },
-                    800
-                );
+                }
 
             }
         );
@@ -651,9 +913,216 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
-       LOGIN
-    ===================================================== */
+    // =====================================================
+    // FIRST LOGIN RESEND COUNTDOWN
+    // =====================================================
+
+    function startFirstLoginCountdown() {
+
+        if (!resendCodeBtn) {
+
+            return;
+
+        }
+
+
+        if (firstLoginResendTimer) {
+
+            clearInterval(
+                firstLoginResendTimer
+            );
+
+        }
+
+
+        let secondsLeft =
+            RESEND_WAIT_TIME;
+
+
+        resendCodeBtn.disabled =
+            true;
+
+
+        resendCodeBtn.textContent =
+            "Resend code in " +
+            secondsLeft +
+            "s";
+
+
+        firstLoginResendTimer =
+            setInterval(
+                function () {
+
+                    secondsLeft--;
+
+
+                    if (
+                        secondsLeft > 0
+                    ) {
+
+                        resendCodeBtn.textContent =
+                            "Resend code in " +
+                            secondsLeft +
+                            "s";
+
+                    } else {
+
+                        clearInterval(
+                            firstLoginResendTimer
+                        );
+
+
+                        firstLoginResendTimer =
+                            null;
+
+
+                        firstLoginResendCount =
+                            0;
+
+
+                        resendCodeBtn.disabled =
+                            false;
+
+
+                        resendCodeBtn.textContent =
+                            "Resend Code";
+
+                    }
+
+                },
+                1000
+            );
+
+    }
+
+
+    // =====================================================
+    // RESEND FIRST LOGIN CODE
+    // =====================================================
+
+    if (resendCodeBtn) {
+
+        resendCodeBtn.addEventListener(
+            "click",
+            function () {
+
+                const account =
+                    getAdminAccount();
+
+
+                if (!account) {
+
+                    showMessage(
+                        "No account was found.",
+                        "error"
+                    );
+
+
+                    return;
+
+                }
+
+
+                if (
+                    account.firstLoginCompleted === true
+                ) {
+
+                    showNormalLogin();
+
+                    clearLoginForm();
+
+
+                    return;
+
+                }
+
+
+                if (
+                    firstLoginResendCount >=
+                    MAX_RESENDS
+                ) {
+
+                    startFirstLoginCountdown();
+
+
+                    return;
+
+                }
+
+
+                const oldCode =
+                    account.password;
+
+
+                const newCode =
+                    generateCode(
+                        oldCode
+                    );
+
+
+                account.password =
+                    newCode;
+
+
+                const saved =
+                    saveAdminAccount(
+                        account
+                    );
+
+
+                if (!saved) {
+
+                    showMessage(
+                        "A new code could not be generated. Please try again.",
+                        "error"
+                    );
+
+
+                    return;
+
+                }
+
+
+                firstLoginResendCount++;
+
+
+                if (loginPasswordInput) {
+
+                    loginPasswordInput.value =
+                        "";
+
+                    loginPasswordInput.focus();
+
+                }
+
+
+                showMessage(
+                    "Your new login code is: " +
+                    newCode +
+                    ". Your previous code will no longer work.",
+                    "success",
+                    10000
+                );
+
+
+                if (
+                    firstLoginResendCount >=
+                    MAX_RESENDS
+                ) {
+
+                    startFirstLoginCountdown();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // LOGIN
+    // =====================================================
 
     if (loginForm) {
 
@@ -664,28 +1133,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                const loginEmailInput =
-                    document.getElementById(
-                        "loginEmail"
-                    );
-
-                const loginPasswordInput =
-                    document.getElementById(
-                        "loginPassword"
-                    );
-
-
                 if (
                     !loginEmailInput ||
                     !loginPasswordInput
                 ) {
 
-                    showMessage(
-                        "Login form could not be loaded correctly.",
-                        "error"
-                    );
-
                     return;
+
                 }
 
 
@@ -693,6 +1147,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     loginEmailInput.value
                         .trim()
                         .toLowerCase();
+
 
                 const password =
                     loginPasswordInput.value;
@@ -705,9 +1160,32 @@ document.addEventListener("DOMContentLoaded", function () {
                         "error"
                     );
 
+
                     loginEmailInput.focus();
 
+
                     return;
+
+                }
+
+
+                if (
+                    !isValidEmail(
+                        loginEmailInput
+                    )
+                ) {
+
+                    showMessage(
+                        "Please enter a valid email address.",
+                        "error"
+                    );
+
+
+                    loginEmailInput.focus();
+
+
+                    return;
+
                 }
 
 
@@ -718,72 +1196,113 @@ document.addEventListener("DOMContentLoaded", function () {
                         "error"
                     );
 
+
                     loginPasswordInput.focus();
 
+
                     return;
+
                 }
 
 
-                const users =
-                    getUsers();
+                const account =
+                    getAdminAccount();
 
 
-                if (users.length === 0) {
+                if (!account) {
 
                     showMessage(
-                        "No account found. Please create an account first.",
+                        "Please click Send Code first.",
                         "error"
                     );
 
+
                     return;
+
                 }
 
 
-                const user =
-                    users.find(
-                        function (account) {
-
-                            return (
-                                account.email &&
-                                account.email
-                                    .toLowerCase() ===
-                                    email
-                            );
-
-                        }
-                    );
-
-
-                if (!user) {
-
-                    showMessage(
-                        "No account found with this email. Please create an account first.",
-                        "error"
-                    );
-
-                    return;
-                }
-
+                // =================================================
+                // BLOCK ANOTHER EMAIL
+                // =================================================
 
                 if (
-                    user.password !==
+                    account.email
+                        .toLowerCase() !==
+                    email
+                ) {
+
+                    showMessage(
+                        "This email is not authorized to access this account.",
+                        "error"
+                    );
+
+
+                    loginEmailInput.focus();
+
+
+                    return;
+
+                }
+
+
+                // =================================================
+                // CHECK PASSWORD
+                // =================================================
+
+                if (
+                    account.password !==
                     password
                 ) {
 
                     showMessage(
-                        "Incorrect password. Please try again.",
+                        "Incorrect password.",
                         "error"
                     );
 
+
+                    loginPasswordInput.value =
+                        "";
+
+
                     loginPasswordInput.focus();
 
+
                     return;
+
+                }
+
+
+                // =================================================
+                // SUCCESSFUL LOGIN
+                // =================================================
+
+                account.firstLoginCompleted =
+                    true;
+
+
+                const accountSaved =
+                    saveAdminAccount(
+                        account
+                    );
+
+
+                if (!accountSaved) {
+
+                    showMessage(
+                        "Login could not be completed. Please try again.",
+                        "error"
+                    );
+
+
+                    return;
+
                 }
 
 
                 const sessionSaved =
                     saveCurrentUser(
-                        user
+                        account
                     );
 
 
@@ -794,7 +1313,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "error"
                     );
 
+
                     return;
+
                 }
 
 
@@ -819,9 +1340,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
-       FORGOT PASSWORD
-    ===================================================== */
+    // =====================================================
+    // OPEN FORGOT PASSWORD
+    // =====================================================
 
     if (forgotPasswordBtn) {
 
@@ -829,68 +1350,96 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                const loginEmail =
-                    document.getElementById(
-                        "loginEmail"
-                    );
+                const account =
+                    getAdminAccount();
 
 
-                if (!loginEmail) {
-                    return;
-                }
-
-
-                const email =
-                    loginEmail.value
-                        .trim()
-                        .toLowerCase();
-
-
-                if (!email) {
+                if (!account) {
 
                     showMessage(
-                        "Please enter your email first.",
+                        "No admin account has been created yet.",
                         "error"
                     );
 
-                    loginEmail.focus();
 
                     return;
+
                 }
 
 
-                const users =
-                    getUsers();
+                // Keep forgot password email empty.
+                // User must type the email manually.
+
+                if (forgotEmailInput) {
+
+                    forgotEmailInput.value =
+                        "";
+
+                }
 
 
-                const user =
-                    users.find(
-                        function (account) {
+                if (forgotResendBox) {
 
-                            return (
-                                account.email &&
-                                account.email
-                                    .toLowerCase() ===
-                                    email
-                            );
+                    forgotResendBox.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+                forgotPasswordSendCount =
+                    0;
+
+
+                if (forgotSendCodeBtn) {
+
+                    forgotSendCodeBtn.style.display =
+                        "block";
+
+                    forgotSendCodeBtn.disabled =
+                        false;
+
+                    forgotSendCodeBtn.textContent =
+                        "Send New Code";
+
+                }
+
+
+                if (forgotResendCodeBtn) {
+
+                    forgotResendCodeBtn.disabled =
+                        false;
+
+                    forgotResendCodeBtn.textContent =
+                        "Resend Code";
+
+                }
+
+
+                if (forgotPasswordOverlay) {
+
+                    forgotPasswordOverlay.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+
+                setTimeout(
+                    function () {
+
+                        if (forgotEmailInput) {
+
+                            forgotEmailInput.focus();
 
                         }
-                    );
 
-
-                if (!user) {
-
-                    showMessage(
-                        "No account was found with this email.",
-                        "error"
-                    );
-
-                    return;
-                }
-
-
-                showMessage(
-                    "Password recovery would be sent to your email."
+                    },
+                    100
                 );
 
             }
@@ -899,9 +1448,449 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
-       PASSWORD SHOW / HIDE
-    ===================================================== */
+    // =====================================================
+    // CLOSE FORGOT PASSWORD
+    // =====================================================
+
+    function closeForgotPassword() {
+
+        if (forgotPasswordOverlay) {
+
+            forgotPasswordOverlay.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    if (closeForgotPasswordBtn) {
+
+        closeForgotPasswordBtn.addEventListener(
+            "click",
+            closeForgotPassword
+        );
+
+    }
+
+
+    // =====================================================
+    // CLICK OUTSIDE FORGOT PASSWORD
+    // =====================================================
+
+    if (forgotPasswordOverlay) {
+
+        forgotPasswordOverlay.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    forgotPasswordOverlay
+                ) {
+
+                    closeForgotPassword();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // ESCAPE KEY
+    // =====================================================
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                forgotPasswordOverlay &&
+                forgotPasswordOverlay
+                    .classList
+                    .contains("show")
+            ) {
+
+                closeForgotPassword();
+
+            }
+
+        }
+    );
+
+
+    // =====================================================
+    // GENERATE FORGOT PASSWORD CODE
+    // =====================================================
+
+    function generateForgotPasswordCode() {
+
+        const account =
+            getAdminAccount();
+
+
+        if (!account) {
+
+            showMessage(
+                "No admin account was found.",
+                "error"
+            );
+
+
+            return false;
+
+        }
+
+
+        if (!forgotEmailInput) {
+
+            return false;
+
+        }
+
+
+        const email =
+            forgotEmailInput.value
+                .trim()
+                .toLowerCase();
+
+
+        if (!email) {
+
+            showMessage(
+                "Please enter your registered email address.",
+                "error"
+            );
+
+
+            forgotEmailInput.focus();
+
+
+            return false;
+
+        }
+
+
+        if (
+            !isValidEmail(
+                forgotEmailInput
+            )
+        ) {
+
+            showMessage(
+                "Please enter a valid email address.",
+                "error"
+            );
+
+
+            forgotEmailInput.focus();
+
+
+            return false;
+
+        }
+
+
+        // =================================================
+        // ONLY REGISTERED EMAIL CAN RESET PASSWORD
+        // =================================================
+
+        if (
+            account.email
+                .toLowerCase() !==
+            email
+        ) {
+
+            showMessage(
+                "This email is not authorized to reset the password.",
+                "error"
+            );
+
+
+            forgotEmailInput.focus();
+
+
+            return false;
+
+        }
+
+
+        const oldPassword =
+            account.password;
+
+
+        const newCode =
+            generateCode(
+                oldPassword
+            );
+
+
+        // =================================================
+        // NEW CODE BECOMES THE NEW PASSWORD
+        // =================================================
+
+        account.password =
+            newCode;
+
+
+        account.firstLoginCompleted =
+            true;
+
+
+        const saved =
+            saveAdminAccount(
+                account
+            );
+
+
+        if (!saved) {
+
+            showMessage(
+                "A new password code could not be generated. Please try again.",
+                "error"
+            );
+
+
+            return false;
+
+        }
+
+
+        // =================================================
+        // KEEP MAIN LOGIN FORM EMPTY
+        // =================================================
+
+        if (loginEmailInput) {
+
+            loginEmailInput.value =
+                "";
+
+        }
+
+
+        if (loginPasswordInput) {
+
+            loginPasswordInput.value =
+                "";
+
+        }
+
+
+        // =================================================
+        // SHOW NEW PASSWORD FOR 10 SECONDS
+        // =================================================
+
+        showMessage(
+            "Your new password code is: " +
+            newCode +
+            ". Your previous password will no longer work.",
+            "success",
+            10000
+        );
+
+
+        return true;
+
+    }
+
+
+    // =====================================================
+    // FORGOT PASSWORD COUNTDOWN
+    // =====================================================
+
+    function startForgotPasswordCountdown() {
+
+        if (!forgotResendCodeBtn) {
+
+            return;
+
+        }
+
+
+        if (forgotPasswordTimer) {
+
+            clearInterval(
+                forgotPasswordTimer
+            );
+
+        }
+
+
+        let secondsLeft =
+            RESEND_WAIT_TIME;
+
+
+        forgotResendCodeBtn.disabled =
+            true;
+
+
+        forgotResendCodeBtn.textContent =
+            "Resend code in " +
+            secondsLeft +
+            "s";
+
+
+        forgotPasswordTimer =
+            setInterval(
+                function () {
+
+                    secondsLeft--;
+
+
+                    if (
+                        secondsLeft > 0
+                    ) {
+
+                        forgotResendCodeBtn.textContent =
+                            "Resend code in " +
+                            secondsLeft +
+                            "s";
+
+                    } else {
+
+                        clearInterval(
+                            forgotPasswordTimer
+                        );
+
+
+                        forgotPasswordTimer =
+                            null;
+
+
+                        forgotPasswordSendCount =
+                            0;
+
+
+                        forgotResendCodeBtn.disabled =
+                            false;
+
+
+                        forgotResendCodeBtn.textContent =
+                            "Resend Code";
+
+                    }
+
+                },
+                1000
+            );
+
+    }
+
+
+    // =====================================================
+    // FIRST FORGOT PASSWORD SEND
+    // =====================================================
+
+    if (forgotPasswordForm) {
+
+        forgotPasswordForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const successful =
+                    generateForgotPasswordCode();
+
+
+                if (!successful) {
+
+                    return;
+
+                }
+
+
+                forgotPasswordSendCount =
+                    1;
+
+
+                if (forgotSendCodeBtn) {
+
+                    forgotSendCodeBtn.style.display =
+                        "none";
+
+                }
+
+
+                if (forgotResendBox) {
+
+                    forgotResendBox.classList.add(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // RESEND FORGOT PASSWORD CODE
+    // =====================================================
+
+    if (forgotResendCodeBtn) {
+
+        forgotResendCodeBtn.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    forgotPasswordSendCount >=
+                    MAX_RESENDS
+                ) {
+
+                    startForgotPasswordCountdown();
+
+
+                    return;
+
+                }
+
+
+                const successful =
+                    generateForgotPasswordCode();
+
+
+                if (!successful) {
+
+                    return;
+
+                }
+
+
+                forgotPasswordSendCount++;
+
+
+                if (
+                    forgotPasswordSendCount >=
+                    MAX_RESENDS
+                ) {
+
+                    startForgotPasswordCountdown();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // PASSWORD SHOW / HIDE
+    // =====================================================
 
     const passwordToggles =
         document.querySelectorAll(
@@ -923,7 +1912,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     if (!targetId) {
+
                         return;
+
                     }
 
 
@@ -934,18 +1925,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     if (!passwordInput) {
+
                         return;
+
                     }
 
 
                     const eyeIcon =
                         button.querySelector(
                             ".eye"
-                        );
-
-                    const eyeSpan =
-                        button.querySelector(
-                            "span"
                         );
 
 
@@ -964,17 +1952,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "fa-eye-slash"
                             );
 
+
                             eyeIcon.classList.add(
                                 "fa-eye"
                             );
-
-                        }
-
-
-                        if (eyeSpan) {
-
-                            eyeSpan.textContent =
-                                "🙈";
 
                         }
 
@@ -990,17 +1971,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "fa-eye"
                             );
 
+
                             eyeIcon.classList.add(
                                 "fa-eye-slash"
                             );
-
-                        }
-
-
-                        if (eyeSpan) {
-
-                            eyeSpan.textContent =
-                                "👁";
 
                         }
 
@@ -1012,39 +1986,82 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-});
+
+    // =====================================================
+    // CHECK EMAIL WHEN USER LEAVES EMAIL FIELD
+    // =====================================================
+
+    if (loginEmailInput) {
+
+        loginEmailInput.addEventListener(
+            "blur",
+            function () {
+
+                const account =
+                    getAdminAccount();
 
 
+                if (!account) {
 
-document.addEventListener("DOMContentLoaded", function () {
+                    return;
 
-    const passwordToggle = document.querySelector(".password-toggle");
+                }
 
-    passwordToggle.addEventListener("click", function () {
 
-        const targetId = this.getAttribute("data-target");
-        const passwordInput = document.getElementById(targetId);
-        const icon = this.querySelector(".eye");
+                const email =
+                    loginEmailInput.value
+                        .trim()
+                        .toLowerCase();
 
-        if (passwordInput.type === "password") {
 
-            passwordInput.type = "text";
+                if (!email) {
 
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
+                    return;
 
-        } else {
+                }
 
-            passwordInput.type = "password";
 
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
+                if (
+                    email !==
+                    account.email
+                        .toLowerCase()
+                ) {
+
+                    showMessage(
+                        "Only the registered admin email can login.",
+                        "error"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // =====================================================
+    // PREVENT OUR JAVASCRIPT FROM RESTORING LOGIN VALUES
+    // =====================================================
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            const account =
+                getAdminAccount();
+
+
+            if (
+                account &&
+                account.firstLoginCompleted === true
+            ) {
+
+                clearLoginForm();
+
+            }
 
         }
-
-    });
+    );
 
 });
-
-
-
