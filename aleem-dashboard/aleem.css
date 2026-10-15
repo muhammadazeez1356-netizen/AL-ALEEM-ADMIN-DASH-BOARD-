@@ -8379,3 +8379,98 @@ td {
     }
 
 }
+
+
+/* =====================================================
+   MOBILE SIDEBAR - KEEP LOGOUT VISIBLE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .side-bar {
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        overflow: hidden !important;
+
+        position: fixed !important;
+        top: 0 !important;
+        bottom: 0 !important;
+    }
+
+
+    .school-logo {
+        flex: 0 0 auto !important;
+    }
+
+
+    .sidebar-menu {
+        flex: 1 1 auto !important;
+
+        min-height: 0 !important;
+
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        padding-bottom: 15px !important;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    .sidebar-bottom {
+        flex: 0 0 auto !important;
+
+        width: 100% !important;
+
+        margin-top: auto !important;
+
+        padding: 10px 14px
+            calc(12px + env(safe-area-inset-bottom)) !important;
+
+        background: #ffffff !important;
+
+        border-top: 1px solid #eef0f5 !important;
+
+        position: relative !important;
+
+        bottom: auto !important;
+
+        display: block !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        z-index: 100 !important;
+    }
+
+
+    .sidebar-bottom .menu-item,
+    .sidebar-bottom .menu-item.logout {
+        display: flex !important;
+
+        align-items: center !important;
+
+        width: 100% !important;
+
+        min-height: 48px !important;
+
+        margin: 0 !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        cursor: pointer !important;
+    }
+
+
+    .sidebar-bottom .logout {
+        color: #0a7142 !important;
+    }
+
+}

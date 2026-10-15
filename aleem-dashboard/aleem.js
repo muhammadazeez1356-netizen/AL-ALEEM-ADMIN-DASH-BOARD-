@@ -83,11 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
             "mainContent"
         );
 
-    const menuItems =
-        document.querySelectorAll(
-            ".sidebar-menu .menu-item"
-        );
-
+  const menuItems =
+    document.querySelectorAll(
+        ".side-bar .menu-item"
+    );
     const headerTitle =
         document.getElementById(
             "headerTitle"
